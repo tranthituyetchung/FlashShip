@@ -9,9 +9,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { IcUser } from 'values/images';
 import Restaurant from 'components/restaurant/Restaurant';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
-  
 
-class ListRestaurantHorizontal extends Component {
+class ListReorder extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,26 +18,28 @@ class ListRestaurantHorizontal extends Component {
         };
       }
     renderItem = ({ item }) => (
-        
         <TouchableOpacity 
           style={styles.card} 
           //onPress={() => this.props.openRestaurant(item)}
           >
-          <Image 
+            <Image 
             style={styles.couseImg} 
             source={item.imageUrl}/>
-          <Text style={styles.cardTitle} numberOfLines={2}>{item.name}</Text>
-          {/* <Text style={styles.cardAuthor}>{item.category}</Text>
-           <View style={styles.infoContainer}>
-            <View style={styles.infoItem}>
-              <Text style={styles.infoIcon}><IcStarFill/></Text>
-              <Text style={styles.infoText}>{item.rating}</Text>
+            <View style={styles.cardContainer}>
+                <View style={styles.cardHeader}>
+                    <Text style={styles.cardTitle} numberOfLines={1}>{item.name}</Text>
+                    <Text style={styles.cardAuthor}>{item.category}</Text>
+                </View>
+                <View style={styles.tagContainer}>
+                    <View style={styles.tagItem}>
+                    <Text style={styles.tagText}>Mã giảm 15%</Text>
+                    </View>
+                    <View style={styles.tagItem}>
+                    <Text style={styles.tagText}>Mã giảm 30%</Text>
+                    </View>
+                </View>
             </View>
-            <View style={styles.infoItem}>
-              <Text style={styles.infoIcon}><IcClock/></Text>
-              <Text style={styles.infoText}>{item.time} - {item.distance}</Text>
-            </View>
-          </View> */}
+          
         </TouchableOpacity>
     );
 
@@ -67,14 +68,15 @@ class ListRestaurantHorizontal extends Component {
     }
 }
 
-export default ListRestaurantHorizontal;
+export default ListReorder;
 
 const styles = StyleSheet.create({
     container:{
+        marginTop: 16,
         flexDirection: 'column',
         backgroundColor: colors.white,
         justifyContent: 'center',
-        
+       
     },
     header: {
         width: wp('100%') -32,
@@ -98,7 +100,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center',
         backgroundColor: colors.white,
-        color: colors.dark_blue
     },
     content: {
         width: wp('100%'),
@@ -108,14 +109,14 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
     },
     card: {
-        width: 100,
-        height: 144, 
-        //marginRight: 16,
-        marginTop: 8,
-        marginBottom: 16,
+        width: wp('100%')-120,
+        height: 100, 
         marginLeft: 16,
+        marginTop: 8,
+        marginBottom: 8,
         borderRadius: 8,
         backgroundColor: colors.white,
+        flexDirection: 'row',
         //shadow
         // shadowColor: colors.light_grey,
         // shadowOffset: {
@@ -125,6 +126,14 @@ const styles = StyleSheet.create({
         // shadowOpacity: 0.01,
         // shadowRadius: 4.65, 
         // elevation: 3,
+    },
+    cardHeader:{   
+    },
+    cardContainer:{
+        width: wp('100%')-220,
+        backgroundColor: colors.white,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
     },
     couseImg:{
         borderTopLeftRadius: 8,
@@ -137,20 +146,21 @@ const styles = StyleSheet.create({
         fontFamily: 'Nunito-SemiBold',
         fontSize: 14,
         marginTop: 4,
-        //marginHorizontal: 8,
+        marginHorizontal: 8,
         color: colors.dark_blue,
     },
     cardAuthor: {
         fontFamily: 'Nunito-Regular',
-        fontSize: 11,
+        fontSize: 12,
         marginHorizontal: 8,
-        color: colors.dark_blue,
+        color: colors.primary_grey,
     },
     infoContainer:{
         marginTop: 4,
-        marginHorizontal: 8,
+        marginLeft: 8,
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginBottom: 16,
     },
     infoItem: {
         height: 12,
@@ -161,9 +171,40 @@ const styles = StyleSheet.create({
     },
     infoIcon:{
     },
-    infoText: {
-        fontFamily: 'Nunito-Bold',
+    infoTextBold:{
+        fontFamily: 'Nunito-Regular',
+        color: colors.dark_blue,
         fontSize: 12,
         marginLeft: 2,
+    },
+    infoText: {
+        fontFamily: 'Nunito-Regular',
+        color: colors.primary_grey,
+        fontSize: 12,
+        marginLeft: 2,
+    },
+    tagContainer:{
+        marginTop: 4,
+        marginLeft: 8,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 8,
+    },
+    tagItem:{
+        height: 24,
+        marginRight: 6,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: colors.red,
+        borderWidth: 1,
+        borderRadius: 4,
+    },
+    tagText:{
+        fontFamily: 'Nunito-Regular',
+        color: colors.red,
+        fontSize: 11,
+        marginLeft: 2,
+        paddingHorizontal: 4,
     }
 })
