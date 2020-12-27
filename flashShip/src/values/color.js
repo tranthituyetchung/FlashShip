@@ -4,7 +4,7 @@ const colors = {
     orange: '#ff922d',
     light_black: '#aba9bc',
     main_blue: '#1479FF',
-    primary_blue: '#D2E6FF',
+    primary_blue: '#52C3FC',
     secondary_blue: '#87A8D3',
     dark_blue: '#193B68',
     primary_yellow: '#ffe65d',

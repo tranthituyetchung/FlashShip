@@ -1,10 +1,12 @@
 import React from 'react';
 import {View, TextInput} from 'react-native';
-import Header from '../../common/Header';
-import strings from '../../values/strings';
+import Header from 'common/Header';
+import strings from 'values/strings';
+import colors from 'values/color';
 import styles from './style';
 import ExtraFood from './ExtraFood';
-import {IcNote} from '../../values/images';
+import {IcNote} from 'values/images';
+import ConfirmBtn from 'common/ConfirmBtn'
 
 function RestaurentAdd() {
   const Canh = [
@@ -22,7 +24,7 @@ function RestaurentAdd() {
   ];
 
   return (
-    <View>
+    <View style={{flex: 1, backgroundColor: colors.white}}>
       <Header title={strings.RestaurantAdd} />
       {/* Component mon an */}
       <View style={styles.tmp}></View>
@@ -39,7 +41,7 @@ function RestaurentAdd() {
         />
       </View>
 
-      {/* <ConfirmBtn title={strings.RestaurantAddBtn} /> */}
+      <ConfirmBtn title={strings.RestaurantAddBtn} />
     </View>
   );
 }
