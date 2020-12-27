@@ -221,7 +221,7 @@ class Search extends Component {
                      <Text style={styles.resultText}>
                        Tìm thấy {this.state.filteredData.length} quán ăn
                      </Text>
-                     <ListRestaurantVertical data={this.state.filteredData} />
+                     <ListRestaurantVertical data={this.state.filteredData} viewRestaurant = {this.props.route.params.viewRestaurant}/>
                      </>) 
                     : (<Text style={styles.resultText}>
                         Không tìm thấy quán ăn nào với từ khóa trên

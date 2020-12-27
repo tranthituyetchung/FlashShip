@@ -22,7 +22,7 @@ class ListRestaurantHorizontal extends Component {
         
         <TouchableOpacity 
           style={styles.card} 
-          //onPress={() => this.props.openRestaurant(item)}
+          onPress={() => this.props.viewRestaurant(item)}
           >
           <Image 
             style={styles.couseImg} 

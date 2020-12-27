@@ -16,11 +16,11 @@ class ListReorder extends Component {
         this.state = {
            
         };
-      }
+    }
     renderItem = ({ item }) => (
         <TouchableOpacity 
           style={styles.card} 
-          //onPress={() => this.props.openRestaurant(item)}
+          onPress={() => this.props.viewRestaurant(item)}
           >
             <Image 
             style={styles.couseImg} 
