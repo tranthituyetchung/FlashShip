@@ -15,6 +15,7 @@ import {
   BgIntro3,
   BgIntro2, 
 } from 'values/images'
+
 const slides = [
     {
       key: '1',
@@ -40,13 +41,9 @@ class Welcome extends Component {
         </View>
       );
     }
-    onDone = () =>{
-
-        // AsyncStorage.setItem(AsyncStorageKeys.isFirstTime, 'false').then(() => {
-        //     this.props.navigation.navigate('server')
-        //   });   
-        //this.props.navigation.navigate('login')
-          
+    onDone = () => {
+        console.log(this)
+        this.props.navigation.navigate("Home")        
     }
     render() {
             return (
@@ -64,7 +61,7 @@ class Welcome extends Component {
                     showNextButton = {false}
                 />
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity style={styles.startButton} onPress={()=>this.onDone()} >
+                    <TouchableOpacity style={styles.startButton} onPress={this.onDone} >
                         <Text style={styles.startButtonTitle}>{strings.StartButtonTitle}</Text>
                     </TouchableOpacity>
                 </View>

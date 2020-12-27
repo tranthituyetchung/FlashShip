@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { navigationRef } from './RootNavigation'
 import { createStackNavigator } from '@react-navigation/stack'
 import Welcome from 'components/welcome/Welcome'
-
+import Home from 'components/home/Home'
 
 const Stack = createStackNavigator();
 class AppNavigation extends Component{
@@ -14,7 +14,8 @@ class AppNavigation extends Component{
           <Stack.Navigator
             initialRouteName={this.props.screenName}
             headerMode="none">
-                <Stack.Screen name="welcome" component={Welcome} />
+                <Stack.Screen name="Welcome" component={Welcome} />
+                <Stack.Screen name="Home" component={Home} />
           </Stack.Navigator>
         </NavigationContainer>
         </>

@@ -46,6 +46,9 @@ import IcHeart from 'assets/images/ic_heart'
 import IcHeartFill from 'assets/images/ic_heart_fill'
 import IcCart from 'assets/images/ic_cart'
 import IcChanel from 'assets/images/ic_chanel'
+import IcMapPin from 'assets/images/ic_map_pin'
+import IcNote from 'assets/images/ic_note'
+
 export {
     //images, 
     //screen welcome: 
@@ -63,6 +66,8 @@ export {
     IcUserFill,
     IcStarFill,
     IcClock,
+    IcNote,
+    IcMapPin,
     // IcKey,
     IcWarning,
     //Browser

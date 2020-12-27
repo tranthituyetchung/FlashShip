@@ -24,7 +24,7 @@ export default class App extends Component {
       //   <Main/> 
       // </Provider>
       <>
-      <Welcome/>
+      <Main/>
       </>
      )
   }
