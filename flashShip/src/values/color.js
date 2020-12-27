@@ -9,7 +9,7 @@ const colors = {
     dark_blue: '#193B68',
     primary_yellow: '#ffe65d',
     primary_yellow_light: '#f0e68c',
-    primary_grey_light: '#fafafa',
+    primary_grey_light: '#E4E4E4',
     secondary_grey_light: '#d4d4d4',
     primary_grey: '#F3F5F7',
     secondary_grey: '#86869E',

@@ -3,18 +3,25 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import colors from '../../values/color';
+import colors from 'values/color';
 
 const wratio = wp('100%') / 375;
 const hratio = hp('100%') / 812;
 const styles = StyleSheet.create({
+  container:{
+    width: wp('100%') - 32,
+  },
+  blank:{
+    height: 200
+  },
   tmp: {
-    width: wp('100%') - 30,
+    width: wp('100%') - 32,
     height: 80,
     backgroundColor: 'red',
-    marginTop: hp('10%') + 10,
+    marginTop: 64,
     marginLeft: 15,
     marginRight: 15,
+    overflow: 'scroll'
   },
   extraFoodContainer: {
     marginTop: 5,
@@ -24,7 +31,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 15,
     color: colors.dark_blue,
-    fontFamily: 'Nutito-Bold',
+    fontFamily: 'Nunito-Bold',
     fontSize: 16,
   },
   extraFoodSection: {
@@ -40,28 +47,29 @@ const styles = StyleSheet.create({
   extraFoodSubTitle: {
     display: 'flex',
     flexDirection: 'row',
-    fontFamily: 'Nutito-Regular',
+    alignItems: 'center',
+    fontFamily: 'Nunito-Regular',
   },
   extraFoodAuto: {
+    color: colors.dark_blue,
     textAlignVertical: 'center',
-    fontFamily: 'Nutito-Regular',
+    fontFamily: 'Nunito-Regular',
     fontSize: 14,
   },
   extraFoodPrice: {
-    color: colors.light_black,
-    fontFamily: 'Nutito-Regular',
+    color: colors.secondary_grey,
+    fontFamily: 'Nunito-Regular',
     fontSize: 14,
   },
   extraFoodSelected: {
     color: colors.dark_blue,
-    fontFamily: 'Nutito-Bold',
+    fontFamily: 'Nunito-Bold',
     fontSize: 14,
-    fontWeight: 'bold',
   },
   RestaurantAddNote: {
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: '#ddd',
+    backgroundColor: colors.primary_grey,
     borderRadius: 8,
     marginLeft: 15,
     marginRight: 15,
@@ -73,6 +81,11 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginRight: 5,
   },
+  inputText:{
+    height: 56,
+    width: wp('100%')-100,
+    fontFamily: 'Nunito-Regular',
+  }
 });
 
 export default styles;

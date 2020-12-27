@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, TextInput} from 'react-native';
 import Header from 'common/Header';
 import strings from 'values/strings';
@@ -7,8 +7,12 @@ import styles from './style';
 import ExtraFood from './ExtraFood';
 import {IcNote} from 'values/images';
 import ConfirmBtn from 'common/ConfirmBtn'
+import { ScrollView } from 'react-native-gesture-handler';
+import { useWindowDimensions } from 'react-native';
 
 function RestaurentAdd() {
+  const height = useWindowDimensions().height;
+  const [screenHeight, setScreenHeight] = useState(0);
   const Canh = [
     {name: 'Canh bí đỏ', price: 10000},
     {name: 'Canh bí đỏ', price: 10000},
@@ -22,27 +26,43 @@ function RestaurentAdd() {
     {name: 'Rau xào', price: 10000},
     {name: 'Rau xào', price: 10000},
   ];
+  const onContentSizeChange = (contentWidth, contentHeight) => {
+   setScreenHeight(contentHeight)
+  };
+  
+  const scrollEnabled = screenHeight > height/2;
 
   return (
     <View style={{flex: 1, backgroundColor: colors.white}}>
+    
       <Header title={strings.RestaurantAdd} />
       {/* Component mon an */}
-      <View style={styles.tmp}></View>
-      <ExtraFood title="Món ăn kèm" extraFoods={MonAnKem} />
-      {/* <ExtraFood title="Món canh" extraFoods={Canh} /> */}
-      <View style={styles.RestaurantAddNote}>
-        <View style={styles.RestaurantAddIconNote}>
-          <IcNote />
-        </View>
-
-        <TextInput
-          style={styles.inputText}
-          placeholder={strings.RestaurantNote}
-        />
-      </View>
-
+      
+      <ScrollView 
+          scrollEnabled={scrollEnabled}
+          onContentSizeChange={onContentSizeChange}
+       >
+          <View style={styles.container}>
+            <View style={styles.tmp}></View>
+            <ExtraFood title="Món ăn kèm" extraFoods={MonAnKem} />
+            {/* <ExtraFood title="Món canh" extraFoods={Canh} /> */}
+            <View style={styles.RestaurantAddNote}>
+              <View style={styles.RestaurantAddIconNote}>
+                <IcNote />
+              </View>
+              <TextInput
+                style={styles.inputText}
+                placeholder={strings.RestaurantNote}
+              />
+              </View>
+              <View style={styles.blank}/>
+          </View>
+        
+      </ScrollView>
+      
       <ConfirmBtn title={strings.RestaurantAddBtn} />
-    </View>
+
+  </View>
   );
 }
 

@@ -7,6 +7,7 @@ import Home from 'components/home/Home';
 import StoreDetail from 'components/storeDetail/StoreDetail';
 import Search from 'components/search/Search';
 import RestaurantAdd from 'components/restaurant/RestaurentAdd'
+import Payment from 'components/payment/Payment'
 
 const Stack = createStackNavigator();
 class AppNavigation extends Component {
@@ -22,6 +23,7 @@ class AppNavigation extends Component {
             <Stack.Screen name="Search" component={Search} />
             <Stack.Screen name="StoreDetail" component={StoreDetail} />
             <Stack.Screen name="RestaurantAdd" component={RestaurantAdd} />
+            <Stack.Screen name="Payment" component={Payment} />
           </Stack.Navigator>
         </NavigationContainer>
       </>

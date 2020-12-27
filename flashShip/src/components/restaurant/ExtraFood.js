@@ -22,7 +22,8 @@ function ExtraFood(props) {
                 value={i}
                 status={isActive === i ? 'checked' : 'unchecked'}
                 onPress={() => setIsActive(i)}
-                color={colors.main_blue}
+                uncheckedColor={colors.primary_grey_light}
+                color={colors.primary_blue}
               />
               <Text
                 style={

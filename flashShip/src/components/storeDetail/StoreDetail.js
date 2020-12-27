@@ -34,7 +34,7 @@ const DataContainer = styled.View`
 `;
 const StoreName = styled.Text`
   font-size: 24px;
-  font-family: 'Nunito';
+  font-family: 'Nunito-Bold';
   font-weight: 700;
 `;
 const DescText = styled.Text`
@@ -54,7 +54,7 @@ const LocationContainer = styled.View`
   margin-vertical: 8px;
 `;
 const LocationText = styled.Text`
-  font-family: 'Nunito';
+  font-family: 'Nunito-Regular';
   font-weight: 400;
   font-size: 14px;
 `;
@@ -92,7 +92,7 @@ const DishContainer = styled.View`
   justify-content: space-between;
 `;
 const ListTitle = styled.Text`
-  font-family: 'Nunito';
+  font-family: 'Nunito-SemiBold';
   font-weight: 700;
   font-size: 16px;
 `;
