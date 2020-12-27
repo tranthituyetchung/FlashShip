@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {IcPlus} from '../../values/images';
+import {IcPlus} from '../values/images';
 
 const Button = styled.TouchableOpacity`
   width: 24px;

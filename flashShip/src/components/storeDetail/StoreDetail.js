@@ -2,14 +2,13 @@ import React from 'react';
 import {Text, Image} from 'react-native';
 import styled from 'styled-components/native';
 import {IcMapPin, IcPriceTag, IcGiftVoucher} from '../../values/images';
-import PlusButton from './PlusButton';
-import MinusButton from './MinusButton';
-
+import PlusButton from '../../common/PlusButton';
+import MinusButton from '../../common/MinusButton';
+import SmallDish from '../../common/SmallDish';
 import BigDish from './BigDish';
 const Container = styled.View`
   background-color: transparent;
   width: 100%;
-  
 `;
 const BackgroundImage = styled.Image`
   width: 100%;
@@ -91,7 +90,6 @@ const DishContainer = styled.View`
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-between;
-  padding-horizontal: 16px;
 `;
 const ListTitle = styled.Text`
   font-family: 'Nunito';
@@ -144,7 +142,7 @@ const StoreDetail = () => {
               <BigDish />
             </DishContainer>
             <ListTitle>Món chính</ListTitle>
-
+            <SmallDish />
           </DataContainer>
         </ScrollView>
       </Container>

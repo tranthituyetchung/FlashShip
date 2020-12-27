@@ -2,10 +2,11 @@ import React from 'react';
 import {Text, Image} from 'react-native';
 import styled from 'styled-components/native';
 import {IcMapPin, IcPriceTag, IcGiftVoucher} from '../../values/images';
-import MinusButton from './MinusButton';
-import PlusButton from './PlusButton';
+import MinusButton from '../../common/MinusButton';
+import PlusButton from '../../common/PlusButton';
+
 const DishContainer = styled.TouchableOpacity`
-  width: 164px;
+  width: 48%;
   border-radius: 8px;
   background-color: white;
   margin-bottom: 16px;
@@ -36,11 +37,16 @@ const DishNum = styled.Text`
   font-family: 'Nunito';
   font-weight: 400;
 `;
+const DishImage = styled.Image`
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+`;
 const BigDish = () => {
   return (
     <DishContainer>
-      <Image
-        style={{width: 164, height: 164}}
+      <DishImage
+        // style={{width: 164, height: 164}}
         source={require('../../assets/images/DishImage.png')}
       />
       <DishName>Bánh mì sốt bơ</DishName>
