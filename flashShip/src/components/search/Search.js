@@ -102,13 +102,16 @@ class Search extends Component {
     // renderActivityIndicator = () => {
     //     return <ActivityIndicator animating={this.props.isLoading} color={colors.secondary_grey} />
     // }    
+    onBackPress = () => {
+        this.props.navigation.goback()
+    }
     render() { 
             return (
                 <View style={styles.container}>
                     <View style={styles.header}>
                         <TouchableOpacity
                             style={styles.backButton}
-                            onPress={this.props.onBackPress}    
+                            onPress={this.onBackPress}    
                         >
                             <IconBack name="chevron-left" color={colors.dark_blue} size={24} />
                         </TouchableOpacity>
