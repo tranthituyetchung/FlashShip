@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    Text, View, ScrollView, FlatList, VirtualizedList, Image, TouchableOpacity
+    Text, View, ScrollView, FlatList, StyleSheet, Image, TouchableOpacity
 }from 'react-native'
 import strings from 'values/strings'
 import colors from 'values/color';
@@ -8,78 +8,37 @@ import { IcRight, IcUserFill, IcStarFill, IcClock } from 'values/images';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { IcUser } from 'values/images';
 import Restaurant from 'components/restaurant/Restaurant';
-
-const slides = [
-    {
-        name: 'Fruits for life - Lê Đại Hành',
-        category:  'Thức ăn tốt cho sức khỏe',
-        rating: 5.0,
-        time: '10 phút',
-        distance: '0.6km',
-        imageUrl: require('assets/images/Food1.png'),
-    },
-    {
-        name: 'Fruits for life - Lê Đại Hành',
-        category:  'Thức ăn tốt cho sức khỏe',
-        rating: 5.0,
-        time: '10 phút',
-        distance: '0.6km',
-        imageUrl: require('assets/images/Food1.png'),
-    },
-    {
-        name: 'Fruits for life - Lê Đại Hành',
-        category:  'Thức ăn tốt cho sức khỏe',
-        rating: 5.0,
-        time: '10 phút',
-        distance: '0.6km',
-        imageUrl: require('assets/images/Food1.png'),
-    },
-    {
-        name: 'Fruits for life - Lê Đại Hành',
-        category:  'Thức ăn tốt cho sức khỏe',
-        rating: 5.0,
-        time: '10 phút',
-        distance: '0.6km',
-        imageUrl: require('assets/images/Food1.png'),
-    },
-    {
-        name: 'Fruits for life - Lê Đại Hành',
-        category:  'Thức ăn tốt cho sức khỏe',
-        rating: 5.0,
-        time: '10 phút',
-        distance: '0.6km',
-        imageUrl: require('assets/images/Food1.png'),
-    },
-  ];
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
   
 
 class ListRestaurantHorizontal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: slides,
+           
         };
       }
     renderItem = ({ item }) => (
         
         <TouchableOpacity 
           style={styles.card} 
-          onPress={() => this.props.openCourseDetail(item.id)}>
+          //onPress={() => this.props.openRestaurant(item)}
+          >
           <Image 
             style={styles.couseImg} 
-            source={{uri: item.imageUrl}}/>
-          <Text style={styles.cardTitle} numberOfLines={1}>{item.name}</Text>
-          <Text style={styles.cardAuthor}>{item.category}</Text>
-          <View style={styles.infoContainer}>
+            source={item.imageUrl}/>
+          <Text style={styles.cardTitle} numberOfLines={2}>{item.name}</Text>
+          {/* <Text style={styles.cardAuthor}>{item.category}</Text>
+           <View style={styles.infoContainer}>
             <View style={styles.infoItem}>
               <Text style={styles.infoIcon}><IcStarFill/></Text>
-              <Text style={styles.infoText}>{parseFloat(this.min(item.formalityPoint,5)).toFixed(1)}</Text>
+              <Text style={styles.infoText}>{item.rating}</Text>
             </View>
             <View style={styles.infoItem}>
               <Text style={styles.infoIcon}><IcClock/></Text>
-              <Text style={styles.infoText}>{parseFloat(item.totalHours).toFixed(3)}</Text>
+              <Text style={styles.infoText}>{item.time} - {item.distance}</Text>
             </View>
-          </View>
+          </View> */}
         </TouchableOpacity>
     );
 
@@ -96,15 +55,13 @@ class ListRestaurantHorizontal extends Component {
                       <FlatList
                         nestedScrollEnabled
                         horizontal={true}
-                        data={this.state.data}
+                        data={this.props.data}
                         renderItem={this.renderItem}
                         keyExtractor={item => item.id}
                         showsVerticalScrollIndicator = {false}
                         showsHorizontalScrollIndicator={false}>
                       </FlatList>
                     </View>
-                   
-                    
                 </View>
             )
     }
@@ -128,7 +85,7 @@ const styles = StyleSheet.create({
         color: colors.dark_blue,
         marginLeft: 16,
         width: wp('100%')-112,
-        fontSize: 14,
+        fontSize: 16,
         fontFamily: 'Nunito-Bold',
         justifyContent: 'center',
         backgroundColor: colors.white,
@@ -141,6 +98,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center',
         backgroundColor: colors.white,
+        color: colors.dark_blue
     },
     content: {
         width: wp('100%'),
@@ -150,8 +108,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
     },
     card: {
-        width: 180,
-        height: 170, 
+        width: 100,
+        height: 144, 
         //marginRight: 16,
         marginTop: 8,
         marginBottom: 16,
@@ -159,27 +117,27 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         backgroundColor: colors.white,
         //shadow
-        shadowColor: colors.light_grey,
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.01,
-        shadowRadius: 4.65, 
-        elevation: 3,
+        // shadowColor: colors.light_grey,
+        // shadowOffset: {
+        //     width: 0,
+        //     height: 2,
+        // },
+        // shadowOpacity: 0.01,
+        // shadowRadius: 4.65, 
+        // elevation: 3,
     },
     couseImg:{
-        borderTopLeftRadius: 16,
-        borderTopRightRadius: 16,
-        width: 180,
+        borderTopLeftRadius: 8,
+        borderTopRightRadius: 8,
+        width: 100,
         height: 100,
         resizeMode: 'cover', 
     },
     cardTitle: {
-        fontFamily: 'Nunito-Bold',
-        fontSize: 12,
+        fontFamily: 'Nunito-SemiBold',
+        fontSize: 14,
         marginTop: 4,
-        marginHorizontal: 8,
+        //marginHorizontal: 8,
         color: colors.dark_blue,
     },
     cardAuthor: {
@@ -192,6 +150,7 @@ const styles = StyleSheet.create({
         marginTop: 4,
         marginHorizontal: 8,
         flexDirection: 'row',
+        justifyContent: 'space-between'
     },
     infoItem: {
         height: 12,

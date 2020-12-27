@@ -11,7 +11,7 @@ const colors = {
     primary_yellow_light: '#f0e68c',
     primary_grey_light: '#fafafa',
     secondary_grey_light: '#d4d4d4',
-    primary_grey: '#d2daff',
+    primary_grey: '#86869E',
     secondary_grey: '#78909C',
     text_input_border: '#90A4AE',
     text_input_error_border : '#ff0000',

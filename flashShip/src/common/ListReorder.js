@@ -10,7 +10,7 @@ import { IcUser } from 'values/images';
 import Restaurant from 'components/restaurant/Restaurant';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
 
-class ListRestaurantVertical extends Component {
+class ListReorder extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,14 +31,12 @@ class ListRestaurantVertical extends Component {
                     <Text style={styles.cardTitle} numberOfLines={1}>{item.name}</Text>
                     <Text style={styles.cardAuthor}>{item.category}</Text>
                 </View>
-                <View style={styles.infoContainer}>
-                    <View style={styles.infoItem}>
-                    <Text style={styles.infoIcon}><IcStarFill width={16} height={16}/></Text>
-                    <Text style={styles.infoTextBold}>{item.rating}</Text>
+                <View style={styles.tagContainer}>
+                    <View style={styles.tagItem}>
+                    <Text style={styles.tagText}>Mã giảm 15%</Text>
                     </View>
-                    <View style={styles.infoItem}>
-                    <Text style={styles.infoIcon}><IcClock  width={16} height={16} /></Text>
-                    <Text style={styles.infoText}>{item.time} - {item.distance}</Text>
+                    <View style={styles.tagItem}>
+                    <Text style={styles.tagText}>Mã giảm 30%</Text>
                     </View>
                 </View>
             </View>
@@ -49,16 +47,16 @@ class ListRestaurantVertical extends Component {
     render() {
             return (
                 <View style={styles.container}>
-                    {/* <View style={styles.header}>
+                    <View style={styles.header}>
                         <Text style={styles.listTitle}>{this.props.title}</Text>
                         <TouchableOpacity>
                           <Text style={styles.viewAll}>Xem tất cả <IcRight/></Text>
                         </TouchableOpacity>
-                    </View>   */}
+                    </View>  
                     <View style={styles.content}>
                       <FlatList
                         nestedScrollEnabled
-                        horizontal={false}
+                        horizontal={true}
                         data={this.props.data}
                         renderItem={this.renderItem}
                         keyExtractor={item => item.id}
@@ -71,14 +69,15 @@ class ListRestaurantVertical extends Component {
     }
 }
 
-export default ListRestaurantVertical;
+export default ListReorder;
 
 const styles = StyleSheet.create({
     container:{
+        marginTop: 16,
         flexDirection: 'column',
         backgroundColor: colors.white,
         justifyContent: 'center',
-        
+       
     },
     header: {
         width: wp('100%') -32,
@@ -111,9 +110,9 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
     },
     card: {
-        width: wp('100%')-32,
+        width: wp('100%')-120,
         height: 100, 
-        //marginRight: 16,
+        marginLeft: 16,
         marginTop: 8,
         marginBottom: 8,
         borderRadius: 8,
@@ -132,7 +131,7 @@ const styles = StyleSheet.create({
     cardHeader:{   
     },
     cardContainer:{
-        width: wp('100%')-132,
+        width: wp('100%')-220,
         backgroundColor: colors.white,
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -184,5 +183,29 @@ const styles = StyleSheet.create({
         color: colors.primary_grey,
         fontSize: 12,
         marginLeft: 2,
+    },
+    tagContainer:{
+        marginTop: 4,
+        marginLeft: 8,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 8,
+    },
+    tagItem:{
+        height: 24,
+        marginRight: 6,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderColor: colors.red,
+        borderWidth: 1,
+        borderRadius: 4,
+    },
+    tagText:{
+        fontFamily: 'Nunito-Regular',
+        color: colors.red,
+        fontSize: 11,
+        marginLeft: 2,
+        paddingHorizontal: 4,
     }
 })
