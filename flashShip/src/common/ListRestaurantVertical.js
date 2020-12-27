@@ -37,7 +37,7 @@ class ListRestaurantVertical extends Component {
                     <Text style={styles.infoTextBold}>{item.rating}</Text>
                     </View>
                     <View style={styles.infoItem}>
-                    <Text style={styles.infoIcon}><IcClock  width={16} height={16} /></Text>
+                    <Text style={styles.infoIcon}><IcClock  width={16} height={16} color={colors.red} /></Text>
                     <Text style={styles.infoText}>{item.time} - {item.distance}</Text>
                     </View>
                 </View>

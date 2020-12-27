@@ -18,7 +18,6 @@ class ListReorder extends Component {
         };
       }
     renderItem = ({ item }) => (
-        
         <TouchableOpacity 
           style={styles.card} 
           //onPress={() => this.props.openRestaurant(item)}

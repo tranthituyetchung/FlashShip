@@ -245,12 +245,15 @@ class Home extends Component {
           isCourseDetailVisible: false,
         };
       }
+    openSearch = () => {
+        this.props.navigation.navigate('Search')
+    }
     render() {
             return(
                 <View style={styles.container}>
                     <View style={styles.containerHeader}>
                         <Text style={styles.icon}><IcMapPin fill="#CFEEFE"/></Text>
-                        <Text style={styles.headerTitle}>227 nguyen van cu</Text>
+                        <Text style={styles.headerTitle}>227 Nguyễn Văn Cừ</Text>
                         <Text style={styles.icon}><IcHeart fill="#EB5757"/></Text>
                         <Text style={styles.icon}><IcNote fill="#CFEEFE"/></Text>
                     </View>
@@ -262,9 +265,18 @@ class Home extends Component {
                     >
                         <SafeAreaView>
                         <View style={styles.search}>
-                            <SearchBar
+                            <TouchableOpacity
+                                style={styles.searchBarContainer}
+                                onPress={this.openSearch}
+                            >
+                                <View style={styles.searchBarInputContainer}>
+                                    <Text style={styles.searchBarInput}><Icon name="search1" color={'#646464'} size={16} /> Nhập tìm kiếm</Text>
+                                </View>
+                                 
+                            </TouchableOpacity>
+                            {/* <SearchBar
                                 searchIcon={
-                                    <Icon name="search1" color={'#646464'} size={16} />
+                                   
                                 }
                                 placeholder="Nhập tìm kiếm"
                                 // onChangeText={this.updateSearch}
@@ -273,7 +285,7 @@ class Home extends Component {
                                 containerStyle={styles.searchBarContainer}
                                 inputContainerStyle={styles.searchBarInputContainer}
                                 inputStyle={styles.searchBarInput}
-                            />
+                            /> */}
                         </View>
                             <View style={styles.slider}>
                                     <SliderBox
@@ -418,12 +430,12 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
     },
     searchBarInputContainer: {
-        backgroundColor: colors.white,
+        width: wp('100%')-32,
+        backgroundColor: colors.primary_grey,
         borderWidth: 1,
         borderColor: colors.secondary_grey_light,
-        borderBottomWidth: 1,
-        borderBottomColor: colors.secondary_grey_light,
         borderRadius: 50,
+        justifyContent: 'center',
         //paddingLeft: 5,
         height: 40,
     },
@@ -431,14 +443,17 @@ const styles = StyleSheet.create({
         color: colors.dark_blue,
         fontSize: 14,
         fontFamily: "Nunito-Regular",
-        backgroundColor: colors.white,
+        backgroundColor: colors.primary_grey,
+        marginLeft: 16,
     },
     searchBarContainer: {
-        width: wp('100%')-16,
+        width: wp('100%'),
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 64,
         backgroundColor: colors.white,
         //marginTop: 20,
-        borderBottomColor: 'transparent',
-        borderTopColor: 'transparent',
+        borderRadius: 20,
         alignSelf: 'center',
         justifyContent: 'center',
     },
