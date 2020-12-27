@@ -1,0 +1,26 @@
+const colors = {
+    white : '#fff',
+    black: '#464646',
+    orange: '#ff922d',
+    light_black: '#aba9bc',
+    main_blue: '#1479FF',
+    primary_blue: '#D2E6FF',
+    secondary_blue: '#87A8D3',
+    dark_blue: '#193B68',
+    primary_yellow: '#ffe65d',
+    primary_yellow_light: '#f0e68c',
+    primary_grey_light: '#fafafa',
+    secondary_grey_light: '#d4d4d4',
+    primary_grey: '#d2daff',
+    secondary_grey: '#78909C',
+    text_input_border: '#90A4AE',
+    text_input_error_border : '#ff0000',
+    green: '#2CC6C5',
+    grey: '#646464',
+    medium_grey: '#9B9898',
+    dark_grey: '#464646',
+    light_grey: '#F2F2F2',
+    red: '#eb5757',
+    orange: "#FF922D"
+}
+export default colors
