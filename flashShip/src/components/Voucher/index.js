@@ -6,6 +6,7 @@ import strings from '../../values/strings';
 import styles from './style';
 import VoucherImg from '../../assets/images/voucher.svg';
 import colors from '../../values/color';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const TITLE_CONST = 'Nhập “FLASHDAN40”: Giảm 40k trên tổng hóa đơn đồ ăn nhanh';
 
@@ -17,10 +18,15 @@ function Voucher() {
     {image: <VoucherImg />, title: TITLE_CONST, hour: 10},
     {image: <VoucherImg />, title: TITLE_CONST, hour: 10},
     {image: <VoucherImg />, title: TITLE_CONST, hour: 10},
+    {image: <VoucherImg />, title: TITLE_CONST, hour: 10},
+    {image: <VoucherImg />, title: TITLE_CONST, hour: 10},
+    {image: <VoucherImg />, title: TITLE_CONST, hour: 10},
+    {image: <VoucherImg />, title: TITLE_CONST, hour: 10},
+    {image: <VoucherImg />, title: TITLE_CONST, hour: 10},
   ];
 
   return (
-    <View>
+    <View style={styles.main}>
       <Header title={strings.VoucherTitle} />
       <View style={styles.inputArea}>
         <TextInput
@@ -34,7 +40,7 @@ function Voucher() {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.mainContainer}>
+      <ScrollView style={styles.mainContainer}>
         {vouchers.map((voucher, i) => (
           <TouchableOpacity key={i} onPress={() => setIsActive(i)}>
             <View style={styles.section}>
@@ -46,7 +52,7 @@ function Voucher() {
                   style={styles.subTitle}>
                   {voucher.title}
                 </Text>
-                <Text style={styles.hour}>HSD: {voucher.hour}h còn lại</Text>
+                <Text style={styles.hour}>HSD: Còn lại {voucher.hour} giờ </Text>
               </View>
               <View style={styles.selectBtn}>
                 <RadioButton
@@ -59,7 +65,7 @@ function Voucher() {
             </View>
           </TouchableOpacity>
         ))}
-      </View>
+      </ScrollView>
 
       {/* <ConfirmBtn title={strings.VoucherTitleBtn} /> */}
     </View>

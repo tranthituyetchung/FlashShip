@@ -33,7 +33,7 @@ const DishNum = styled.Text`
 `;
 const DishImage = styled.Image`
   width: 100%;
-  height: 200px;
+  height: 180px;
   border-radius: 8px;
 `;
 const BigDish = ({dish}) => {

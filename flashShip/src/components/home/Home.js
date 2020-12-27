@@ -3378,8 +3378,8 @@ const styles = StyleSheet.create({
     searchBarInputContainer: {
         width: wp('100%')-32,
         backgroundColor: colors.primary_grey,
-        borderWidth: 1,
-        borderColor: colors.secondary_grey_light,
+        // borderWidth: 1,
+        // borderColor: colors.secondary_grey_light,
         borderRadius: 50,
         justifyContent: 'center',
         //paddingLeft: 5,

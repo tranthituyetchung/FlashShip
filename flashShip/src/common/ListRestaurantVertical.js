@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     cardHeader:{   
     },
     cardContainer:{
-        width: wp('100%')-132,
+        width: wp('100%')-116,
         backgroundColor: colors.white,
         flexDirection: 'column',
         justifyContent: 'space-between',
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Nunito-Regular',
         fontSize: 12,
         marginHorizontal: 8,
-        color: colors.primary_grey,
+        color: colors.secondary_grey,
     },
     infoContainer:{
         marginTop: 4,
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'Nunito-Regular',
-        color: colors.primary_grey,
+        color: colors.secondary_grey,
         fontSize: 12,
         marginLeft: 2,
     }

@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Nunito-Regular',
         fontSize: 12,
         marginHorizontal: 8,
-        color: colors.primary_grey,
+        color: colors.secondary_grey,
     },
     infoContainer:{
         marginTop: 4,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         fontFamily: 'Nunito-Regular',
-        color: colors.primary_grey,
+        color: colors.secondary_grey,
         fontSize: 12,
         marginLeft: 2,
     },

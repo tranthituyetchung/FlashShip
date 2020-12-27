@@ -9,7 +9,7 @@ const wratio = wp('100%') / 375;
 const hratio = hp('100%') / 812;
 const styles = StyleSheet.create({
   container:{
-    width: wp('100%') - 32,
+    width: wp('100%'),
   },
   blank:{
     height: 200
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   inputText:{
-    height: 56,
+    height: 48,
     width: wp('100%')-100,
     fontFamily: 'Nunito-Regular',
   }
