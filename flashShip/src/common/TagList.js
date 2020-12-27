@@ -6,20 +6,19 @@ import strings from 'values/strings'
 import colors from 'values/color';
 import { IcRight, IcUserFill, IcStarFill, Category1, Category2, Category3, Category4, } from 'values/images';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class TagList extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            data: this.props.data
-        };
-      }
-
+    }
     renderItem = ({ item }) => (
-        <View style={styles.tagItem}>
-            <Text style={styles.tagTitle} numberOfLines={2}>{item.content}</Text>
-        </View>
+        <TouchableOpacity onPress={() => this.props.updateSearchView(item.content)}>
+            <View style={styles.tagItem}>
+                <Text style={styles.tagTitle} numberOfLines={2}>{item.content}</Text>
+            </View>
+        </TouchableOpacity>        
     );
 
     render() {
