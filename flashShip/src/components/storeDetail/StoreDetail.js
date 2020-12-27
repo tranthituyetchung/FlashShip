@@ -102,23 +102,25 @@ const ScrollView = styled.ScrollView`
   border-width: 1px;
   border-color: red;
 `;
-const StoreDetail = () => {
+const StoreDetail = (props) => {
+  const item = props.route.params.item;
+  console.log(item);
   return (
     <>
-      <BackgroundImage source={require('../../assets/images/StoreImage.png')} />
+      <BackgroundImage source={item.imageUrl} />
       <Container>
         <ButtonContainer></ButtonContainer>
         <ScrollView>
           <DataContainer>
-            <StoreName>Nhà hàng Chay Thiện Tâm - Nguyễn Tri Phương</StoreName>
-            <DescText>Đồ uống</DescText>
+            <StoreName>{item.name}</StoreName>
+            <DescText>{item.category}</DescText>
             {/* <Image source={require('../../assets/images/ic_map_pin.svg')} /> */}
             <LocationContainer>
               <IcMapPin />
-              <LocationText>5,5 km</LocationText>
+              <LocationText>{item.distance}</LocationText>
               <Eclipse />
               <LocationText>
-                10 Nguyễn Tri Phương , Quận 5, TP HCM{' '}
+                {item.address}{' '}
               </LocationText>
             </LocationContainer>
             <AllVoucherContainer>
@@ -136,13 +138,14 @@ const StoreDetail = () => {
             </AllVoucherContainer>
             <ListTitle>Bán chạy</ListTitle>
             <DishContainer>
-              <BigDish />
-              <BigDish />
-              <BigDish />
-              <BigDish />
+              {
+                item.dishes.filter((dish) => dish.type === 'big').map((dish) => <BigDish dish = {dish} />)
+              }
             </DishContainer>
             <ListTitle>Món chính</ListTitle>
-            <SmallDish />
+              {
+                item.dishes.filter((dish) => dish.type === 'small').map((dish) => <SmallDish dish = {dish} />)
+              }
           </DataContainer>
         </ScrollView>
       </Container>

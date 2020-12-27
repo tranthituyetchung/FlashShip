@@ -1,9 +1,7 @@
 import React from 'react';
-import {Text, Image} from 'react-native';
 import styled from 'styled-components/native';
-import {IcMapPin, IcPriceTag, IcGiftVoucher} from '../../values/images';
-import MinusButton from '../../common/MinusButton';
-import PlusButton from '../../common/PlusButton';
+import AddDishButton from 'common/AddDishBtn';
+import DishCounter from 'common/DishCounter';
 
 const DishContainer = styled.TouchableOpacity`
   width: 48%;
@@ -26,10 +24,6 @@ const DishPrice = styled.Text`
 const QQContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  width: 73px;
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
   align-items: center;
 `;
 const DishNum = styled.Text`
@@ -42,19 +36,18 @@ const DishImage = styled.Image`
   height: 200px;
   border-radius: 8px;
 `;
-const BigDish = () => {
+const BigDish = ({dish}) => {
+  const number = 1;
   return (
     <DishContainer>
       <DishImage
         // style={{width: 164, height: 164}}
-        source={require('../../assets/images/DishImage.png')}
+        source={dish.imageUrl}
       />
-      <DishName>Bánh mì sốt bơ</DishName>
-      <DishPrice>55.000</DishPrice>
+      <DishName>{dish.name}</DishName>
       <QQContainer>
-        <MinusButton></MinusButton>
-        <DishNum>1</DishNum>
-        <PlusButton></PlusButton>
+        <DishPrice>{dish.price}</DishPrice>
+        {number ? <DishCounter number = {number}/> : <AddDishButton/>}
       </QQContainer>
     </DishContainer>
   );
