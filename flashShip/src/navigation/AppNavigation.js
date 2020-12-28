@@ -9,6 +9,7 @@ import Search from 'components/search/Search';
 import RestaurantAdd from 'components/restaurant/RestaurentAdd'
 import Payment from 'components/payment/Payment'
 import Voucher from 'components/Voucher/index'
+import FoodList from 'components/foodlist/FoodList'
 
 const Stack = createStackNavigator();
 class AppNavigation extends Component {
@@ -26,6 +27,7 @@ class AppNavigation extends Component {
             <Stack.Screen name="RestaurantAdd" component={RestaurantAdd} />
             <Stack.Screen name="Payment" component={Payment} />
             <Stack.Screen name="Voucher" component={Voucher} />
+            <Stack.Screen name="FoodList" component={FoodList} />
           </Stack.Navigator>
         </NavigationContainer>
       </>

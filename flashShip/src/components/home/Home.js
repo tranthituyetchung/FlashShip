@@ -15,6 +15,9 @@ import ListCategory from 'common/ListCategory'
 import ListRestaurantHorizontal from 'common/ListRestaurantHorizontal'
 import ListRestaurantVertical from 'common/ListRestaurantVertical'
 import ListReorder from 'common/ListReorder'
+import CartButton from '../../common/CartButton'
+import { IcGift } from '../../values/images';
+import ActionButton from 'react-native-action-button';
 
 const data1 = [
     {
@@ -3170,6 +3173,7 @@ const data4 = [
         imageUrl: require('assets/images/Food5.png'),
     },
 ];
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -3190,16 +3194,21 @@ class Home extends Component {
     viewRestaurant = (item) => {
         this.props.navigation.navigate('StoreDetail', {item});
     }
+    openFoodList = (item) => {
+        this.props.navigation.navigate('FoodList', {item})
+    }
+
+
     render() {
             return(
                 <View style={styles.container}>
-                    <View style={styles.containerHeader}>
+                      <View style={styles.containerHeader}>
                         <Text style={styles.icon}><IcMapPin fill="#CFEEFE"/></Text>
                         <Text style={styles.headerTitle}>227 Nguyễn Văn Cừ</Text>
                         <Text style={styles.icon}><IcHeart fill="#EB5757"/></Text>
                         <Text style={styles.icon}><IcNote fill="#CFEEFE"/></Text>
                     </View>
-                   
+                    <CartButton/>
                     <ScrollView 
                         //nestedScrollEnabled={true}
                         showsVerticalScrollIndicator ={false}
@@ -3249,8 +3258,22 @@ class Home extends Component {
                             </View>
                             <View style={styles.sectionList}>
                                     <ListCategory 
+                                        openFoodList={this.openFoodList}
                                         />
                             </View>
+                            <View style={styles.voucherContainer}>
+                                <View style={styles.textContainer}>
+                                    <Text style={styles.infoText}>Bạn đang có </Text>
+                                    <Text style={styles.infoTextBold}>69 </Text>
+                                    <Text style={styles.infoText}>mã giảm giá </Text>
+                                    <Text style={styles.infoIcon}><IcGift width={20} height={20}/></Text>
+                                </View> 
+                                <TouchableOpacity
+                                    style={styles.btnMore}
+                                    >
+                                        <Text style={styles.btnMoreText}>Xem</Text>
+                                </TouchableOpacity>
+                            </View> 
                             <View styles={styles.sectionList}>
                                 <ListReorder
                                     data={data4}
@@ -3292,7 +3315,9 @@ class Home extends Component {
                             </View>
                              
                         </SafeAreaView>
+                        
                     </ScrollView>
+                   
                 </View> 
             )
     }
@@ -3389,7 +3414,7 @@ const styles = StyleSheet.create({
         color: colors.dark_blue,
         fontSize: 14,
         fontFamily: "Nunito-Regular",
-        backgroundColor: colors.primary_grey,
+        //backgroundColor: colors.primary_grey,
         marginLeft: 16,
     },
     searchBarContainer: {
@@ -3425,4 +3450,44 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontFamily: 'Nunito-Regular'
     },
+    voucherContainer:{
+        marginVertical: 8,
+        width:wp('100%') -32,
+        marginLeft: 16,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        backgroundColor: colors.primary_blue_light,
+        borderRadius: 8,
+    },
+    textContainer: {
+        flexDirection: 'row',
+        padding: 12,
+        alignItems: 'center',
+    },
+    infoText:{
+        color: colors.dark_blue,
+        fontFamily: 'Nunito-Regular',
+        fontSize: 14,
+    },
+    infoTextBold:{
+        color: colors.dark_blue,
+        fontFamily: 'Nunito-Bold',
+        fontSize: 14,
+    },
+    btnMore:{
+        height: 28,
+        backgroundColor: colors.dark_blue,
+        borderRadius: 8,
+        marginRight: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    btnMoreText:{
+        color: colors.white,
+        paddingHorizontal: 12,
+        paddingVertical: 4,
+        fontFamily: 'Nunito-SemiBold',
+        fontSize: 14,
+    }
 })

@@ -19,7 +19,7 @@ const slides = [
       image:  require('assets/images/category2.png'),
     },
     {
-        title: 'Nước ép',
+      title: 'Nước ép',
       image:  require('assets/images/category3.png'),
     },
     {
@@ -56,6 +56,7 @@ class ListCategory extends Component {
     renderItem = ({ item }) => (
         <TouchableOpacity 
             style={styles.categoryItem}
+            onPress={() => this.props.openFoodList(item)}
             //onPress={()=> this.props.openCourseByCategory(item)}
             >
                 <View>

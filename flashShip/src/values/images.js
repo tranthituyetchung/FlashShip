@@ -51,8 +51,10 @@ import IcNote from 'assets/images/ic_note';
 import IcPriceTag from 'assets/images/ic_price_tag';
 import IcGiftVoucher from 'assets/images/ic_voucher';
 import IcMinus from 'assets/images/ic_minus';
-import IcCash from '../assets/images/ic_cash.svg';
-import IcZaloPay from '../assets/images/ic_zalopay.svg';
+import IcCash from 'assets/images/ic_cash.svg';
+import IcZaloPay from 'assets/images/ic_zalopay.svg';
+import IcGift from 'assets/images/ic_gift.svg'
+import IcShopingCart from 'assets/images/ic_shopping_cart.svg'
 
 export {
   //images,
@@ -73,6 +75,8 @@ export {
   IcClock,
   IcNote,
   IcMapPin,
+  IcGift,
+  IcShopingCart,
   // IcKey,
   IcWarning,
   //Browser

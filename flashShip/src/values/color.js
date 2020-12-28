@@ -5,6 +5,7 @@ const colors = {
     light_black: '#aba9bc',
     main_blue: '#1479FF',
     primary_blue: '#52C3FC',
+    primary_blue_light: '#CFEEFE',
     secondary_blue: '#87A8D3',
     dark_blue: '#193B68',
     primary_yellow: '#ffe65d',
