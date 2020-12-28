@@ -13,6 +13,7 @@ import DishCounter from '../../common/DishCounter';
 import {Modalize} from 'react-native-modalize';
 import SmallDishWithOption from '../../common/SmallDishWithOption';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {connect} from 'react-redux';
 const Container = styled.View`
   background-color: transparent;
   width: 100%;
@@ -128,6 +129,7 @@ const ScrollView = styled.ScrollView`
 
 const StoreDetail = (props) => {
   const [ratio, setRatio] = useState(0);
+  console.log("debuggg", props.cart);
   const item = props.route.params.item;
   // console.log(item);
   const handleScroll = (e) => {
@@ -214,9 +216,10 @@ const StoreDetail = (props) => {
                 .map((dish) => (
                   <BigDish
                     addDish={() =>
-                      props.navigation.navigate('RestaurantAdd', {dish})
+                      props.navigation.navigate('RestaurantAdd', {dish, shopId: item.id})
                     }
                     dish={dish}
+                    number = {props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].reduce((total, item) => total+=item.number, 0) : 0}
                   />
                 ))}
             </DishContainer>
@@ -226,6 +229,7 @@ const StoreDetail = (props) => {
               .map((dish) => (
                 <SmallDish
                   dish={dish}
+                  number = {props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].reduce((total, item) => total+=item.number, 0) : 0}
                   addDish={() =>
                     // props.navigation.navigate('RestaurantAdd', {dish})
                     onOpen()
@@ -269,4 +273,9 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
 });
-export default StoreDetail;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart,
+  };
+};
+export default connect(mapStateToProps)(StoreDetail);

@@ -7,7 +7,7 @@ import { SliderBox } from "react-native-image-slider-box";
 import colors from 'values/color';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { connect } from 'react-redux';
-import {IcMapPin, IcHeart, IcNote} from 'values/images'
+import {IcMapPin, IcHeart, IcNote, IcGift} from 'values/images'
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
 import { SearchBar } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/AntDesign'
@@ -15,13 +15,20 @@ import ListCategory from 'common/ListCategory'
 import ListRestaurantHorizontal from 'common/ListRestaurantHorizontal'
 import ListRestaurantVertical from 'common/ListRestaurantVertical'
 import ListReorder from 'common/ListReorder'
-import CartButton from '../../common/CartButton'
-import { IcGift } from '../../values/images';
-import ActionButton from 'react-native-action-button';
+
+const generateID = () => {
+    let guid = 'xyxxyx'.replace(/[xy]/g, (c) => {
+        let r = Math.random() * 16 | 0,
+        v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+    });
+    return guid.toUpperCase();
+}
 
 const data1 = [
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 1,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: 5.0,
         time: '10 phút',
@@ -30,119 +37,487 @@ const data1 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ],
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food8.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 2,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: 5.0,
         time: '10 phút',
@@ -151,119 +526,465 @@ const data1 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food9.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 3,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: 5.0,
         time: '10 phút',
@@ -272,119 +993,465 @@ const data1 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food10.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 4,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: 5.0,
         time: '10 phút',
@@ -393,119 +1460,465 @@ const data1 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food8.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 5,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: 5.0,
         time: '10 phút',
@@ -514,113 +1927,458 @@ const data1 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food9.png'),
@@ -629,6 +2387,7 @@ const data1 = [
 const data2 = [
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 6,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: 5.0,
         time: '10 phút',
@@ -637,119 +2396,465 @@ const data2 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food10.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 7,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: 5.0,
         time: '10 phút',
@@ -758,119 +2863,465 @@ const data2 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food9.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 8,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: 5.0,
         time: '10 phút',
@@ -879,119 +3330,465 @@ const data2 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food7.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 9,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: 5.0,
         time: '10 phút',
@@ -1000,119 +3797,465 @@ const data2 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food10.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 10,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: 5.0,
         time: '10 phút',
@@ -1121,113 +4264,458 @@ const data2 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food8.png'),
@@ -1236,6 +4724,7 @@ const data2 = [
 const data3 = [
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 11,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: '5.0',
         time: '10 phút',
@@ -1244,119 +4733,465 @@ const data3 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food6.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 12,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: '5.0' ,
         time: '10 phút',
@@ -1365,119 +5200,465 @@ const data3 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food7.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 13,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: '5.0',
         time: '10 phút',
@@ -1486,119 +5667,465 @@ const data3 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food1.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 14,
         category:  'Thức ăn tốt cho sức khỏe',
         rating:'5.0',
         time: '10 phút',
@@ -1607,119 +6134,465 @@ const data3 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food2.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 15,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: '5.0',
         time: '10 phút',
@@ -1728,119 +6601,465 @@ const data3 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food3.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 16,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: '5.0',
         time: '10 phút',
@@ -1849,119 +7068,465 @@ const data3 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food15.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 17,
         category:  'Thức ăn tốt cho sức khỏe',
         rating:'5.0',
         time: '10 phút',
@@ -1970,119 +7535,465 @@ const data3 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food6.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 18,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: '5.0',
         time: '10 phút',
@@ -2091,113 +8002,458 @@ const data3 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food5.png'),
@@ -2206,6 +8462,7 @@ const data3 = [
 const data4 = [
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 19,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: '5.0',
         time: '10 phút',
@@ -2214,119 +8471,465 @@ const data4 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food6.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 20,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: '5.0' ,
         time: '10 phút',
@@ -2335,119 +8938,465 @@ const data4 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food7.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 21,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: '5.0',
         time: '10 phút',
@@ -2456,119 +9405,465 @@ const data4 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food1.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 22,
         category:  'Thức ăn tốt cho sức khỏe',
         rating:'5.0',
         time: '10 phút',
@@ -2577,119 +9872,465 @@ const data4 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food2.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 23,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: '5.0',
         time: '10 phút',
@@ -2698,119 +10339,465 @@ const data4 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food3.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 24,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: '5.0',
         time: '10 phút',
@@ -2819,119 +10806,465 @@ const data4 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food15.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 25,
         category:  'Thức ăn tốt cho sức khỏe',
         rating:'5.0',
         time: '10 phút',
@@ -2940,119 +11273,465 @@ const data4 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food6.png'),
     },
     {
         name: 'Fruits for life - Lê Đại Hành',
+        id: 26,
         category:  'Thức ăn tốt cho sức khỏe',
         rating: '5.0',
         time: '10 phút',
@@ -3061,119 +11740,463 @@ const data4 = [
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'big',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },
             {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: null,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },            {
                 name: 'Bánh mì chả lụa',
                 price: 55000,
+                id: generateID(),
                 sold: 999,
                 type: 'small',
                 discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
+                imageUrl: require('../../assets/images/DishImage.png'),
+                options: [
+                    {
+                        id: 1,
+                        content: 'Rau thêm',
+                        price: 5000                           
+                    },
+                    {
+                        id: 2,
+                        content: 'Xì dầu thêm',
+                        price: 2000                           
+                    },
+                    {
+                        id: 3,
+                        content: 'Tương ớt thêm',
+                        price: 3000                           
+                    },
+                    {
+                        id: 4,
+                        content: 'Vụn bánh mì thêm',
+                        price: 2500                           
+                    }
+                ]
             },                        
         ],
         imageUrl: require('assets/images/Food5.png'),
     },
 ];
-
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -3194,21 +12217,16 @@ class Home extends Component {
     viewRestaurant = (item) => {
         this.props.navigation.navigate('StoreDetail', {item});
     }
-    openFoodList = (item) => {
-        this.props.navigation.navigate('FoodList', {item})
-    }
-
-
     render() {
             return(
                 <View style={styles.container}>
-                      <View style={styles.containerHeader}>
+                    <View style={styles.containerHeader}>
                         <Text style={styles.icon}><IcMapPin fill="#CFEEFE"/></Text>
                         <Text style={styles.headerTitle}>227 Nguyễn Văn Cừ</Text>
                         <Text style={styles.icon}><IcHeart fill="#EB5757"/></Text>
                         <Text style={styles.icon}><IcNote fill="#CFEEFE"/></Text>
                     </View>
-                    <CartButton/>
+                   
                     <ScrollView 
                         //nestedScrollEnabled={true}
                         showsVerticalScrollIndicator ={false}
@@ -3258,7 +12276,6 @@ class Home extends Component {
                             </View>
                             <View style={styles.sectionList}>
                                     <ListCategory 
-                                        openFoodList={this.openFoodList}
                                         />
                             </View>
                             <View style={styles.voucherContainer}>
@@ -3273,7 +12290,7 @@ class Home extends Component {
                                     >
                                         <Text style={styles.btnMoreText}>Xem</Text>
                                 </TouchableOpacity>
-                            </View> 
+                            </View>
                             <View styles={styles.sectionList}>
                                 <ListReorder
                                     data={data4}
@@ -3315,9 +12332,7 @@ class Home extends Component {
                             </View>
                              
                         </SafeAreaView>
-                        
                     </ScrollView>
-                   
                 </View> 
             )
     }
@@ -3403,8 +12418,8 @@ const styles = StyleSheet.create({
     searchBarInputContainer: {
         width: wp('100%')-32,
         backgroundColor: colors.primary_grey,
-        // borderWidth: 1,
-        // borderColor: colors.secondary_grey_light,
+        borderWidth: 1,
+        borderColor: colors.secondary_grey_light,
         borderRadius: 50,
         justifyContent: 'center',
         //paddingLeft: 5,
@@ -3414,7 +12429,7 @@ const styles = StyleSheet.create({
         color: colors.dark_blue,
         fontSize: 14,
         fontFamily: "Nunito-Regular",
-        //backgroundColor: colors.primary_grey,
+        backgroundColor: colors.primary_grey,
         marginLeft: 16,
     },
     searchBarContainer: {

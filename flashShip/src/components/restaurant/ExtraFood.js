@@ -7,29 +7,29 @@ import styles from './style';
 function ExtraFood(props) {
   const {title, extraFoods} = props;
 
-  const [isActive, setIsActive] = useState(0);
+  const isActive =  props.options;
 
   return (
     <View style={styles.extraFoodContainer}>
       <Text style={styles.extraFoodTitle}>{title}</Text>
 
       {extraFoods.map((food, i) => (
-        <TouchableOpacity key={i}>
+        <TouchableOpacity key={i} onPress = {() => props.addBonus(food.id)}>
           <View style={styles.extraFoodSection}>
             <View style={styles.extraFoodSubTitle}>
               <RadioButton
                 style={styles.extraFoodAuto}
-                value={i}
-                status={isActive === i ? 'checked' : 'unchecked'}
-                onPress={() => setIsActive(i)}
+                value={isActive[food.id]}
+                status={isActive[food.id] ? 'checked' : 'unchecked'}
+                onPress={() => props.addBonus(food.id)}
                 uncheckedColor={colors.primary_grey_light}
                 color={colors.primary_blue}
               />
               <Text
                 style={
-                  isActive ? styles.extraFoodSelected : styles.extraFoodAuto
+                  isActive[food.id] ? styles.extraFoodSelected : styles.extraFoodAuto
                 }>
-                {food.name}
+                {food.content}
               </Text>
             </View>
             <Text style={styles.extraFoodPrice}>{food.price}đ</Text>

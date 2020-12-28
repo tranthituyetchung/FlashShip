@@ -60,8 +60,7 @@ const DishNameContainer = styled.View`
   align-items: center;
   margin-top: 6px;
 `;
-const SmallDish = ({addDish, dish}) => {
-  const [number, setNumber] = useState(1);
+const SmallDish = ({addDish, dish, number}) => {
   return (
     <DishContainer disabled>
       <Image
@@ -91,20 +90,12 @@ const SmallDish = ({addDish, dish}) => {
         {number ? (
           <DishCounter
             number={number}
-            addDish={() => {
-              setNumber(number + 1);
-              if (!!addDish) addDish();
-            }}
-            removeDish={() => {
-              if (number > 0) setNumber(number - 1);
-            }}
+            addDish={addDish}
+            removeDish={null}
           />
         ) : (
           <AddDishButton
-            addDish={() => {
-              setNumber(number + 1);
-              if (!!addDish) addDish();
-            }}
+            addDish={addDish}
           />
         )}
       </QQContainer>
