@@ -65,68 +65,972 @@ const history = [
 ];
 const data = [
   {
-    name: 'Fruit for life - Lê Đại Hành',
-    category: 'Thức ăn tốt cho sức khỏe',
-    rating: '5.0',
-    time: '10 phút',
-    distance: '0.6km',
-    imageUrl: require('assets/images/Food6.png'),
+      name: 'Fruits for life - Lê Đại Hành',
+      category:  'Thức ăn tốt cho sức khỏe',
+      rating: '5.0',
+      time: '10 phút',
+      distance: '0.6km', address: '10 Nguyễn Tri Phương , Quận 5, TP HCM',
+      dishes: [
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: null,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },                        
+      ],
+      imageUrl: require('assets/images/Food6.png'),
   },
   {
-    name: 'Fruits for life - Lê Đại Hành',
-    category: 'Thức ăn tốt cho sức khỏe',
-    rating: '5.0',
-    time: '10 phút',
-    distance: '0.6km',
-    imageUrl: require('assets/images/Food7.png'),
+      name: 'Fruits for life - Lê Đại Hành',
+      category:  'Thức ăn tốt cho sức khỏe',
+      rating: '5.0' ,
+      time: '10 phút',
+      distance: '0.6km', address: '10 Nguyễn Tri Phương , Quận 5, TP HCM',
+      dishes: [
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: null,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },                        
+      ],
+      imageUrl: require('assets/images/Food7.png'),
   },
   {
-    name: 'Fruit for life - Lê Đại Hành',
-    category: 'Thức ăn tốt cho sức khỏe',
-    rating: '5.0',
-    time: '10 phút',
-    distance: '0.6km',
-    imageUrl: require('assets/images/Food1.png'),
+      name: 'Fruits for life - Lê Đại Hành',
+      category:  'Thức ăn tốt cho sức khỏe',
+      rating: '5.0',
+      time: '10 phút',
+      distance: '0.6km', address: '10 Nguyễn Tri Phương , Quận 5, TP HCM',
+      dishes: [
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: null,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },                        
+      ],
+      imageUrl: require('assets/images/Food1.png'),
   },
   {
-    name: 'Fruits for life - Lê Đại Hành',
-    category: 'Thức ăn tốt cho sức khỏe',
-    rating: '5.0',
-    time: '10 phút',
-    distance: '0.6km',
-    imageUrl: require('assets/images/Food2.png'),
+      name: 'Fruits for life - Lê Đại Hành',
+      category:  'Thức ăn tốt cho sức khỏe',
+      rating:'5.0',
+      time: '10 phút',
+      distance: '0.6km', address: '10 Nguyễn Tri Phương , Quận 5, TP HCM',
+      dishes: [
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: null,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },                        
+      ],
+      imageUrl: require('assets/images/Food2.png'),
   },
   {
-    name: 'Fruit for life - Lê Đại Hành',
-    category: 'Thức ăn tốt cho sức khỏe',
-    rating: '5.0',
-    time: '10 phút',
-    distance: '0.6km',
-    imageUrl: require('assets/images/Food3.png'),
+      name: 'Fruits for life - Lê Đại Hành',
+      category:  'Thức ăn tốt cho sức khỏe',
+      rating: '5.0',
+      time: '10 phút',
+      distance: '0.6km', address: '10 Nguyễn Tri Phương , Quận 5, TP HCM',
+      dishes: [
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: null,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },                        
+      ],
+      imageUrl: require('assets/images/Food3.png'),
   },
   {
-    name: 'Fruits for life - Lê Đại Hành',
-    category: 'Thức ăn tốt cho sức khỏe',
-    rating: '5.0',
-    time: '10 phút',
-    distance: '0.6km',
-    imageUrl: require('assets/images/Food15.png'),
+      name: 'Fruits for life - Lê Đại Hành',
+      category:  'Thức ăn tốt cho sức khỏe',
+      rating: '5.0',
+      time: '10 phút',
+      distance: '0.6km', address: '10 Nguyễn Tri Phương , Quận 5, TP HCM',
+      dishes: [
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: null,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },                        
+      ],
+      imageUrl: require('assets/images/Food15.png'),
   },
   {
-    name: 'Fruits for life - Lê Đại Hành',
-    category: 'Thức ăn tốt cho sức khỏe',
-    rating: '5.0',
-    time: '10 phút',
-    distance: '0.6km',
-    imageUrl: require('assets/images/Food6.png'),
+      name: 'Fruits for life - Lê Đại Hành',
+      category:  'Thức ăn tốt cho sức khỏe',
+      rating:'5.0',
+      time: '10 phút',
+      distance: '0.6km', address: '10 Nguyễn Tri Phương , Quận 5, TP HCM',
+      dishes: [
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: null,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },                        
+      ],
+      imageUrl: require('assets/images/Food6.png'),
   },
   {
-    name: 'Fruits for life - Lê Đại Hành',
-    category: 'Thức ăn tốt cho sức khỏe',
-    rating: '5.0',
-    time: '10 phút',
-    distance: '0.6km',
-    imageUrl: require('assets/images/Food5.png'),
+      name: 'Fruits for life - Lê Đại Hành',
+      category:  'Thức ăn tốt cho sức khỏe',
+      rating: '5.0',
+      time: '10 phút',
+      distance: '0.6km', address: '10 Nguyễn Tri Phương , Quận 5, TP HCM',
+      dishes: [
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'big',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },
+          {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: null,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },            {
+              name: 'Bánh mì chả lụa',
+              price: 55000,
+              sold: 999,
+              type: 'small',
+              discount: 75000,
+              imageUrl: require('../../assets/images/DishImage.png')
+          },                        
+      ],
+      imageUrl: require('assets/images/Food5.png'),
   },
 ];
 class Search extends Component {

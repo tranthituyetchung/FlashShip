@@ -16,7 +16,7 @@ export default class Main extends Component {
   
   render(){
 
-    return <AppNavigation screenName= "Voucher" /> 
+    return <AppNavigation screenName= "Home" /> 
 
   }
 }

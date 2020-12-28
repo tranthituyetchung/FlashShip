@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import colors from '../values/color';
 import {IcMinus} from '../values/images';
 
 const Button = styled.TouchableOpacity`
@@ -9,8 +10,8 @@ const Button = styled.TouchableOpacity`
   background-color: transparent;
   align-items: center;
   justify-content: center;
-  border-color: #86869E;
-  border-width: 2px;
+  border-color: ${colors.secondary_grey};
+  border-width: 1px;
 `;
 
 const MinusButton = () => {

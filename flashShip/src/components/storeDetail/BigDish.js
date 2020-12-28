@@ -2,7 +2,9 @@ import React from 'react';
 import styled from 'styled-components/native';
 import AddDishButton from 'common/AddDishBtn';
 import DishCounter from 'common/DishCounter';
-
+import { useWindowDimensions } from 'react-native';
+import colors from '../../values/color';
+import * as RootNavigation from "navigation/RootNavigation";
 const DishContainer = styled.TouchableOpacity`
   width: 48%;
   border-radius: 8px;
@@ -11,43 +13,43 @@ const DishContainer = styled.TouchableOpacity`
 `;
 const DishName = styled.Text`
   font-size: 14px;
-  font-family: 'Nunito';
-  font-weight: 400;
+  font-family: 'Nunito-SemiBold';
+  color: ${colors.dark_blue}
   margin-top: 6px;
 `;
 const DishPrice = styled.Text`
   font-size: 14px;
-  font-family: 'Nunito';
-  font-weight: 700;
+  font-family: Nunito-Bold;
   margin-vertical: 4px;
+  color: ${colors.dark_blue};
 `;
 const QQContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 `;
-const DishNum = styled.Text`
-  font-size: 14px;
-  font-family: 'Nunito';
-  font-weight: 400;
-`;
 const DishImage = styled.Image`
   width: 100%;
   height: 180px;
   border-radius: 8px;
 `;
-const BigDish = ({dish}) => {
+const BigDish = ({ dish, onAddPress, navigation }) => {
   const number = 1;
+  const width = useWindowDimensions().width;
+  const qqWidth = 0.5 * (width - 32) - 8;
   return (
-    <DishContainer>
+    <DishContainer onPress={() => {
+      console.log("CLMm");
+      RootNavigation.navigate("RestaurantAdd")
+    }} style={{ width: qqWidth }}>
       <DishImage
-        // style={{width: 164, height: 164}}
+        style={{ width: qqWidth, height: qqWidth }}
         source={dish.imageUrl}
       />
       <DishName>{dish.name}</DishName>
       <QQContainer>
         <DishPrice>{dish.price}</DishPrice>
-        {number ? <DishCounter number = {number}/> : <AddDishButton/>}
+        {number ? <DishCounter number={number} /> : <AddDishButton addDish={() => { onAddPress() }} />}
       </QQContainer>
     </DishContainer>
   );

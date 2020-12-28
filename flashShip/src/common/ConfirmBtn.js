@@ -19,7 +19,7 @@ class ConfirmBtn extends Component {
                 <View style={styles.container}>
                     <TouchableOpacity
                         style={styles.backButton}
-                        onPress={this.props.onBackPress}    
+                        onPress={this.props.onPress}    
                     >
                         <View style={styles.titleContainer}>
                         <Text style={styles.titleText}>{this.props.title}</Text>

@@ -10,6 +10,7 @@ const hratio = hp('100%') / 812;
 const styles = StyleSheet.create({
   container:{
     width: wp('100%'),
+    marginTop: 72,
   },
   blank:{
     height: 200

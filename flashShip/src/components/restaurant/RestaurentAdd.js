@@ -9,8 +9,8 @@ import {IcNote} from 'values/images';
 import ConfirmBtn from 'common/ConfirmBtn'
 import { ScrollView } from 'react-native-gesture-handler';
 import { useWindowDimensions } from 'react-native';
-
-function RestaurentAdd() {
+import SmallDish from "../../common/SmallDish";
+function RestaurentAdd(props) {
   const height = useWindowDimensions().height;
   const [screenHeight, setScreenHeight] = useState(0);
   const Canh = [
@@ -31,11 +31,16 @@ function RestaurentAdd() {
   };
   
   const scrollEnabled = screenHeight > height/2;
-
+  const onBackPress = () => {
+    props.navigation.goBack();
+  };
+  const openPayment = () => {
+    props.navigation.navigate('Payment');
+  };
   return (
     <View style={{flex: 1, backgroundColor: colors.white}}>
     
-      <Header title={strings.RestaurantAdd} />
+      <Header title={strings.RestaurantAdd} onBackPress={onBackPress} />
       {/* Component mon an */}
       
       <ScrollView 
@@ -43,7 +48,17 @@ function RestaurentAdd() {
           onContentSizeChange={onContentSizeChange}
        >
           <View style={styles.container}>
-            <View style={styles.tmp}></View>
+            {/* <View style={styles.tmp}></View> */}
+            <View style={{paddingHorizontal:16}}>
+            <SmallDish dish ={{
+                name: 'Bánh mì chả lụa',
+                price: 55000,
+                sold: 999,
+                type: 'big',
+                discount: 75000,
+                imageUrl: require('../../assets/images/DishImage.png')
+            }}/> 
+            </View>
             <ExtraFood title="Món ăn kèm" extraFoods={MonAnKem} />
             {/* <ExtraFood title="Món canh" extraFoods={Canh} /> */}
             <View style={styles.RestaurantAddNote}>
@@ -60,7 +75,7 @@ function RestaurentAdd() {
         
       </ScrollView>
       
-      <ConfirmBtn title={strings.RestaurantAddBtn} />
+      <ConfirmBtn title={strings.RestaurantAddBtn} onPress={openPayment} />
 
   </View>
   );
