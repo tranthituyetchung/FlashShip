@@ -10,6 +10,9 @@ import colors from 'values/color';
 import Icon from 'react-native-vector-icons/Feather';
 import CircleIconButton from '../../common/CircleIconButton';
 import DishCounter from '../../common/DishCounter';
+import {Modalize} from 'react-native-modalize';
+import SmallDishWithOption from '../../common/SmallDishWithOption';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 const Container = styled.View`
   background-color: transparent;
   width: 100%;
@@ -134,6 +137,12 @@ const StoreDetail = (props) => {
     else if (y < 0) fadeIn(0);
     else fadeIn(1);
   };
+  //Open Modal
+  const modalizeRef = useRef(null);
+
+  const onOpen = () => {
+    modalizeRef.current?.open();
+  };
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const fadeIn = (ratio) => {
@@ -218,12 +227,26 @@ const StoreDetail = (props) => {
                 <SmallDish
                   dish={dish}
                   addDish={() =>
-                    props.navigation.navigate('RestaurantAdd', {dish})
+                    // props.navigation.navigate('RestaurantAdd', {dish})
+                    onOpen()
                   }
                 />
               ))}
           </DataContainer>
         </ScrollView>
+        <Modalize adjustToContentHeight={true} ref={modalizeRef}>
+          <ScrollView style={{height: 500, paddingHorizontal: 16}}>
+            <TouchableOpacity style={{backgroundColor:colors.red, borderRadius:10, marginVertical: 15, alignItems:"center", justifyContent:"center"}}>
+              <StoreName>Thêm món mới</StoreName>
+            </TouchableOpacity>
+            <SmallDishWithOption
+              dish={item.dishes[0]}
+              addDish={() => {}}></SmallDishWithOption>
+            <SmallDishWithOption
+              dish={item.dishes[1]}
+              addDish={() => {}}></SmallDishWithOption>
+          </ScrollView>
+        </Modalize>
       </Container>
     </>
   );
