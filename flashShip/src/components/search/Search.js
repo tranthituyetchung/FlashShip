@@ -1058,8 +1058,6 @@ class Search extends Component {
         filteredData: this.searchText(searchValue.trim().toLowerCase(), data),
       });
     }
-    console.log('on change ' + this.state.searchValue);
-    console.log('on change data ');
   };
   // clearSearch = () => {
   //     this.setState ({

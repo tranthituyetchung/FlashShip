@@ -33,8 +33,7 @@ const DishImage = styled.Image`
   height: 180px;
   border-radius: 8px;
 `;
-const BigDish = ({dish, addDish, navigation}) => {
-  const [number, setNumber] = useState(0);
+const BigDish = ({dish, addDish, navigation, number}) => {
   const width = useWindowDimensions().width;
   const qqWidth = 0.5 * (width - 32) - 8;
   return (
@@ -49,20 +48,12 @@ const BigDish = ({dish, addDish, navigation}) => {
         {number ? (
           <DishCounter
             number={number}
-            removeDish={() => {
-              if (number > 0) setNumber(number - 1);
-            }}
-            addDish={() => {
-              setNumber(number + 1);
-              addDish();
-            }}
+            removeDish={null}
+            addDish={addDish}
           />
         ) : (
           <AddDishButton
-            addDish={() => {
-              setNumber(number + 1);
-              addDish();
-            }}
+            addDish={addDish}
           />
         )}
       </QQContainer>

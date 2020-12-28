@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import {
   Text,
 } from 'react-native';
-//import store from './src/store/store'
+import store from './src/store/store';
 import Welcome from 'components/welcome/Welcome'
 
 export default class App extends Component {
@@ -20,12 +20,9 @@ export default class App extends Component {
   
   render () {
      return (
-      // <Provider store={store}>
-      //   <Main/> 
-      // </Provider>
-      <>
-      <Main/>
-      </>
+      <Provider store={store}>
+         <Main/> 
+      </Provider>
      )
   }
 }
