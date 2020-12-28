@@ -3,7 +3,7 @@ export default (state = {listItem: {}, shopId: null, promotion: null, payment: n
   switch (action.type) {
     case ADD_ITEM:
       if (!state.listItem || !state.listItem[action.payload.itemId]) {
-        state.listItem[action.payload.itemId] = [{number: 1, note: action.payload.note, options: action.payload.options, hashId: action.payload.hashId}];
+        state.listItem[action.payload.itemId] = [{number: 1, note: action.payload.note, options: action.payload.additional, hashId: action.payload.hashId}];
         state.total++;
       } else {
         let flag = 0;
@@ -16,7 +16,7 @@ export default (state = {listItem: {}, shopId: null, promotion: null, payment: n
             return item;
           })
           if(!flag) {
-            state.listItem[action.payload.itemId] = state.listItem[action.payload.itemId].concat({number: 1, note: action.payload.note, options: action.payload.options, hashId});
+            state.listItem[action.payload.itemId] = state.listItem[action.payload.itemId].concat({number: 1, note: action.payload.note, options: action.payload.options,  hashId: action.payload.hashId});
             state.total++;
           }
         }       
@@ -53,7 +53,7 @@ export default (state = {listItem: {}, shopId: null, promotion: null, payment: n
         ...state,
       };
     case RESET_CART:
-      state.listItem = null;
+      state.listItem = {};
       state.total = 0;
       state.shopId = action.payload.shopId
       return {

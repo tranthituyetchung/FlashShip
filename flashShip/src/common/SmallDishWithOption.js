@@ -60,8 +60,7 @@ const DishNameContainer = styled.View`
   align-items: center;
   margin-top: 6px;
 `;
-const SmallDishWithOption = ({addDish, dish, removeDish}) => {
-  const [number, setNumber] = useState(1);
+const SmallDishWithOption = ({addDish, dish, removeDish, options, notes, number}) => {
   return (
     <DishContainer disabled>
       <Image
@@ -81,18 +80,14 @@ const SmallDishWithOption = ({addDish, dish, removeDish}) => {
             {dish.name}
           </DishName>
         </DishNameContainer>
-        <SoldNum>{dish.option || 'Option'}</SoldNum>
-        <SoldNum>{dish.notes || 'Ghi chú'}</SoldNum>
+        {options ? <SoldNum>{Object.keys(options).reduce((all, key) => options[key] ? all+=(`${key}, `) : all ,'')}</SoldNum> : null}
+        {notes !== '' ? <SoldNum>{notes}</SoldNum>: null}
       </TextContainer>
       <QQContainer>
         <DishCounter
           number={number}
-          addDish={() => {
-            addDish();
-          }}
-          removeDish={() => {
-            removeDish();
-          }}
+          addDish={addDish}
+          removeDish={removeDish}
         />
       </QQContainer>
     </DishContainer>

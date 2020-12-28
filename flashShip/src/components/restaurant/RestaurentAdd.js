@@ -13,7 +13,6 @@ import SmallDish from "../../common/SmallDish";
 import {connect} from 'react-redux';
 import {addItem} from '../../action/cart/action';
 function RestaurentAdd(props) {
-  console.log("debuggg", props.cart);
   const height = useWindowDimensions().height;
   const [screenHeight, setScreenHeight] = useState(0);
   const [text, setValue] = useState('');
@@ -26,7 +25,6 @@ function RestaurentAdd(props) {
   const [bonusMap, setBonusMap] = useState(options);
   const addBonus = (id) => {
     bonusMap[id] = !bonusMap[id];
-    options[id] = !options[id];
     setBonusMap({...bonusMap})
   }
   const onContentSizeChange = (contentWidth, contentHeight) => {
@@ -38,8 +36,7 @@ function RestaurentAdd(props) {
     props.navigation.goBack();
   };
   const completeAddDish = () => {
-    //console.log("replay in Dish");
-    props.addDish(dish.id, props.route.params.shopId, text, options);
+    props.addDish(dish.id, props.route.params.shopId, text, bonusMap);
     props.navigation.goBack();
   };
   return (

@@ -12211,7 +12211,6 @@ class Home extends Component {
         };
       }
     openSearch = () => {
-        console.log(this.props.navigation.navigate)
         this.props.navigation.navigate('Search', {viewRestaurant : this.viewRestaurant})
     }
     viewRestaurant = (item) => {

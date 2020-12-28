@@ -14,6 +14,7 @@ import {Modalize} from 'react-native-modalize';
 import SmallDishWithOption from '../../common/SmallDishWithOption';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {connect} from 'react-redux';
+import {quickAdd, removeItem} from '../../action/cart/action'
 const Container = styled.View`
   background-color: transparent;
   width: 100%;
@@ -128,23 +129,28 @@ const ScrollView = styled.ScrollView`
 `;
 
 const StoreDetail = (props) => {
-  const [ratio, setRatio] = useState(0);
-  console.log("debuggg", props.cart);
   const item = props.route.params.item;
-  // console.log(item);
   const handleScroll = (e) => {
-    // console.log(e.nativeEvent.contentOffset.y);
     const y = e.nativeEvent.contentOffset.y;
     if (y <= 143 && y >= 0) fadeIn(y / 143);
     else if (y < 0) fadeIn(0);
     else fadeIn(1);
   };
+  const [selectDish, setSelectDish] = useState(item.dishes[0])
   //Open Modal
   const modalizeRef = useRef(null);
 
-  const onOpen = () => {
+  const onOpenPopup = (dish) => {
+    setSelectDish(dish);
+    console.log(selectDish);
+    console.log(props.cart.listItem[selectDish.id]);
     modalizeRef.current?.open();
   };
+  const addDish = (instancesCount, dish) => {
+    if(instancesCount>1) {
+      onOpenPopup(dish)
+    } else props.navigation.navigate('RestaurantAdd', { dish, shopId: item.id})
+  }
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   const fadeIn = (ratio) => {
@@ -215,9 +221,7 @@ const StoreDetail = (props) => {
                 .filter((dish) => dish.type === 'big')
                 .map((dish) => (
                   <BigDish
-                    addDish={() =>
-                      props.navigation.navigate('RestaurantAdd', {dish, shopId: item.id})
-                    }
+                    addDish={() => addDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish)}
                     dish={dish}
                     number = {props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].reduce((total, item) => total+=item.number, 0) : 0}
                   />
@@ -230,27 +234,23 @@ const StoreDetail = (props) => {
                 <SmallDish
                   dish={dish}
                   number = {props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].reduce((total, item) => total+=item.number, 0) : 0}
-                  addDish={() =>
-                    // props.navigation.navigate('RestaurantAdd', {dish})
-                    onOpen()
-                  }
+                  addDish={() => addDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish)}
                 />
-              ))}
+              ))}        
+            <Modalize adjustToContentHeight={true} ref={modalizeRef}>
+              <ScrollView style={{height: 500, paddingHorizontal: 16}}>
+                <TouchableOpacity style={{backgroundColor:colors.red, borderRadius:10, marginVertical: 15, alignItems:"center", justifyContent:"center"}} 
+                onPress = { () => props.navigation.navigate('RestaurantAdd', {dish: selectDish, shopId: item.id})}>
+                  <StoreName>Thêm món mới</StoreName>
+                </TouchableOpacity>
+                {
+                  props.cart.listItem[selectDish.id] 
+                  ? props.cart.listItem[selectDish.id].map((item) => <SmallDishWithOption dish = {selectDish} addDish = {() => props.quickAdd(selectDish.id, item.hashId)} removeDish = {() => props.removeDish(selectDish.id, item.hashId)} options = {item.options} notes = {item.note} number = {item.number} />) : null
+                }
+              </ScrollView>
+            </Modalize>
           </DataContainer>
         </ScrollView>
-        <Modalize adjustToContentHeight={true} ref={modalizeRef}>
-          <ScrollView style={{height: 500, paddingHorizontal: 16}}>
-            <TouchableOpacity style={{backgroundColor:colors.red, borderRadius:10, marginVertical: 15, alignItems:"center", justifyContent:"center"}}>
-              <StoreName>Thêm món mới</StoreName>
-            </TouchableOpacity>
-            <SmallDishWithOption
-              dish={item.dishes[0]}
-              addDish={() => {}}></SmallDishWithOption>
-            <SmallDishWithOption
-              dish={item.dishes[1]}
-              addDish={() => {}}></SmallDishWithOption>
-          </ScrollView>
-        </Modalize>
       </Container>
     </>
   );
@@ -278,4 +278,8 @@ const mapStateToProps = (state) => {
     cart: state.cart,
   };
 };
-export default connect(mapStateToProps)(StoreDetail);
+const mapDispatchToProps = {
+  quickAdd, 
+  removeDish: removeItem
+}
+export default connect(mapStateToProps, mapDispatchToProps)(StoreDetail);
