@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { Text, Image } from 'react-native';
+import React, {useState} from 'react';
+import {Text, Image} from 'react-native';
 import styled from 'styled-components/native';
-import { IcMapPin, IcPriceTag, IcGiftVoucher } from '../../values/images';
+import {IcMapPin, IcPriceTag, IcGiftVoucher} from '../../values/images';
 import PlusButton from '../../common/PlusButton';
 import MinusButton from '../../common/MinusButton';
 import SmallDish from '../../common/SmallDish';
 import BigDish from './BigDish';
 import colors from 'values/color';
-import Icon from 'react-native-vector-icons/Feather'
+import Icon from 'react-native-vector-icons/Feather';
 import CircleIconButton from '../../common/CircleIconButton';
+import DishCounter from '../../common/DishCounter';
 const Container = styled.View`
   background-color: transparent;
   width: 100%;
@@ -20,7 +21,7 @@ const BackgroundImage = styled.Image`
   height: 248px;
 `;
 const ButtonContainer = styled.View`
-  height: 8%;
+  height: 56px;
   width: 100%;
   flex-direction: row;
   padding-horizontal: 16px;
@@ -47,7 +48,7 @@ const DataContainer = styled.View`
 const StoreName = styled.Text`
   font-size: 24px;
   font-family: Nunito-ExtraBold;
-  color:${colors.dark_blue}
+  color: ${colors.dark_blue};
 `;
 const DescText = styled.Text`
   font-size: 14px;
@@ -83,7 +84,7 @@ const AllVoucherContainer = styled.View`
   margin-bottom: 4px;
 `;
 const VoucherContainer = styled.View`
-  align-items: flex-start;
+  align-items: center;
   flex-direction: row;
 `;
 const SeeAll = styled.TouchableOpacity`
@@ -99,7 +100,7 @@ const TextMore = styled.Text`
 const VoucherText = styled.Text`
   color: ${colors.red};
   font-family: Nunito-Regular;
-  margin-left: 5px;
+  margin-right: 5px;
 `;
 const DishContainer = styled.View`
   flex-direction: row;
@@ -121,19 +122,23 @@ const ScrollView = styled.ScrollView`
 const StoreDetail = (props) => {
   const [ratio, setRatio] = useState(0);
   const item = props.route.params.item;
-  console.log(item);
+  // console.log(item);
   const handleScroll = (e) => {
     // console.log(e.nativeEvent.contentOffset.y);
     const y = e.nativeEvent.contentOffset.y;
-    if (y <= 143)
-      setRatio(y / 140);
-  }
+    if (y <= 143) setRatio(y / 140);
+    else setRatio(1);
+  };
   return (
     <>
       <BackgroundImage source={item.imageUrl} />
       <Container>
-        <ButtonContainer style={{ backgroundColor: `rgba(256,256,256,${ratio})` }}>
-          <CircleIconButton name="chevron-left" onPress={()=>props.navigation.goBack()} />
+        <ButtonContainer
+          style={{backgroundColor: `rgba(256,256,256,${ratio})`}}>
+          <CircleIconButton
+            name="chevron-left"
+            onPress={() => props.navigation.goBack()}
+          />
           <ButtonContainerRight>
             <CircleIconButton name="heart" />
             <CircleIconButton name="search" />
@@ -147,17 +152,20 @@ const StoreDetail = (props) => {
               <IcMapPin width={20} height={20} />
               <LocationText>{item.distance}</LocationText>
               <Eclipse />
-              <LocationText>
-                {item.address}
-              </LocationText>
+              <LocationText>{item.address}</LocationText>
             </LocationContainer>
             <AllVoucherContainer>
               <VoucherContainer>
-                <IcPriceTag width={20} height={20} stroke={'#EB5757'} />
+                <VoucherText>
+                  <IcPriceTag width={20} height={20} stroke={'#EB5757'} />
+                </VoucherText>
                 <VoucherText>Giảm 20% toàn bộ menu</VoucherText>
               </VoucherContainer>
               <VoucherContainer>
-                <IcGiftVoucher width={20} height={20} stroke={'#EB5757'} />
+                <VoucherText>
+                  <IcGiftVoucher width={20} height={20} stroke={'#EB5757'} />
+                </VoucherText>
+
                 <VoucherText>Giảm 20% toàn bộ menu</VoucherText>
                 <SeeAll>
                   <TextMore>Xem thêm</TextMore>
@@ -166,14 +174,28 @@ const StoreDetail = (props) => {
             </AllVoucherContainer>
             <ListTitle>Bán chạy</ListTitle>
             <DishContainer>
-              {
-                item.dishes.filter((dish) => dish.type === 'big').map((dish) => <BigDish onAddPress={()=>props.navigation.navigate("RestaurantAdd",{dish})} dish={dish} />)
-              }
+              {item.dishes
+                .filter((dish) => dish.type === 'big')
+                .map((dish) => (
+                  <BigDish
+                    addDish={() =>
+                      props.navigation.navigate('RestaurantAdd', {dish})
+                    }
+                    dish={dish}
+                  />
+                ))}
             </DishContainer>
             <ListTitle>Món chính</ListTitle>
-            {
-              item.dishes.filter((dish) => dish.type === 'small').map((dish) => <SmallDish dish={dish} />)
-            }
+            {item.dishes
+              .filter((dish) => dish.type === 'small')
+              .map((dish) => (
+                <SmallDish
+                  dish={dish}
+                  addDish={() =>
+                    props.navigation.navigate('RestaurantAdd', {dish})
+                  }
+                />
+              ))}
           </DataContainer>
         </ScrollView>
       </Container>
