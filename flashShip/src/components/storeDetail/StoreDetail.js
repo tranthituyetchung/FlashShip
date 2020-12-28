@@ -155,7 +155,7 @@ const StoreDetail = (props) => {
 
   const onClose = () => {
     modalizeRef.current?.close()
-
+  }
   const addDish = (instancesCount, dish) => {
     if(instancesCount>1) {
       onOpenPopup(dish)
