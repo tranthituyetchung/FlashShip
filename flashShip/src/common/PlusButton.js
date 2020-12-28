@@ -4,17 +4,17 @@ import colors from '../values/color';
 import {IcPlus} from '../values/images';
 
 const Button = styled.TouchableOpacity`
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   border-radius: 24px;
   background-color: ${colors.primary_blue};
   align-items: center;
   justify-content: center;
 `;
 
-const PlusButton = () => {
+const PlusButton = ({onPress}) => {
   return (
-    <Button>
+    <Button onPress={onPress}>
       <IcPlus stroke-width={2} />
     </Button>
   );

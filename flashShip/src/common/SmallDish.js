@@ -1,7 +1,7 @@
-import React from 'react';
-import { Image } from 'react-native';
+import React, {useState} from 'react';
+import {Image} from 'react-native';
 import styled from 'styled-components/native';
-import { IcMapPin, IcPriceTag, IcGiftVoucher } from '../values/images';
+import {IcMapPin, IcPriceTag, IcGiftVoucher} from '../values/images';
 import AddDishButton from 'common/AddDishBtn';
 import DishCounter from 'common/DishCounter';
 import colors from '../values/color';
@@ -24,7 +24,6 @@ const DishPrice = styled.Text`
 `;
 const QQContainer = styled.View`
   flex-direction: row;
-  width: 73px;
   position: absolute;
   bottom: 4px;
   right: 0px;
@@ -40,7 +39,6 @@ const PriceContainer = styled.View`
   align-items: flex-end;
   margin-top: 4px;
   color: ${colors.dark_blue};
-
 `;
 const DiscountPrice = styled.Text`
   text-decoration-line: line-through;
@@ -62,19 +60,21 @@ const DishNameContainer = styled.View`
   align-items: center;
   margin-top: 6px;
 `;
-const SmallDish = ({ dish }) => {
-  const number = 1;
+const SmallDish = ({addDish, dish}) => {
+  const [number, setNumber] = useState(1);
   return (
-    <DishContainer>
+    <DishContainer disabled>
       <Image
-        style={{ width: 100, height: 100, marginRight: 8 }}
+        style={{width: 100, height: 100, marginRight: 8}}
         source={dish.imageUrl}
       />
       <TextContainer>
         <DishNameContainer>
-          {dish.discount ? (<IconContainer>
-            <IcPriceTag width="16" height="16" stroke={'#52C3FC'} />
-          </IconContainer>) : null}
+          {dish.discount ? (
+            <IconContainer>
+              <IcPriceTag width="16" height="16" stroke={'#52C3FC'} />
+            </IconContainer>
+          ) : null}
           <DishName
           // style={{fontFamily:"Nunito-SemiBold"}}
           >
@@ -88,7 +88,25 @@ const SmallDish = ({ dish }) => {
         {dish.discount ? <DiscountPrice>{dish.discount}</DiscountPrice> : null}
       </PriceContainer>
       <QQContainer>
-        {number ? <DishCounter number={number} /> : <AddDishButton />}
+        {number ? (
+          <DishCounter
+            number={number}
+            addDish={() => {
+              setNumber(number + 1);
+              if (!!addDish) addDish();
+            }}
+            removeDish={() => {
+              if (number > 0) setNumber(number - 1);
+            }}
+          />
+        ) : (
+          <AddDishButton
+            addDish={() => {
+              setNumber(number + 1);
+              if (!!addDish) addDish();
+            }}
+          />
+        )}
       </QQContainer>
     </DishContainer>
   );

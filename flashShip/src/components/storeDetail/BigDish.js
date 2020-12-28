@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components/native';
 import AddDishButton from 'common/AddDishBtn';
 import DishCounter from 'common/DishCounter';
-import { useWindowDimensions } from 'react-native';
+import {useWindowDimensions} from 'react-native';
 import colors from '../../values/color';
-import * as RootNavigation from "navigation/RootNavigation";
+import * as RootNavigation from 'navigation/RootNavigation';
 const DishContainer = styled.TouchableOpacity`
   width: 48%;
   border-radius: 8px;
@@ -33,23 +33,38 @@ const DishImage = styled.Image`
   height: 180px;
   border-radius: 8px;
 `;
-const BigDish = ({ dish, onAddPress, navigation }) => {
-  const number = 1;
+const BigDish = ({dish, addDish, navigation}) => {
+  const [number, setNumber] = useState(0);
   const width = useWindowDimensions().width;
   const qqWidth = 0.5 * (width - 32) - 8;
   return (
-    <DishContainer onPress={() => {
-      console.log("CLMm");
-      RootNavigation.navigate("RestaurantAdd")
-    }} style={{ width: qqWidth }}>
+    <DishContainer disabled style={{width: qqWidth}}>
       <DishImage
-        style={{ width: qqWidth, height: qqWidth }}
+        style={{width: qqWidth, height: qqWidth}}
         source={dish.imageUrl}
       />
       <DishName>{dish.name}</DishName>
       <QQContainer>
         <DishPrice>{dish.price}</DishPrice>
-        {number ? <DishCounter number={number} /> : <AddDishButton addDish={() => { onAddPress() }} />}
+        {number ? (
+          <DishCounter
+            number={number}
+            removeDish={() => {
+              if (number > 0) setNumber(number - 1);
+            }}
+            addDish={() => {
+              setNumber(number + 1);
+              addDish();
+            }}
+          />
+        ) : (
+          <AddDishButton
+            addDish={() => {
+              setNumber(number + 1);
+              addDish();
+            }}
+          />
+        )}
       </QQContainer>
     </DishContainer>
   );
