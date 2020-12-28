@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Text, Image} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {Text, Image, Animated, View, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 import {IcMapPin, IcPriceTag, IcGiftVoucher} from '../../values/images';
 import PlusButton from '../../common/PlusButton';
@@ -21,12 +21,16 @@ const BackgroundImage = styled.Image`
   height: 248px;
 `;
 const ButtonContainer = styled.View`
+  z-index: 999;
+  top: 0px;
+  left: 0px;
   height: 56px;
   width: 100%;
   flex-direction: row;
   padding-horizontal: 16px;
   justify-content: space-between;
   align-items: center;
+  position: absolute;
 `;
 const ButtonContainerRight = styled.View`
   background-color: transparent;
@@ -126,24 +130,46 @@ const StoreDetail = (props) => {
   const handleScroll = (e) => {
     // console.log(e.nativeEvent.contentOffset.y);
     const y = e.nativeEvent.contentOffset.y;
-    if (y <= 143) setRatio(y / 140);
-    else setRatio(1);
+    if (y <= 143 && y >= 0) fadeIn(y / 143);
+    else if (y < 0) fadeIn(0);
+    else fadeIn(1);
   };
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  const fadeIn = (ratio) => {
+    Animated.timing(fadeAnim, {
+      toValue: Math.min(ratio, 1),
+      duration: 0,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return (
     <>
       <BackgroundImage source={item.imageUrl} />
+
+      <ButtonContainer>
+        <CircleIconButton
+          name="chevron-left"
+          onPress={() => props.navigation.goBack()}
+        />
+        <ButtonContainerRight>
+          <CircleIconButton name="heart" />
+          <CircleIconButton name="search" />
+        </ButtonContainerRight>
+      </ButtonContainer>
       <Container>
-        <ButtonContainer
-          style={{backgroundColor: `rgba(256,256,256,${ratio})`}}>
-          <CircleIconButton
-            name="chevron-left"
-            onPress={() => props.navigation.goBack()}
-          />
-          <ButtonContainerRight>
-            <CircleIconButton name="heart" />
-            <CircleIconButton name="search" />
-          </ButtonContainerRight>
-        </ButtonContainer>
+        <Animated.View
+          style={[
+            // {
+            //   backgroundColor: `rgba(256,256,256,${fadeAnim})`,
+            // },
+            styles.header,
+            {
+              opacity: fadeAnim,
+              zIndex: -1,
+            },
+          ]}></Animated.View>
         <ScrollView onScroll={handleScroll}>
           <DataContainer>
             <StoreName>{item.name}</StoreName>
@@ -202,4 +228,22 @@ const StoreDetail = (props) => {
     </>
   );
 };
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: colors.white,
+    height: 56,
+    flexDirection: 'row',
+    paddingHorizontal: 16,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4.65,
+    elevation: 6,
+  },
+});
 export default StoreDetail;
