@@ -1,8 +1,8 @@
 import { ADD_ITEM, REMOVE_ITEM, RESET_CART, APPLY_PROMOTION, SET_PAYMENT, QUICK_ADD } from "./type";
 
-export const addNewItem = (itemId, note, additional, hashId) => ({
+export const addNewItem = (itemId, itemPrice, itemDiscount, note, additional, hashId) => ({
   type: ADD_ITEM,
-  payload: { itemId , note, additional , hashId },
+  payload: { itemId, itemPrice, itemDiscount, note, additional , hashId },
 });
 
 export const quickAdd = (itemId, hashId) => ({
@@ -41,12 +41,12 @@ const cyrb53 = function(str, seed = 0) {
   return 4294967296 * (2097151 & h2) + (h1>>>0);
 };
 
-export const addItem = (itemId, shopId, note, additional) => {
+export const addItem = (item, shopId, note, additional) => {
   return (dispatch, getState) => {
     const cart = getState().cart;
     if(cart.shopId !== shopId) dispatch(resetCart(shopId));
     const hashId = cyrb53(note+JSON.stringify(additional));
-    dispatch(addNewItem(itemId, note, additional , hashId));
+    dispatch(addNewItem(item.id, item.price, item.discount, note, additional , hashId));
   };
 };
 

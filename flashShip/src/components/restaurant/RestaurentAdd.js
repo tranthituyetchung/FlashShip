@@ -36,7 +36,7 @@ const RestaurentAdd = (props) => {
     props.navigation.goBack();
   };
   const completeAddDish = () => {
-    props.addDish(dish.id, props.route.params.shopId, text, bonusMap);
+    props.addDish(dish, props.route.params.shopId, text, bonusMap);
     props.navigation.goBack();
   };
   return (

@@ -17,74 +17,71 @@ import Icon from 'react-native-vector-icons/Feather'
 import Header from 'common/Header'
 import { IcCash } from '../../values/images';
 import ConfirmBtn from '../../common/ConfirmBtn';
-
-const data = [
-  {
-    name: 'Fruit for life - Lê Đại Hành',
-    category: 'Thức ăn tốt cho sức khỏe',
-    rating: '5.0',
-    time: '10 phút',
-    distance: '0.6km',
-    imageUrl: require('assets/images/Food6.png'),
-  },
-  {
-    name: 'Fruits for life - Lê Đại Hành',
-    category: 'Thức ăn tốt cho sức khỏe',
-    rating: '5.0',
-    time: '10 phút',
-    distance: '0.6km',
-    imageUrl: require('assets/images/Food7.png'),
-  },
-  {
-    name: 'Fruit for life - Lê Đại Hành',
-    category: 'Thức ăn tốt cho sức khỏe',
-    rating: '5.0',
-    time: '10 phút',
-    distance: '0.6km',
-    imageUrl: require('assets/images/Food1.png'),
-  },
-  {
-    name: 'Fruits for life - Lê Đại Hành',
-    category: 'Thức ăn tốt cho sức khỏe',
-    rating: '5.0',
-    time: '10 phút',
-    distance: '0.6km',
-    imageUrl: require('assets/images/Food2.png'),
-  },
-];
+import {setPayment, applyPromotion} from '../../action/cart/action';
+import {data1} from '../home/Home';
+import {connect} from 'react-redux';
 class Payment extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      searchValue: '',
-      filteredData: [],
-    };
+    this.listDishes = null;
+    for(let item of data1) {
+      if(item.id == this.props.cart.shopId) this.listDish = item.dishes;
+    }
   }
-  renderItem = ({item}) => (
+  renderItem = ({item}) => {
+    let current = null;
+    for(let dish of this.listDish) {
+      if(item.id == dish.id) current = dish;
+    }
+    return (
       <View style={styles.card}>
     <TouchableOpacity
          style={styles.cardContainer}
     >
-        <Text style={styles.number}>1x</Text>
+        <Text style={styles.number}>{item.number}x</Text>
         <Image 
             style={styles.couseImg} 
-            source={require('assets/images/Food1.png')}/>
-        <Text style={styles.cardTitle} numberOfLines={2}>Món ăn đặc biệt</Text>
+            source={current.imageUrl}/>
+        <Text style={styles.cardTitle} numberOfLines={2}>{current.name}</Text>
         <View style={styles.priceContainer}>
-            <Text style={styles.price}>55.000đ</Text>
-            <Text style={styles.priceDiscount}>75.000đ</Text>
+            <Text style={styles.price}>{item.price}</Text>
+            <Text style={styles.priceDiscount}>{item.discount}</Text>
         </View>
     </TouchableOpacity>
     <View style={styles.sectionLine}></View> 
     </View>
-  )
+  )}
   componentDidMount() {
     //this.props.getSearchHistory()
   }
   onBackPress = () => {
     this.props.navigation.goBack();
   };
+  setPayment = () => {
+    this.props.navigation.navigate("SelectPayment", {setPayment: (paymentId) => this.props.setPayment(paymentId)})
+  }
+  setPromotion = () => {
+    this.props.navigation.navigate("Voucher", {setPromotion: (promotionItem) => this.applyPromotion(promotionItem)})
+  }
+  caculatePromotion = (price) => {
+    console.log("debuggg", this.props.cart.promotion);
+    if(!this.props.cart.promotion) return 0;
+    if(this.props.cart.promotion.min > price) {
+      //show popup warning
+      return 0;
+    } else {
+      const max = this.props.cart.promotion.max;
+      const reduce = this.props.cart.promotion.reduce*price;
+      return (max > reduce) ? reduce : max;
+    }
+  }
   render() {
+    const reducedMoney = this.caculatePromotion(this.props.cart.totalPrice);
+    const listInCart = Object.keys(this.props.cart.listItem).reduce((list, key) => {
+      const item = this.props.cart.listItem[key];
+      list.concat(item.map((ins) => ins.id = key));
+      return list
+    }, [])
     return (
       <View style={styles.container}>
         <Header 
@@ -121,7 +118,7 @@ class Payment extends Component {
                        <FlatList
                             nestedScrollEnabled
                             horizontal={false}
-                            data={data}
+                            data={listInCart}
                             renderItem={this.renderItem}
                             keyExtractor={item => item.id}
                             showsVerticalScrollIndicator = {false}
@@ -132,8 +129,8 @@ class Payment extends Component {
                 <View style={styles.section}>
                     <View style={styles.totalContainer}>
                         <View style={styles.totalLine}>
-                            <Text style={styles.totalTitle}>Tạm tính (4 phần)</Text>
-                            <Text style={styles.totalPrice}>240.000đ</Text>
+                            <Text style={styles.totalTitle}>Tạm tính ({this.props.cart.totalItem} phần)</Text>
+                            <Text style={styles.totalPrice}>{this.props.cart.totalDiscount}đ</Text>
                         </View>
                         <View style={styles.totalLine}>
                             <Text style={styles.totalTitle}>Phí giao hàng</Text>
@@ -145,7 +142,11 @@ class Payment extends Component {
                         </View>
                         <View style={styles.totalLine}>
                             <Text style={styles.totalTitle}>Giảm giá</Text>
-                            <Text style={styles.totalPrice}>-20.000đ</Text>
+                            <Text style={styles.totalPrice}>-{this.props.cart.totalDiscount - this.props.cart.totalPrice + reducedMoney}đ</Text>
+                        </View>
+                        <View style={styles.totalLine}>
+                            <Text style={styles.totalTitle}>Cần trả</Text>
+                            <Text style={styles.totalPrice}>{this.props.cart.totalPrice + 20000 - reducedMoney}đ</Text>
                         </View>
                     </View>
                     <View style={styles.sectionLine}></View>   
@@ -154,13 +155,15 @@ class Payment extends Component {
                     <Text style={styles.sectionTitle}>Phương thức thanh toán</Text>
                     <View style={styles.paymentContainer}>
                         <TouchableOpacity
-                            style={styles.paymentBtn}
+                          style={styles.paymentBtn}
+                          onPress  = {this.setPayment}
                         >
                             <Text style={styles.infoIcon}><IcCash/></Text>
                             <Text style={styles.infoText}>Tiền mặt</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={styles.paymentBtn}
+                          style={styles.paymentBtn}
+                          onPress = {this.setPromotion}
                         >
                             <Text style={styles.infoIcon}><IcGiftVoucher/></Text>
                             <Text style={styles.infoText}>Mã khuyến mãi</Text>
@@ -175,5 +178,12 @@ class Payment extends Component {
     );
   }
 }
-
-export default Payment;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart,
+  };
+};
+const mapDispatchToProps = {
+  setPayment, applyPromotion
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Payment);

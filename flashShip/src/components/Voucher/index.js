@@ -24,10 +24,14 @@ function Voucher() {
     {image: <VoucherImg />, title: TITLE_CONST, hour: 10},
     {image: <VoucherImg />, title: TITLE_CONST, hour: 10},
   ];
-
+  onBackPress = () => {
+    this.props.navigation.goBack();
+  };
   return (
     <View style={styles.main}>
-      <Header title={strings.VoucherTitle} />
+      <Header 
+        title={strings.VoucherTitle} 
+        onBackPress={onBackPress()}/>
       <View style={styles.inputArea}>
         <TextInput
           style={styles.inputText}
@@ -40,9 +44,12 @@ function Voucher() {
         </TouchableOpacity>
       </View>
 
-      <ScrollView style={styles.mainContainer}>
+      <ScrollView 
+          style={styles.mainContainer} 
+          showsVerticalScrollIndicator = {false}
+          showsHorizontalScrollIndicator={false}>
         {vouchers.map((voucher, i) => (
-          <TouchableOpacity key={i} onPress={() => setIsActive(i)}>
+          <View key={i} onPress={() => setIsActive(i)}>
             <View style={styles.section}>
               <View>{voucher.image}</View>
               <View style={styles.title}>
@@ -63,7 +70,7 @@ function Voucher() {
                 />
               </View>
             </View>
-          </TouchableOpacity>
+          </View>
         ))}
       </ScrollView>
 
