@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import {Text, Image, Animated, View, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
-import {IcMapPin, IcPriceTagRed, IcGiftVoucherRed,IcPlus} from 'values/images';
+import {IcMapPin, IcPriceTagRed, IcGiftVoucherRed, IcPlus} from 'values/images';
 import PlusButton from '../../common/PlusButton';
 import MinusButton from '../../common/MinusButton';
 import SmallDish from '../../common/SmallDish';
@@ -12,18 +12,22 @@ import CircleIconButton from '../../common/CircleIconButton';
 import DishCounter from '../../common/DishCounter';
 import {Modalize} from 'react-native-modalize';
 import SmallDishWithOption from '../../common/SmallDishWithOption';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-import { widthPercentageToDP } from 'react-native-responsive-screen';
+import {widthPercentageToDP} from 'react-native-responsive-screen';
 import Header from 'common/Header';
-import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 import {connect} from 'react-redux';
-import {quickAdd, removeItem} from '../../action/cart/action'
+import {quickAdd, removeItem} from '../../action/cart/action';
 
 const Container = styled.View`
   background-color: transparent;
   width: 100%;
+  z-index: 0;
 `;
 const BackgroundImage = styled.Image`
   width: 100%;
@@ -32,11 +36,10 @@ const BackgroundImage = styled.Image`
   height: 248px;
 `;
 const ButtonContainer = styled.View`
-  z-index: 999;
   top: 0px;
   left: 0px;
   height: 56px;
-  width: 100%;
+  width: ${wp('100%')}px;
   flex-direction: row;
   padding-horizontal: 16px;
   justify-content: space-between;
@@ -46,7 +49,7 @@ const ButtonContainer = styled.View`
 const ButtonContainerRight = styled.View`
   background-color: transparent;
   flex-direction: row;
-  width: 88px;
+  width: 86px;
   justify-content: space-between;
 `;
 // const ScrollView = styled.ScrollView`
@@ -55,7 +58,7 @@ const ButtonContainerRight = styled.View`
 // `;
 const DataContainer = styled.View`
   border-top-left-radius: 32px;
-  margin-top: 143px;
+  margin-top: 199px;
   background: white;
   padding-horizontal: 16px;
   padding-top: 16px;
@@ -130,7 +133,7 @@ const ListTitle = styled.Text`
   color: ${colors.dark_blue};
 `;
 const ScrollView = styled.ScrollView`
-  height: 92%;
+  height: 100%;
   background-color: transparent;
 `;
 const IconVoucherText = styled.Text`
@@ -146,7 +149,7 @@ const StoreDetail = (props) => {
     else if (y < from) fadeIn(0);
     else fadeIn(1);
   };
-  const [selectDish, setSelectDish] = useState(item.dishes[0])
+  const [selectDish, setSelectDish] = useState(item.dishes[0]);
   //Open Modal
   const modalizeRef = useRef(null);
 
@@ -158,56 +161,118 @@ const StoreDetail = (props) => {
   };
 
   const onClose = () => {
-    modalizeRef.current?.close()
-  }
+    modalizeRef.current?.close();
+  };
   const addDish = (instancesCount, dish) => {
-    if(instancesCount>1) {
-      onOpenPopup(dish)
-    } else props.navigation.navigate('RestaurantAdd', { dish, shopId: item.id})
-
-  }
+    if (instancesCount > 1) {
+      onOpenPopup(dish);
+    } else props.navigation.navigate('RestaurantAdd', {dish, shopId: item.id});
+  };
   const fadeAnim = useRef(new Animated.Value(0)).current;
-
+  const backgroundAnim = useRef(new Animated.Value(1)).current;
   const fadeIn = (ratio) => {
-    Animated.timing(fadeAnim, {
-      toValue: Math.min(ratio, 1),
-      duration: 0,
-      useNativeDriver: true,
-    }).start();
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: Math.min(ratio, 1),
+        duration: 0,
+        useNativeDriver: true,
+      }),
+      Animated.timing(backgroundAnim, {
+        toValue: 1 - Math.min(ratio, 1),
+        duration: 0,
+        useNativeDriver: true,
+      }),
+    ]).start();
+    // Animated.timing(fadeAnim, {
+    //   toValue: Math.min(ratio, 1),
+    //   duration: 0,
+    //   useNativeDriver: true,
+    // }).start();
   };
 
   return (
     <>
       <BackgroundImage source={item.imageUrl} />
 
-      <ButtonContainer>
-        <CircleIconButton
-          name="chevron-left"
-          onPress={() => props.navigation.goBack()}
-        />
-        <ButtonContainerRight>
-          {/* <CircleIconButton name="heart" /> */}
-          {/* <CircleIconButton name="search" /> */}
-        </ButtonContainerRight>
-      </ButtonContainer>
-      <Container>
+      <View style={{position: 'absolute', zIndex: 2}}>
+        <ButtonContainer>
+          <CircleIconButton
+            name="chevron-left"
+            onPress={() => props.navigation.goBack()}
+            backgroundAnim={backgroundAnim}
+          />
+          <ButtonContainerRight>
+            <CircleIconButton
+              name="heart"
+              backgroundAnim={backgroundAnim}
+              //Set onpress thì nhớ kéo xuống dưới thêm 1 cái on press của thằng này ở dưới nữa
+            />
+            <CircleIconButton
+              name="search"
+              backgroundAnim={backgroundAnim}
+              //Set onpress thì nhớ kéo xuống dưới thêm 1 cái on press của thằng này ở dưới nữa
+            />
+          </ButtonContainerRight>
+        </ButtonContainer>
+      </View>
+
+      <View
+        style={{
+          position: 'absolute',
+          zIndex: 3,
+          flexDirection: 'row',
+          // backgroundColor: 'red',
+          height: 56,
+          width: wp('100%'),
+        }}>
+        <Animated.View style={{opacity: fadeAnim}}>
+          <ButtonContainer>
+            <CircleIconButton
+              name="chevron-left"
+              onPress={() => props.navigation.goBack()}
+              backgroundAnim={0}
+              color={colors.dark_blue}
+            />
+            <ButtonContainerRight>
+              <CircleIconButton
+                name="heart"
+                color={colors.dark_blue}
+                backgroundAnim={0}
+                //Thêm chỗ này cho con tim yếu đuối
+              />
+              <CircleIconButton
+                name="search"
+                color={colors.dark_blue}
+                backgroundAnim={0}
+                //Thêm đây cho thằng search tìm kiếm chân lý
+              />
+            </ButtonContainerRight>
+          </ButtonContainer>
+          <Text
+            style={styles.headerStoreName}
+            numberOfLines={1}
+            ellipsizeMode="tail">
+            {item.name}fdghslkfjsdlkfkdsfsdlkhgsldkjfhgksjdhfgjklsdfhgkldfsjjk
+          </Text>
+        </Animated.View>
+      </View>
+
+      <View style={{width: wp('100%'), zIndex: 1}}>
         <Animated.View
           style={[
-            // {
-            //   backgroundColor: `rgba(256,256,256,${fadeAnim})`,
-            // },
             styles.header,
             {
               opacity: fadeAnim,
-              zIndex: -1,
             },
           ]}></Animated.View>
+      </View>
+      <Container>
         <ScrollView onScroll={handleScroll}>
           <DataContainer>
             <StoreName>{item.name}</StoreName>
             <DescText>{item.category}</DescText>
             <LocationContainer>
-              <Text style={{marginRight:5}}>
+              <Text style={{marginRight: 5}}>
                 <IcMapPin width={20} height={20} />
               </Text>
               <LocationText>{item.distance}</LocationText>
@@ -238,9 +303,23 @@ const StoreDetail = (props) => {
                 .filter((dish) => dish.type === 'big')
                 .map((dish) => (
                   <BigDish
-                    addDish={() => addDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish)}
+                    addDish={() =>
+                      addDish(
+                        props.cart.listItem[dish.id]
+                          ? props.cart.listItem[dish.id].length
+                          : 0,
+                        dish,
+                      )
+                    }
                     dish={dish}
-                    number = {props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].reduce((total, item) => total+=item.number, 0) : 0}
+                    number={
+                      props.cart.listItem[dish.id]
+                        ? props.cart.listItem[dish.id].reduce(
+                            (total, item) => (total += item.number),
+                            0,
+                          )
+                        : 0
+                    }
                   />
                 ))}
             </DishContainer>
@@ -250,64 +329,103 @@ const StoreDetail = (props) => {
               .map((dish) => (
                 <SmallDish
                   dish={dish}
-                  number = {props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].reduce((total, item) => total+=item.number, 0) : 0}
-                  addDish={() => addDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish)}
+                  number={
+                    props.cart.listItem[dish.id]
+                      ? props.cart.listItem[dish.id].reduce(
+                          (total, item) => (total += item.number),
+                          0,
+                        )
+                      : 0
+                  }
+                  addDish={() =>
+                    addDish(
+                      props.cart.listItem[dish.id]
+                        ? props.cart.listItem[dish.id].length
+                        : 0,
+                      dish,
+                    )
+                  }
                 />
-              ))}        
+              ))}
             <Modalize adjustToContentHeight={true} ref={modalizeRef}>
               <ScrollView style={{height: 500, paddingHorizontal: 16}}>
-                <TouchableOpacity style={{backgroundColor:colors.red, borderRadius:10, marginVertical: 15, alignItems:"center", justifyContent:"center"}} 
-                onPress = { () => props.navigation.navigate('RestaurantAdd', {dish: selectDish, shopId: item.id})}>
+                <TouchableOpacity
+                  style={{
+                    backgroundColor: colors.red,
+                    borderRadius: 10,
+                    marginVertical: 15,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  onPress={() =>
+                    props.navigation.navigate('RestaurantAdd', {
+                      dish: selectDish,
+                      shopId: item.id,
+                    })
+                  }>
                   <StoreName>Thêm món mới</StoreName>
                 </TouchableOpacity>
-                {
-                  props.cart.listItem[selectDish.id] 
-                  ? props.cart.listItem[selectDish.id].map((item) => <SmallDishWithOption dish = {selectDish} addDish = {() => props.quickAdd(selectDish.id, item.hashId)} removeDish = {() => props.removeDish(selectDish.id, item.hashId)} options = {item.options} notes = {item.note} number = {item.number} />) : null
-                }
+                {props.cart.listItem[selectDish.id]
+                  ? props.cart.listItem[selectDish.id].map((item) => (
+                      <SmallDishWithOption
+                        dish={selectDish}
+                        addDish={() =>
+                          props.quickAdd(selectDish.id, item.hashId)
+                        }
+                        removeDish={() =>
+                          props.removeDish(selectDish.id, item.hashId)
+                        }
+                        options={item.options}
+                        notes={item.note}
+                        number={item.number}
+                      />
+                    ))
+                  : null}
               </ScrollView>
             </Modalize>
           </DataContainer>
         </ScrollView>
 
-        <Modalize adjustToContentHeight={true} ref={modalizeRef} closeOnOverlayTap={true}>
-          
-            <View style={styles.headerContainer}>
-                <TouchableOpacity
-                    style={styles.backButton}
-                    onPress={() => onClose()}    
-                >
-                    <Icon name="x" color={colors.dark_blue} size={24} />
-                </TouchableOpacity>
-                <View style={styles.titleContainer}>
-                  <Text style={styles.titleText}>Chỉnh sửa món ăn</Text>
-                </View>
+        <Modalize
+          adjustToContentHeight={true}
+          ref={modalizeRef}
+          closeOnOverlayTap={true}>
+          <View style={styles.headerContainer}>
+            <TouchableOpacity
+              style={styles.backButton}
+              onPress={() => onClose()}>
+              <Icon name="x" color={colors.dark_blue} size={24} />
+            </TouchableOpacity>
+            <View style={styles.titleContainer}>
+              <Text style={styles.titleText}>Chỉnh sửa món ăn</Text>
             </View>
-            <ScrollView style={{height: 500}}>
-            <View style={{marginHorizontal: 16, marginTop: 56,}}>
-                <TouchableOpacity style={styles.btnAdd}>
-                  <Text style={styles.btnInfo}><IcPlus width={16} height={16}  /></Text>
-                  <Text style={styles.btnText}>Thêm món mới</Text>
-                </TouchableOpacity>
-                <SmallDishWithOption
-                  dish={item.dishes[0]}
-                  addDish={() => {}}></SmallDishWithOption>
-                <SmallDishWithOption
-                  dish={item.dishes[1]}
-                  addDish={() => {}}></SmallDishWithOption>
-                <SmallDishWithOption
-                  dish={item.dishes[1]}
-                  addDish={() => {}}></SmallDishWithOption>
-                <SmallDishWithOption
-                  dish={item.dishes[1]}
-                  addDish={() => {}}></SmallDishWithOption>
-                <SmallDishWithOption
-                  dish={item.dishes[1]}
-                  addDish={() => {}}></SmallDishWithOption>
+          </View>
+          <ScrollView style={{height: 500}}>
+            <View style={{marginHorizontal: 16, marginTop: 56}}>
+              <TouchableOpacity style={styles.btnAdd}>
+                <Text style={styles.btnInfo}>
+                  <IcPlus width={16} height={16} />
+                </Text>
+                <Text style={styles.btnText}>Thêm món mới</Text>
+              </TouchableOpacity>
+              <SmallDishWithOption
+                dish={item.dishes[0]}
+                addDish={() => {}}></SmallDishWithOption>
+              <SmallDishWithOption
+                dish={item.dishes[1]}
+                addDish={() => {}}></SmallDishWithOption>
+              <SmallDishWithOption
+                dish={item.dishes[1]}
+                addDish={() => {}}></SmallDishWithOption>
+              <SmallDishWithOption
+                dish={item.dishes[1]}
+                addDish={() => {}}></SmallDishWithOption>
+              <SmallDishWithOption
+                dish={item.dishes[1]}
+                addDish={() => {}}></SmallDishWithOption>
             </View>
-            
           </ScrollView>
         </Modalize>
-
       </Container>
     </>
   );
@@ -316,15 +434,17 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: colors.white,
     height: 56,
-    flexDirection: 'row',
-    paddingHorizontal: 16,
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    shadowColor: '#000',
+    width: wp('100%'),
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 4,
     },
+    shadowOpacity: 0.1,
+    shadowRadius: 4.65,
+    elevation: 6,
+    position: 'absolute',
   },
   headerContainer: {
     //zIndex: 10,
@@ -333,63 +453,79 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     top: 0,
-    alignItems: "center",
+    alignItems: 'center',
     flexDirection: 'row',
     backgroundColor: colors.white,
     //shadow
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
-        width: 0,
-        height: 4,
+      width: 0,
+      height: 4,
     },
     shadowOpacity: 0.1,
     shadowRadius: 4.65,
-    elevation: 6, 
+    elevation: 6,
   },
-  backButton:{
-      height: 40,
-      width: 40,
-      marginLeft: 24,
-      justifyContent: 'center',
-      //backgroundColor: colors.red,
+  backButton: {
+    height: 40,
+    width: 40,
+    marginLeft: 24,
+    justifyContent: 'center',
+    //backgroundColor: colors.red,
   },
   titleContainer: {
-      height: 40, 
-      width: wp('100%') - 128,
-      justifyContent: 'center',
-      alignItems: 'center',
-      //backgroundColor: colors.green,
+    height: 40,
+    height: 40,
+    height: 40,
+    height: 40,
+    height: 40,
+    width: wp('100%') - 128,
+    justifyContent: 'center',
+    alignItems: 'center',
+    //backgroundColor: colors.green,
   },
-  titleText:{
-      textAlign: 'center',
-      fontSize: 18,
-      fontFamily: 'Nunito-Bold',
-      color: colors.dark_blue,
+  titleText: {
+    textAlign: 'center',
+    fontSize: 18,
+    fontFamily: 'Nunito-Bold',
+    color: colors.dark_blue,
   },
-  btnAdd:{
+  btnAdd: {
     width: widthPercentageToDP('50%'),
     alignSelf: 'center',
     height: 44,
     // borderColor: colors.red,
     // borderWidth: 1,
-    backgroundColor:colors.primary_blue, 
-    borderRadius:8,
+    backgroundColor: colors.primary_blue,
+    borderRadius: 8,
     marginVertical: 16,
-    alignItems:"center",
-    justifyContent:"center",
-    flexDirection:'row'
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
   },
-  btnInfo:{
+  btnInfo: {
     width: 16,
     height: 16,
     color: colors.red,
     //backgroundColor: 'red',
     marginRight: 6,
   },
-  btnText:{
+  btnText: {
     fontFamily: 'Nunito-Bold',
     fontSize: 14,
     color: colors.white,
+  },
+  headerStoreName: {
+    color: colors.dark_blue,
+    // backgroundColor: 'red',
+    fontFamily: 'Nunito-SemiBold',
+    fontSize: 16,
+    alignSelf: 'center',
+    textAlignVertical: 'center',
+    textAlign: 'center',
+    width: wp('40%'),
+    height: 56,
+    marginHorizontal: wp('30%'),
   },
 });
 const mapStateToProps = (state) => {
@@ -398,7 +534,7 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = {
-  quickAdd, 
-  removeDish: removeItem
-}
+  quickAdd,
+  removeDish: removeItem,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(StoreDetail);
