@@ -155,8 +155,6 @@ const StoreDetail = (props) => {
 
   const onOpenPopup = (dish) => {
     setSelectDish(dish);
-    console.log(selectDish);
-    console.log(props.cart.listItem[selectDish.id]);
     modalizeRef.current?.open();
   };
 
@@ -164,10 +162,18 @@ const StoreDetail = (props) => {
     modalizeRef.current?.close();
   };
   const addDish = (instancesCount, dish) => {
-    if (instancesCount > 1) {
-      onOpenPopup(dish);
-    } else props.navigation.navigate('RestaurantAdd', {dish, shopId: item.id});
-  };
+    if(instancesCount>1) {
+      onOpenPopup(dish)
+    } else props.navigation.navigate('RestaurantAdd', { dish, shopId: item.id})
+
+  }
+  const controlledRemoveDish = (instancesCount, dish, hashId) => {
+    if(instancesCount>1) {
+      onOpenPopup(dish)
+    } else {
+      if(hashId) props.removeDish(dish.id, hashId);
+    }
+  }
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const backgroundAnim = useRef(new Animated.Value(1)).current;
   const fadeIn = (ratio) => {
@@ -312,14 +318,8 @@ const StoreDetail = (props) => {
                       )
                     }
                     dish={dish}
-                    number={
-                      props.cart.listItem[dish.id]
-                        ? props.cart.listItem[dish.id].reduce(
-                            (total, item) => (total += item.number),
-                            0,
-                          )
-                        : 0
-                    }
+                    number = {props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].reduce((total, item) => total+=item.number, 0) : 0}
+                    removeDish = {() => controlledRemoveDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish, props.cart.listItem[dish.id] ? props.cart.listItem[dish.id][0].hashId : null)}
                   />
                 ))}
             </DishContainer>
@@ -329,103 +329,39 @@ const StoreDetail = (props) => {
               .map((dish) => (
                 <SmallDish
                   dish={dish}
-                  number={
-                    props.cart.listItem[dish.id]
-                      ? props.cart.listItem[dish.id].reduce(
-                          (total, item) => (total += item.number),
-                          0,
-                        )
-                      : 0
-                  }
-                  addDish={() =>
-                    addDish(
-                      props.cart.listItem[dish.id]
-                        ? props.cart.listItem[dish.id].length
-                        : 0,
-                      dish,
-                    )
-                  }
+                  number = {props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].reduce((total, item) => total+=item.number, 0) : 0}
+                  addDish={() => addDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish)}
+                  removeDish = {() => controlledRemoveDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish, props.cart.listItem[dish.id] ? props.cart.listItem[dish.id][0].hashId : null)}
                 />
-              ))}
-            <Modalize adjustToContentHeight={true} ref={modalizeRef}>
-              <ScrollView style={{height: 500, paddingHorizontal: 16}}>
-                <TouchableOpacity
-                  style={{
-                    backgroundColor: colors.red,
-                    borderRadius: 10,
-                    marginVertical: 15,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                  onPress={() =>
-                    props.navigation.navigate('RestaurantAdd', {
-                      dish: selectDish,
-                      shopId: item.id,
-                    })
-                  }>
-                  <StoreName>Thêm món mới</StoreName>
-                </TouchableOpacity>
-                {props.cart.listItem[selectDish.id]
-                  ? props.cart.listItem[selectDish.id].map((item) => (
-                      <SmallDishWithOption
-                        dish={selectDish}
-                        addDish={() =>
-                          props.quickAdd(selectDish.id, item.hashId)
-                        }
-                        removeDish={() =>
-                          props.removeDish(selectDish.id, item.hashId)
-                        }
-                        options={item.options}
-                        notes={item.note}
-                        number={item.number}
-                      />
-                    ))
-                  : null}
-              </ScrollView>
-            </Modalize>
+              ))}        
+            
           </DataContainer>
         </ScrollView>
-
-        <Modalize
-          adjustToContentHeight={true}
-          ref={modalizeRef}
-          closeOnOverlayTap={true}>
-          <View style={styles.headerContainer}>
-            <TouchableOpacity
-              style={styles.backButton}
-              onPress={() => onClose()}>
-              <Icon name="x" color={colors.dark_blue} size={24} />
-            </TouchableOpacity>
-            <View style={styles.titleContainer}>
-              <Text style={styles.titleText}>Chỉnh sửa món ăn</Text>
+        <Modalize adjustToContentHeight={true} ref={modalizeRef} closeOnOverlayTap={true}>
+            <View style={styles.headerContainer}>
+                <TouchableOpacity
+                    style={styles.backButton}
+                    onPress={() => onClose()}    
+                >
+                    <Icon name="x" color={colors.dark_blue} size={24} />
+                </TouchableOpacity>
+                <View style={styles.titleContainer}>
+                  <Text style={styles.titleText}>Chỉnh sửa món ăn</Text>
+                </View>
             </View>
-          </View>
-          <ScrollView style={{height: 500}}>
-            <View style={{marginHorizontal: 16, marginTop: 56}}>
-              <TouchableOpacity style={styles.btnAdd}>
-                <Text style={styles.btnInfo}>
-                  <IcPlus width={16} height={16} />
-                </Text>
-                <Text style={styles.btnText}>Thêm món mới</Text>
-              </TouchableOpacity>
-              <SmallDishWithOption
-                dish={item.dishes[0]}
-                addDish={() => {}}></SmallDishWithOption>
-              <SmallDishWithOption
-                dish={item.dishes[1]}
-                addDish={() => {}}></SmallDishWithOption>
-              <SmallDishWithOption
-                dish={item.dishes[1]}
-                addDish={() => {}}></SmallDishWithOption>
-              <SmallDishWithOption
-                dish={item.dishes[1]}
-                addDish={() => {}}></SmallDishWithOption>
-              <SmallDishWithOption
-                dish={item.dishes[1]}
-                addDish={() => {}}></SmallDishWithOption>
-            </View>
-          </ScrollView>
-        </Modalize>
+              <ScrollView style={{height: 500}}>
+              <View style={{marginHorizontal: 16, marginTop: 56,}}>
+                <TouchableOpacity style={styles.btnAdd}  onPress = { () => props.navigation.navigate('RestaurantAdd', {dish: selectDish, shopId: item.id})}>
+                  <Text style={styles.btnInfo}><IcPlus width={16} height={16}  /></Text>
+                  <Text style={styles.btnText}>Thêm món mới</Text>
+                </TouchableOpacity>
+                {
+                  props.cart.listItem[selectDish.id] 
+                  ? props.cart.listItem[selectDish.id].map((item) => <SmallDishWithOption dish = {selectDish} addDish = {() => props.quickAdd(selectDish.id, item.hashId)} removeDish = {() => props.removeDish(selectDish.id, item.hashId)} options = {item.options} notes = {item.note} number = {item.number} />) : null
+                }
+              </View>                
+              </ScrollView>
+              </Modalize>
       </Container>
     </>
   );

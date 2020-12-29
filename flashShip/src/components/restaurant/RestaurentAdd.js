@@ -12,14 +12,14 @@ import { useWindowDimensions } from 'react-native';
 import SmallDish from "../../common/SmallDish";
 import {connect} from 'react-redux';
 import {addItem} from '../../action/cart/action';
-function RestaurentAdd(props) {
+const RestaurentAdd = (props) => {
   const height = useWindowDimensions().height;
   const [screenHeight, setScreenHeight] = useState(0);
   const [text, setValue] = useState('');
   const dish = props.route.params.dish;
   const bonus = dish.options;
   const options = dish.options.reduce((option, bonus) => {
-    option[bonus.id] = 0; 
+    option[bonus.id] = false; 
     return option;
   }, {});
   const [bonusMap, setBonusMap] = useState(options);

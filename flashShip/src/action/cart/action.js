@@ -1,4 +1,4 @@
-import { ADD_ITEM, REMOVE_ITEM, RESET_CART, APPLY_PROMOTION, SET_PAYMENT } from "./type";
+import { ADD_ITEM, REMOVE_ITEM, RESET_CART, APPLY_PROMOTION, SET_PAYMENT, QUICK_ADD } from "./type";
 
 export const addNewItem = (itemId, note, additional, hashId) => ({
   type: ADD_ITEM,
@@ -45,8 +45,8 @@ export const addItem = (itemId, shopId, note, additional) => {
   return (dispatch, getState) => {
     const cart = getState().cart;
     if(cart.shopId !== shopId) dispatch(resetCart(shopId));
-    const hashId = cyrb53(note + JSON.stringify(additional));
-    dispatch(addNewItem(itemId, note, additional, hashId));
+    const hashId = cyrb53(note+JSON.stringify(additional));
+    dispatch(addNewItem(itemId, note, additional , hashId));
   };
 };
 
