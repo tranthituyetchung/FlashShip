@@ -14,16 +14,16 @@ const Rect = styled.TouchableOpacity`
 `;
 
 const NumberContainer = styled.View`
-  width: 18px;
-  height: 18px;
-  border-radius: 1px;
+  width: 24px;
+  height: 24px;
+  border-width: 3px;
   border-color: white;
   background-color: ${colors.dark_blue};
   position: absolute;
   right: -9px;
   top: -9px;
   z-index: 1;
-  border-radius: 9px;
+  border-radius: 12px;
   align-items: center;
   justify-content: center;
 `;
