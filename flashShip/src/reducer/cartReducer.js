@@ -16,7 +16,7 @@ export default (state = {listItem: {}, shopId: null, promotion: null, payment: n
             return item;
           })
           if(!flag) {
-            state.listItem[action.payload.itemId] = state.listItem[action.payload.itemId].concat({number: 1, note: action.payload.note, options: action.payload.options,  hashId: action.payload.hashId});
+            state.listItem[action.payload.itemId] = state.listItem[action.payload.itemId].concat({number: 1, note: action.payload.note, options: action.payload.additional,  hashId: action.payload.hashId});
             state.total++;
           }
         }       

@@ -136,20 +136,25 @@ const StoreDetail = (props) => {
     else if (y < 0) fadeIn(0);
     else fadeIn(1);
   };
-  const [selectDish, setSelectDish] = useState(item.dishes[0])
+  const [selectDish, setSelectDish] = useState(item.dishes[0]);
   //Open Modal
   const modalizeRef = useRef(null);
 
   const onOpenPopup = (dish) => {
     setSelectDish(dish);
-    console.log(selectDish);
-    console.log(props.cart.listItem[selectDish.id]);
     modalizeRef.current?.open();
   };
   const addDish = (instancesCount, dish) => {
     if(instancesCount>1) {
       onOpenPopup(dish)
     } else props.navigation.navigate('RestaurantAdd', { dish, shopId: item.id})
+  }
+  const controlledRemoveDish = (instancesCount, dish, hashId) => {
+    if(instancesCount>1) {
+      onOpenPopup(dish)
+    } else {
+      if(hashId) props.removeDish(dish.id, hashId);
+    }
   }
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -224,6 +229,7 @@ const StoreDetail = (props) => {
                     addDish={() => addDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish)}
                     dish={dish}
                     number = {props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].reduce((total, item) => total+=item.number, 0) : 0}
+                    removeDish = {() => controlledRemoveDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish, props.cart.listItem[dish.id] ? props.cart.listItem[dish.id][0].hashId : null)}
                   />
                 ))}
             </DishContainer>
@@ -235,9 +241,13 @@ const StoreDetail = (props) => {
                   dish={dish}
                   number = {props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].reduce((total, item) => total+=item.number, 0) : 0}
                   addDish={() => addDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish)}
+                  removeDish = {() => controlledRemoveDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish, props.cart.listItem[dish.id] ? props.cart.listItem[dish.id][0].hashId : null)}
                 />
               ))}        
-            <Modalize adjustToContentHeight={true} ref={modalizeRef}>
+            
+          </DataContainer>
+        </ScrollView>
+        <Modalize adjustToContentHeight={true} ref={modalizeRef}>
               <ScrollView style={{height: 500, paddingHorizontal: 16}}>
                 <TouchableOpacity style={{backgroundColor:colors.red, borderRadius:10, marginVertical: 15, alignItems:"center", justifyContent:"center"}} 
                 onPress = { () => props.navigation.navigate('RestaurantAdd', {dish: selectDish, shopId: item.id})}>
@@ -248,9 +258,7 @@ const StoreDetail = (props) => {
                   ? props.cart.listItem[selectDish.id].map((item) => <SmallDishWithOption dish = {selectDish} addDish = {() => props.quickAdd(selectDish.id, item.hashId)} removeDish = {() => props.removeDish(selectDish.id, item.hashId)} options = {item.options} notes = {item.note} number = {item.number} />) : null
                 }
               </ScrollView>
-            </Modalize>
-          </DataContainer>
-        </ScrollView>
+        </Modalize>
       </Container>
     </>
   );

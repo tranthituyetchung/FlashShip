@@ -61,6 +61,10 @@ const DishNameContainer = styled.View`
   margin-top: 6px;
 `;
 const SmallDishWithOption = ({addDish, dish, removeDish, options, notes, number}) => {
+  const mapOptionsName = dish.options.reduce((result, item) => {
+    result[item.id] = item.content;
+    return result
+  }, {});
   return (
     <DishContainer disabled>
       <Image
@@ -80,8 +84,17 @@ const SmallDishWithOption = ({addDish, dish, removeDish, options, notes, number}
             {dish.name}
           </DishName>
         </DishNameContainer>
-        {options ? <SoldNum>{Object.keys(options).reduce((all, key) => options[key] ? all+=(`${key}, `) : all ,'')}</SoldNum> : null}
-        {notes !== '' ? <SoldNum>{notes}</SoldNum>: null}
+        {options ? <SoldNum>{Object.keys(options).reduce((all, key, i) => {
+            if(options[key]) {
+              const data = mapOptionsName[key];
+              if(!all.firstTime){
+                all.string += `${data}, `;
+                all.firstTime = true;
+              } else all.string += `${data.toLowerCase()}, `
+            }
+            return all;
+          } ,{string: '', firstTime: false}).string.replace(/, $/,'.')}</SoldNum> : null}
+        {notes !== '' ? <SoldNum>{notes|| 'Không có note'}</SoldNum>: null}
       </TextContainer>
       <QQContainer>
         <DishCounter

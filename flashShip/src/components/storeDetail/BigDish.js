@@ -33,7 +33,7 @@ const DishImage = styled.Image`
   height: 180px;
   border-radius: 8px;
 `;
-const BigDish = ({dish, addDish, navigation, number}) => {
+const BigDish = ({dish, addDish, removeDish, number}) => {
   const width = useWindowDimensions().width;
   const qqWidth = 0.5 * (width - 32) - 8;
   return (
@@ -48,7 +48,7 @@ const BigDish = ({dish, addDish, navigation, number}) => {
         {number ? (
           <DishCounter
             number={number}
-            removeDish={null}
+            removeDish={removeDish}
             addDish={addDish}
           />
         ) : (

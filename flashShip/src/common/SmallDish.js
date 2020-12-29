@@ -60,7 +60,7 @@ const DishNameContainer = styled.View`
   align-items: center;
   margin-top: 6px;
 `;
-const SmallDish = ({addDish, dish, number}) => {
+const SmallDish = ({addDish, removeDish, dish, number}) => {
   return (
     <DishContainer disabled>
       <Image
@@ -91,7 +91,7 @@ const SmallDish = ({addDish, dish, number}) => {
           <DishCounter
             number={number}
             addDish={addDish}
-            removeDish={null}
+            removeDish={removeDish}
           />
         ) : (
           <AddDishButton
