@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import {Text, Image, Animated, View, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
-import {IcMapPin, IcPriceTag, IcGiftVoucher} from '../../values/images';
+import {IcMapPin, IcPriceTagRed, IcGiftVoucherRed} from 'values/images';
 import PlusButton from '../../common/PlusButton';
 import MinusButton from '../../common/MinusButton';
 import SmallDish from '../../common/SmallDish';
@@ -12,7 +12,7 @@ import CircleIconButton from '../../common/CircleIconButton';
 import DishCounter from '../../common/DishCounter';
 import {Modalize} from 'react-native-modalize';
 import SmallDishWithOption from '../../common/SmallDishWithOption';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 const Container = styled.View`
   background-color: transparent;
   width: 100%;
@@ -78,7 +78,6 @@ const LocationText = styled.Text`
   font-family: Nunito-Regular;
   font-size: 14px;
   color: ${colors.dark_blue};
-  margin-left: 5px;
 `;
 const Eclipse = styled.View`
   width: 4px;
@@ -120,12 +119,15 @@ const ListTitle = styled.Text`
   font-size: 16px;
   margin-bottom: 8px;
   margin-top: 20px;
+  color: ${colors.dark_blue};
 `;
 const ScrollView = styled.ScrollView`
   height: 92%;
   background-color: transparent;
 `;
-
+const IconVoucherText = styled.Text`
+  color: ${colors.red};
+`;
 const StoreDetail = (props) => {
   const [ratio, setRatio] = useState(0);
   const item = props.route.params.item;
@@ -133,8 +135,10 @@ const StoreDetail = (props) => {
   const handleScroll = (e) => {
     // console.log(e.nativeEvent.contentOffset.y);
     const y = e.nativeEvent.contentOffset.y;
-    if (y <= 143 && y >= 0) fadeIn(y / 143);
-    else if (y < 0) fadeIn(0);
+    const from = 50;
+    const to = 143;
+    if (y <= to && y >= from) fadeIn((y - from) / (to - from));
+    else if (y < from) fadeIn(0);
     else fadeIn(1);
   };
   //Open Modal
@@ -163,8 +167,8 @@ const StoreDetail = (props) => {
           onPress={() => props.navigation.goBack()}
         />
         <ButtonContainerRight>
-          <CircleIconButton name="heart" />
-          <CircleIconButton name="search" />
+          {/* <CircleIconButton name="heart" /> */}
+          {/* <CircleIconButton name="search" /> */}
         </ButtonContainerRight>
       </ButtonContainer>
       <Container>
@@ -184,7 +188,9 @@ const StoreDetail = (props) => {
             <StoreName>{item.name}</StoreName>
             <DescText>{item.category}</DescText>
             <LocationContainer>
-              <IcMapPin width={20} height={20} />
+              <Text style={{marginRight:5}}>
+                <IcMapPin width={20} height={20} />
+              </Text>
               <LocationText>{item.distance}</LocationText>
               <Eclipse />
               <LocationText>{item.address}</LocationText>
@@ -192,13 +198,13 @@ const StoreDetail = (props) => {
             <AllVoucherContainer>
               <VoucherContainer>
                 <VoucherText>
-                  <IcPriceTag width={20} height={20} stroke={'#EB5757'} />
+                  <IcPriceTagRed width={20} height={20} />
                 </VoucherText>
                 <VoucherText>Giảm 20% toàn bộ menu</VoucherText>
               </VoucherContainer>
               <VoucherContainer>
                 <VoucherText>
-                  <IcGiftVoucher width={20} height={20} stroke={'#EB5757'} />
+                  <IcGiftVoucherRed width={'20'} height={'20'} />
                 </VoucherText>
 
                 <VoucherText>Giảm 20% toàn bộ menu</VoucherText>
