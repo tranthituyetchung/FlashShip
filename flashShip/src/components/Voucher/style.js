@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import { color } from 'react-native-reanimated';
+import {color} from 'react-native-reanimated';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -9,7 +9,7 @@ import colors from '../../values/color';
 const wratio = wp('100%') / 375;
 const hratio = hp('100%') / 812;
 const styles = StyleSheet.create({
-  main:{
+  main: {
     flex: 1,
     backgroundColor: colors.white,
   },
@@ -29,18 +29,18 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary_grey,
     borderRadius: 8,
     paddingLeft: 15,
-    fontFamily: 'Nunito-Regular'
+    fontFamily: 'Nunito-Regular',
   },
   applyBtn: {
     height: '100%',
     width: wp('40%') - 40,
     borderRadius: 8,
     borderColor: colors.secondary_grey_light,
-    color:  colors.secondary_grey,
+    color: colors.secondary_grey,
     borderWidth: 1,
     textAlignVertical: 'center',
     textAlign: 'center',
-    fontFamily: 'Nunito-Regular'
+    fontFamily: 'Nunito-Regular',
   },
   mainContainer: {
     width: wp('100%') - 30,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 15,
     marginRight: 15,
-    marginBottom: 20,
+    marginBottom: 78,
   },
   section: {
     display: 'flex',
@@ -60,15 +60,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     // borderColor: '#f7f7f7',
     // borderBottomWidth: 0,
-     //shadow
-     shadowColor: colors.primary_grey,
-     shadowOffset: {
-         width: 0,
-         height: 2,
-     },
-     shadowOpacity: 0.01,
-     shadowRadius: 4.65, 
-     elevation: 3,
+    //shadow
+    shadowColor: colors.primary_grey,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.01,
+    shadowRadius: 4.65,
+    elevation: 3,
   },
   title: {
     flex: 8,
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    
   },
   subTitle: {
     fontFamily: 'Nunito-SemiBold',
