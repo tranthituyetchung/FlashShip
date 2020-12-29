@@ -313,7 +313,7 @@ const StoreDetail = (props) => {
                       addDish={() =>
                         addDish(
                           props.cart.listItem[dish.id]
-                            ? props.cart.listItem[dish.id].length
+                            ? Object.keys(props.cart.listItem[dish.id]).length
                             : 0,
                           dish,
                         )
@@ -321,8 +321,8 @@ const StoreDetail = (props) => {
                       dish={dish}
                       number={
                         props.cart.listItem[dish.id]
-                          ? props.cart.listItem[dish.id].reduce(
-                              (total, item) => (total += item.number),
+                          ? Object.keys(props.cart.listItem[dish.id]).reduce(
+                              (total, key) => (total += props.cart.listItem[dish.id][key].number),
                               0,
                             )
                           : 0
@@ -330,11 +330,11 @@ const StoreDetail = (props) => {
                       removeDish={() =>
                         controlledRemoveDish(
                           props.cart.listItem[dish.id]
-                            ? props.cart.listItem[dish.id].length
+                            ? Object.keys(props.cart.listItem[dish.id]).length
                             : 0,
                           dish,
                           props.cart.listItem[dish.id]
-                            ? props.cart.listItem[dish.id][0].hashId
+                            ? Object.keys(props.cart.listItem[dish.id])[0]
                             : null,
                         )
                       }
@@ -349,16 +349,16 @@ const StoreDetail = (props) => {
                     dish={dish}
                     number={
                       props.cart.listItem[dish.id]
-                        ? props.cart.listItem[dish.id].reduce(
-                            (total, item) => (total += item.number),
-                            0,
-                          )
-                        : 0
+                          ? Object.keys(props.cart.listItem[dish.id]).reduce(
+                              (total, key) => (total += props.cart.listItem[dish.id][key].number),
+                              0,
+                            )
+                          : 0
                     }
                     addDish={() =>
                       addDish(
                         props.cart.listItem[dish.id]
-                          ? props.cart.listItem[dish.id].length
+                          ? Object.keys(props.cart.listItem[dish.id]).length
                           : 0,
                         dish,
                       )
@@ -366,11 +366,11 @@ const StoreDetail = (props) => {
                     removeDish={() =>
                       controlledRemoveDish(
                         props.cart.listItem[dish.id]
-                          ? props.cart.listItem[dish.id].length
+                          ? Object.keys(props.cart.listItem[dish.id]).length
                           : 0,
                         dish,
                         props.cart.listItem[dish.id]
-                          ? props.cart.listItem[dish.id][0].hashId
+                          ? Object.keys(props.cart.listItem[dish.id])[0]
                           : null,
                       )
                     }
@@ -427,18 +427,20 @@ const StoreDetail = (props) => {
                 <Text style={styles.btnText}>Thêm món mới</Text>
               </TouchableOpacity>
               {props.cart.listItem[selectDish.id]
-                ? props.cart.listItem[selectDish.id].map((item) => (
+                ? Object.keys(props.cart.listItem[selectDish.id]).map((key) => {
+                  const item = props.cart.listItem[selectDish.id][key]
+                  return (
                     <SmallDishWithOption
                       dish={selectDish}
-                      addDish={() => props.quickAdd(selectDish.id, item.hashId)}
+                      addDish={() => props.quickAdd(selectDish.id, key)}
                       removeDish={() =>
-                        props.removeDish(selectDish.id, item.hashId)
+                        props.removeDish(selectDish.id, key)
                       }
                       options={item.options}
                       notes={item.note}
                       number={item.number}
                     />
-                  ))
+                  )})
                 : null}
             </View>
           </ScrollView>

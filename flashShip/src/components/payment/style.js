@@ -99,6 +99,20 @@ const styles = StyleSheet.create({
         marginHorizontal: 8,
         color: colors.dark_blue,
     },
+    cardDesc:{
+        width: wp('100%')-190,
+        fontSize: 12,
+        fontFamily: 'Nunito-Regular',
+        marginHorizontal: 8,
+        color: colors.dark_blue,
+    },
+    cardOption:{
+        width: wp('100%')-190,
+        fontSize: 12,
+        fontFamily: 'Nunito-Regular',
+        marginHorizontal: 8,
+        color: colors.dark_blue,
+    },
     couseImg:{
         borderRadius: 8,
         width: 52,

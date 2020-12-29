@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components/native';
 import colors from '../values/color';
 import {IcPlus} from '../values/images';
-
 const Button = styled.TouchableOpacity`
   width: 32px;
   height: 32px;
@@ -14,7 +13,7 @@ const Button = styled.TouchableOpacity`
 
 const PlusButton = ({onPress}) => {
   return (
-    <Button onPress={onPress}>
+    <Button onPress={onPress} delayPressIn = {0}>
       <IcPlus stroke-width={2} />
     </Button>
   );

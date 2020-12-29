@@ -22,6 +22,10 @@ const RestaurentAdd = (props) => {
     option[bonus.id] = false;
     return option;
   }, {});
+  const optionsPrice = dish.options.reduce((option, bonus) => {
+    option[bonus.id] = bonus.price;
+    return option;
+  }, {});
   const [bonusMap, setBonusMap] = useState(options);
   const addBonus = (id) => {
     bonusMap[id] = !bonusMap[id];
@@ -36,7 +40,7 @@ const RestaurentAdd = (props) => {
     props.navigation.goBack();
   };
   const completeAddDish = () => {
-    props.addDish(dish, props.route.params.shopId, text, bonusMap);
+    props.addDish(dish, props.route.params.shopId, text, bonusMap, optionsPrice);
     props.navigation.goBack();
   };
   return (

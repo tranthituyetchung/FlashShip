@@ -3,27 +3,22 @@ export default (state = {listItem: {}, shopId: null, promotion: null, payment: n
   switch (action.type) {
     case ADD_ITEM:
       if (!state.listItem || !state.listItem[action.payload.itemId]) {
-        state.listItem[action.payload.itemId] = [{number: 1, note: action.payload.note, options: action.payload.additional, hashId: action.payload.hashId, price: action.payload.itemPrice, discount: action.payload.itemDiscount || action.payload.itemPrice}];
+        state.listItem[action.payload.itemId] = {[action.payload.hashId]: {number: 1, note: action.payload.note, options: action.payload.additional, price: action.payload.itemPrice, discount: action.payload.itemDiscount || action.payload.itemPrice}};
         state.totalItem++;
         state.totalPrice += action.payload.itemPrice;
         state.totalDiscount += action.payload.itemDiscount;
       } else {
-        let flag = 0;
-        if(state.listItem[action.payload.itemId].length) {
-          state.listItem[action.payload.itemId] = state.listItem[action.payload.itemId].map((item) => {
-            if(action.payload.hashId == item.hashId) {
-              item.number++; flag = 1;
-              state.totalItem++;
-              state.totalPrice += item.price;
-              state.totalDiscount += item.discount;
-            }
-            return item;
-          })
-          if(!flag) {
-            state.listItem[action.payload.itemId] = state.listItem[action.payload.itemId].concat({number: 1, note: action.payload.note, options: action.payload.additional, hashId: action.payload.hashId, price: action.payload.itemPrice, discount: action.payload.itemDiscount || action.payload.itemPrice});
+        if(state.listItem[action.payload.itemId]) {
+          if(state.listItem[action.payload.itemId][action.payload.hashId]) {
+            state.listItem[action.payload.itemId][action.payload.hashId].number++;
             state.totalItem++;
-            state.totalPrice += action.payload.itemPrice;
-            state.totalDiscount += action.payload.itemDiscount;
+            state.totalPrice += state.listItem[action.payload.itemId][action.payload.hashId].price;
+            state.totalDiscount += state.listItem[action.payload.itemId][action.payload.hashId].discount;
+          } else {
+            state.listItem[action.payload.itemId][action.payload.hashId] = {number: 1, note: action.payload.note, options: action.payload.additional, price: action.payload.itemPrice, discount: action.payload.itemDiscount || action.payload.itemPrice};
+            state.totalItem++;
+            state.totalPrice += state.listItem[action.payload.itemId][action.payload.hashId].price;
+            state.totalDiscount += state.listItem[action.payload.itemId][action.payload.hashId].discount;
           }
         }       
       }
@@ -31,33 +26,29 @@ export default (state = {listItem: {}, shopId: null, promotion: null, payment: n
         ...state,
       };
     case QUICK_ADD:
-      if(state.listItem[action.payload.itemId].length) {
-        state.listItem[action.payload.itemId] = state.listItem[action.payload.itemId].map((item) => {
-          if(action.payload.hashId == item.hashId) {
-            item.number++;
-            state.totalItem++;
-            state.totalPrice += item.price;
-            state.totalDiscount += item.discount;
-          }
-          return item;
-        })
+      if(state.listItem[action.payload.itemId]) {
+        if(state.listItem[action.payload.itemId][action.payload.hashId]) {
+          state.listItem[action.payload.itemId][action.payload.hashId].number++;
+          state.totalItem++;
+          state.totalPrice += state.listItem[action.payload.itemId][action.payload.hashId].price;
+          state.totalDiscount += state.listItem[action.payload.itemId][action.payload.hashId].discount;
+        }
       };
       return {
         ...state
       }
     case REMOVE_ITEM:
-      if(state.listItem[action.payload.itemId].length) {
-        state.listItem[action.payload.itemId] = state.listItem[action.payload.itemId].map((item) => {
-          if(action.payload.hashId == item.hashId) {
-            item.number--;
-            state.totalItem--;
-            state.totalPrice -= item.price;
-            state.totalDiscount -= item.discount;
-          }
-          if(item.number <= 0) return null;
-          return item;
-        }).filter((item) => item);
-        if(state.listItem[action.payload.itemId].length <=0) delete state.listItem[action.payload.itemId];
+      if(state.listItem[action.payload.itemId]) {
+        if(state.listItem[action.payload.itemId][action.payload.hashId]) {
+          state.listItem[action.payload.itemId][action.payload.hashId].number--;
+          state.totalItem--;
+          state.totalPrice -= state.listItem[action.payload.itemId][action.payload.hashId].price;
+          state.totalDiscount -= state.listItem[action.payload.itemId][action.payload.hashId].discount;
+        }
+        if(state.listItem[action.payload.itemId][action.payload.hashId].number<= 0) 
+          delete state.listItem[action.payload.itemId][action.payload.hashId]
+        if(Object.keys(state.listItem[action.payload.itemId]).length <= 0)
+          delete state.listItem[action.payload.itemId];
       }
       return {
         ...state,
@@ -77,7 +68,7 @@ export default (state = {listItem: {}, shopId: null, promotion: null, payment: n
           ...state
       }
     case APPLY_PROMOTION:
-      state.promotion = action.payment.promotion;
+      state.promotion = action.payload.promotion;
       return {
           ...state
       }

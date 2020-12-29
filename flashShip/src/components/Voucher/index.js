@@ -25,11 +25,11 @@ const data = [
   {
     id: generateID(),
     hour: 10,
-    reduce: 0.6,
+    reduce: 0.9,
     min: 150000,
-    max: 40000,
+    max: 100000,
     code: 'FLASHSHIP40',
-    description: generateTitle('FLASHSHIP40', 0.4, 'thức ăn nhanh'),
+    description: generateTitle('FLASHSHIP40', 0.9, 'thức ăn nhanh'),
   },
   {
     id: generateID(),
@@ -87,20 +87,30 @@ const data = [
   },
 ];
 
-function Voucher() {
+const Voucher = (props) => {
   const [isActive, setIsActive] = useState(-1);
   const [code, setCode] = useState('');
+  const setPromotion = props.route.params.setPromotion;
 
-  const handleAddVoucher = () => {
-    const voucher =
-      isActive !== -1 ? data[isActive] : data.find((d) => d.code === code);
-    if (!voucher) return voucher[0]; // show pop-up: can't apply promotion
-    return voucher;
+  const handleAddVoucherByText = () => {
+    for(let voucher of data) {
+      if(voucher.id == code) {
+        setPromotion(voucher);
+        setCode('');
+        props.navigation.goBack();
+      }
+    }
   };
-
+  const handleAddVoucherByChoice = () => {
+    setPromotion(data[isActive]);
+    props.navigation.goBack();
+  }
+  const onBackPress = () => {
+    props.navigation.goBack();
+  }
   return (
     <View style={styles.main}>
-      <Header title={strings.VoucherTitle} onBackPress={onBackPress()} />
+      <Header title={strings.VoucherTitle} onBackPress={onBackPress} />
       <View style={styles.inputArea}>
         <TextInput
           style={styles.inputText}
@@ -108,7 +118,7 @@ function Voucher() {
           value={code}
           onChangeText={(text) => setCode(text)}
         />
-        <TouchableOpacity onPress={handleAddVoucher}>
+        <TouchableOpacity onPress={handleAddVoucherByText}>
           <View>
             <Text style={styles.applyBtn}>{strings.VoucherTitleBtn}</Text>
           </View>
@@ -146,7 +156,7 @@ function Voucher() {
         ))}
       </ScrollView>
 
-      <ConfirmBtn title={strings.VoucherTitleBtn} onPress={handleAddVoucher} />
+      <ConfirmBtn title={strings.VoucherTitleBtn} onPress={handleAddVoucherByChoice} />
     </View>
   );
 }

@@ -7,8 +7,10 @@ import IcMomo from '../../assets/images/ic_momo.png';
 import strings from '../../values/strings';
 import styles from './style';
 import colors from '../../values/color';
+import ConfirmBtn from '../../common/ConfirmBtn';
 
-function PaymentMethod(props) {
+const PaymentMethod = (props) => {
+  const setPayment = props.route.params.setPayment;
   const [isActive, setIsActive] = useState(0);
   const methods = [
     {icon: <IcCash style={styles.icon} />, title: strings.CashMethod},
@@ -18,6 +20,10 @@ function PaymentMethod(props) {
       title: strings.MomoMethod,
     },
   ];
+  const setPaymentOptions = () => {
+    setPayment(methods[isActive]);
+    props.navigation.goBack();
+  }
 
   return (
     <View>
@@ -44,7 +50,7 @@ function PaymentMethod(props) {
           </TouchableOpacity>
         ))}
       </View>
-      {/* <ConfirmBtn title={strings.PaymentMethodTitleBtn} /> */}
+      <ConfirmBtn title={strings.PaymentMethodTitleBtn} onPress = {setPaymentOptions}/>
     </View>
   );
 }
