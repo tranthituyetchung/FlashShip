@@ -10,22 +10,23 @@ import ConfirmBtn from 'common/ConfirmBtn'
 import { ScrollView } from 'react-native-gesture-handler';
 import { useWindowDimensions } from 'react-native';
 import SmallDish from "../../common/SmallDish";
+import {connect} from 'react-redux';
+import {addItem} from '../../action/cart/action';
 function RestaurentAdd(props) {
   const height = useWindowDimensions().height;
   const [screenHeight, setScreenHeight] = useState(0);
-  const Canh = [
-    {name: 'Canh bí đỏ', price: 10000},
-    {name: 'Canh bí đỏ', price: 10000},
-    {name: 'Canh bí đỏ', price: 10000},
-    {name: 'Canh bí đỏ', price: 10000},
-  ];
-
-  const MonAnKem = [
-    {name: 'Rau xào', price: 10000},
-    {name: 'Rau xào', price: 10000},
-    {name: 'Rau xào', price: 10000},
-    {name: 'Rau xào', price: 10000},
-  ];
+  const [text, setValue] = useState('');
+  const dish = props.route.params.dish;
+  const bonus = dish.options;
+  const options = dish.options.reduce((option, bonus) => {
+    option[bonus.id] = 0; 
+    return option;
+  }, {});
+  const [bonusMap, setBonusMap] = useState(options);
+  const addBonus = (id) => {
+    bonusMap[id] = !bonusMap[id];
+    setBonusMap({...bonusMap})
+  }
   const onContentSizeChange = (contentWidth, contentHeight) => {
    setScreenHeight(contentHeight)
   };
@@ -34,8 +35,9 @@ function RestaurentAdd(props) {
   const onBackPress = () => {
     props.navigation.goBack();
   };
-  const openPayment = () => {
-    props.navigation.navigate('Payment');
+  const completeAddDish = () => {
+    props.addDish(dish.id, props.route.params.shopId, text, bonusMap);
+    props.navigation.goBack();
   };
   return (
     <View style={{flex: 1, backgroundColor: colors.white}}>
@@ -50,17 +52,9 @@ function RestaurentAdd(props) {
           <View style={styles.container}>
             {/* <View style={styles.tmp}></View> */}
             <View style={{paddingHorizontal:16}}>
-            <SmallDish dish ={{
-                name: 'Bánh mì chả lụa',
-                price: 55000,
-                sold: 999,
-                type: 'big',
-                discount: 75000,
-                imageUrl: require('../../assets/images/DishImage.png')
-            }}/> 
+            <SmallDish dish = {dish}/> 
             </View>
-            <ExtraFood title="Món ăn kèm" extraFoods={MonAnKem} />
-            {/* <ExtraFood title="Món canh" extraFoods={Canh} /> */}
+            <ExtraFood title="Món ăn kèm" extraFoods={bonus} addBonus = {addBonus} options = {bonusMap} />
             <View style={styles.RestaurantAddNote}>
               <View style={styles.RestaurantAddIconNote}>
                 <IcNote />
@@ -68,6 +62,7 @@ function RestaurentAdd(props) {
               <TextInput
                 style={styles.inputText}
                 placeholder={strings.RestaurantNote}
+                onChange={(data) => setValue(data)}
               />
               </View>
               <View style={styles.blank}/>
@@ -75,10 +70,13 @@ function RestaurentAdd(props) {
         
       </ScrollView>
       
-      <ConfirmBtn title={strings.RestaurantAddBtn} onPress={openPayment} />
+      <ConfirmBtn title={strings.RestaurantAddBtn} onPress={completeAddDish} />
 
   </View>
   );
 }
+const mapDispatchToProps = {
+  addDish: addItem,
+};
 
-export default RestaurentAdd;
+export default connect(null, mapDispatchToProps)(RestaurentAdd);

@@ -42,7 +42,6 @@ class Welcome extends Component {
       );
     }
     onDone = () => {
-        console.log(this)
         this.props.navigation.navigate("Home")        
     }
     render() {
