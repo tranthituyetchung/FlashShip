@@ -12216,6 +12216,9 @@ class Home extends Component {
     viewRestaurant = (item) => {
         this.props.navigation.navigate('StoreDetail', {item});
     }
+    openFoodList =(item) => {
+        this.props.navigation.navigate('FoodList',{item})
+    }
     render() {
             return(
                 <View style={styles.container}>
@@ -12275,6 +12278,7 @@ class Home extends Component {
                             </View>
                             <View style={styles.sectionList}>
                                     <ListCategory 
+                                        openFoodList={this.openFoodList}
                                         />
                             </View>
                             <View style={styles.voucherContainer}>

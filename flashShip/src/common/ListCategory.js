@@ -57,7 +57,6 @@ class ListCategory extends Component {
         <TouchableOpacity 
             style={styles.categoryItem}
             onPress={() => this.props.openFoodList(item)}
-            //onPress={()=> this.props.openCourseByCategory(item)}
             >
                 <View>
                     <Image style={styles.categoryImage} source={item.image}/>
