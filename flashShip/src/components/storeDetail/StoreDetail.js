@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react';
 import {Text, Image, Animated, View, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
-import {IcMapPin, IcPriceTag, IcGiftVoucher} from '../../values/images';
+import {IcMapPin, IcPriceTagRed, IcGiftVoucherRed,IcPlus} from 'values/images';
 import PlusButton from '../../common/PlusButton';
 import MinusButton from '../../common/MinusButton';
 import SmallDish from '../../common/SmallDish';
@@ -13,8 +13,14 @@ import DishCounter from '../../common/DishCounter';
 import {Modalize} from 'react-native-modalize';
 import SmallDishWithOption from '../../common/SmallDishWithOption';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+
+import { widthPercentageToDP } from 'react-native-responsive-screen';
+import Header from 'common/Header';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen'
+
 import {connect} from 'react-redux';
 import {quickAdd, removeItem} from '../../action/cart/action'
+
 const Container = styled.View`
   background-color: transparent;
   width: 100%;
@@ -80,7 +86,6 @@ const LocationText = styled.Text`
   font-family: Nunito-Regular;
   font-size: 14px;
   color: ${colors.dark_blue};
-  margin-left: 5px;
 `;
 const Eclipse = styled.View`
   width: 4px;
@@ -122,18 +127,23 @@ const ListTitle = styled.Text`
   font-size: 16px;
   margin-bottom: 8px;
   margin-top: 20px;
+  color: ${colors.dark_blue};
 `;
 const ScrollView = styled.ScrollView`
   height: 92%;
   background-color: transparent;
 `;
-
+const IconVoucherText = styled.Text`
+  color: ${colors.red};
+`;
 const StoreDetail = (props) => {
   const item = props.route.params.item;
   const handleScroll = (e) => {
     const y = e.nativeEvent.contentOffset.y;
-    if (y <= 143 && y >= 0) fadeIn(y / 143);
-    else if (y < 0) fadeIn(0);
+    const from = 50;
+    const to = 143;
+    if (y <= to && y >= from) fadeIn((y - from) / (to - from));
+    else if (y < from) fadeIn(0);
     else fadeIn(1);
   };
   const [selectDish, setSelectDish] = useState(item.dishes[0]);
@@ -144,10 +154,15 @@ const StoreDetail = (props) => {
     setSelectDish(dish);
     modalizeRef.current?.open();
   };
+
+  const onClose = () => {
+    modalizeRef.current?.close()
+  }
   const addDish = (instancesCount, dish) => {
     if(instancesCount>1) {
       onOpenPopup(dish)
     } else props.navigation.navigate('RestaurantAdd', { dish, shopId: item.id})
+
   }
   const controlledRemoveDish = (instancesCount, dish, hashId) => {
     if(instancesCount>1) {
@@ -176,8 +191,8 @@ const StoreDetail = (props) => {
           onPress={() => props.navigation.goBack()}
         />
         <ButtonContainerRight>
-          <CircleIconButton name="heart" />
-          <CircleIconButton name="search" />
+          {/* <CircleIconButton name="heart" /> */}
+          {/* <CircleIconButton name="search" /> */}
         </ButtonContainerRight>
       </ButtonContainer>
       <Container>
@@ -197,7 +212,9 @@ const StoreDetail = (props) => {
             <StoreName>{item.name}</StoreName>
             <DescText>{item.category}</DescText>
             <LocationContainer>
-              <IcMapPin width={20} height={20} />
+              <Text style={{marginRight:5}}>
+                <IcMapPin width={20} height={20} />
+              </Text>
               <LocationText>{item.distance}</LocationText>
               <Eclipse />
               <LocationText>{item.address}</LocationText>
@@ -205,13 +222,13 @@ const StoreDetail = (props) => {
             <AllVoucherContainer>
               <VoucherContainer>
                 <VoucherText>
-                  <IcPriceTag width={20} height={20} stroke={'#EB5757'} />
+                  <IcPriceTagRed width={20} height={20} />
                 </VoucherText>
                 <VoucherText>Giảm 20% toàn bộ menu</VoucherText>
               </VoucherContainer>
               <VoucherContainer>
                 <VoucherText>
-                  <IcGiftVoucher width={20} height={20} stroke={'#EB5757'} />
+                  <IcGiftVoucherRed width={'20'} height={'20'} />
                 </VoucherText>
 
                 <VoucherText>Giảm 20% toàn bộ menu</VoucherText>
@@ -247,18 +264,31 @@ const StoreDetail = (props) => {
             
           </DataContainer>
         </ScrollView>
-        <Modalize adjustToContentHeight={true} ref={modalizeRef}>
-              <ScrollView style={{height: 500, paddingHorizontal: 16}}>
-                <TouchableOpacity style={{backgroundColor:colors.red, borderRadius:10, marginVertical: 15, alignItems:"center", justifyContent:"center"}} 
-                onPress = { () => props.navigation.navigate('RestaurantAdd', {dish: selectDish, shopId: item.id})}>
-                  <StoreName>Thêm món mới</StoreName>
+        <Modalize adjustToContentHeight={true} ref={modalizeRef} closeOnOverlayTap={true}>
+            <View style={styles.headerContainer}>
+                <TouchableOpacity
+                    style={styles.backButton}
+                    onPress={() => onClose()}    
+                >
+                    <Icon name="x" color={colors.dark_blue} size={24} />
+                </TouchableOpacity>
+                <View style={styles.titleContainer}>
+                  <Text style={styles.titleText}>Chỉnh sửa món ăn</Text>
+                </View>
+            </View>
+              <ScrollView style={{height: 500}}>
+              <View style={{marginHorizontal: 16, marginTop: 56,}}>
+                <TouchableOpacity style={styles.btnAdd}  onPress = { () => props.navigation.navigate('RestaurantAdd', {dish: selectDish, shopId: item.id})}>
+                  <Text style={styles.btnInfo}><IcPlus width={16} height={16}  /></Text>
+                  <Text style={styles.btnText}>Thêm món mới</Text>
                 </TouchableOpacity>
                 {
                   props.cart.listItem[selectDish.id] 
                   ? props.cart.listItem[selectDish.id].map((item) => <SmallDishWithOption dish = {selectDish} addDish = {() => props.quickAdd(selectDish.id, item.hashId)} removeDish = {() => props.removeDish(selectDish.id, item.hashId)} options = {item.options} notes = {item.note} number = {item.number} />) : null
                 }
+              </View>                
               </ScrollView>
-        </Modalize>
+              </Modalize>
       </Container>
     </>
   );
@@ -276,9 +306,71 @@ const styles = StyleSheet.create({
       width: 0,
       height: 4,
     },
+  },
+  headerContainer: {
+    //zIndex: 10,
+    width: wp('100%'),
+    height: 56,
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    alignItems: "center",
+    flexDirection: 'row',
+    backgroundColor: colors.white,
+    //shadow
+    shadowColor: "#000",
+    shadowOffset: {
+        width: 0,
+        height: 4,
+    },
     shadowOpacity: 0.1,
     shadowRadius: 4.65,
-    elevation: 6,
+    elevation: 6, 
+  },
+  backButton:{
+      height: 40,
+      width: 40,
+      marginLeft: 24,
+      justifyContent: 'center',
+      //backgroundColor: colors.red,
+  },
+  titleContainer: {
+      height: 40, 
+      width: wp('100%') - 128,
+      justifyContent: 'center',
+      alignItems: 'center',
+      //backgroundColor: colors.green,
+  },
+  titleText:{
+      textAlign: 'center',
+      fontSize: 18,
+      fontFamily: 'Nunito-Bold',
+      color: colors.dark_blue,
+  },
+  btnAdd:{
+    width: widthPercentageToDP('50%'),
+    alignSelf: 'center',
+    height: 44,
+    // borderColor: colors.red,
+    // borderWidth: 1,
+    backgroundColor:colors.primary_blue, 
+    borderRadius:8,
+    marginVertical: 16,
+    alignItems:"center",
+    justifyContent:"center",
+    flexDirection:'row'
+  },
+  btnInfo:{
+    width: 16,
+    height: 16,
+    color: colors.red,
+    //backgroundColor: 'red',
+    marginRight: 6,
+  },
+  btnText:{
+    fontFamily: 'Nunito-Bold',
+    fontSize: 14,
+    color: colors.white,
   },
 });
 const mapStateToProps = (state) => {

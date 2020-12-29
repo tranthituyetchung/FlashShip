@@ -53,9 +53,10 @@ import IcGiftVoucher from 'assets/images/ic_voucher';
 import IcMinus from 'assets/images/ic_minus';
 import IcCash from 'assets/images/ic_cash.svg';
 import IcZaloPay from 'assets/images/ic_zalopay.svg';
-import IcGift from 'assets/images/ic_gift.svg'
-import IcShopingCart from 'assets/images/ic_shopping_cart.svg'
-
+import IcGift from 'assets/images/ic_gift.svg';
+import IcShopingCart from 'assets/images/ic_shopping_cart.svg';
+import IcPriceTagRed from 'assets/images/ic_price_tag_red.svg';
+import IcGiftVoucherRed from 'assets/images/ic_gift_voucher_red.svg';
 export {
   //images,
   //screen welcome:
@@ -111,4 +112,6 @@ export {
   //PaymentMethod
   IcCash,
   IcZaloPay,
+  IcPriceTagRed,
+  IcGiftVoucherRed,
 };
