@@ -67,7 +67,7 @@ class Payment extends Component {
     console.log("debuggg", this.props.cart.promotion);
     if(!this.props.cart.promotion) return 0;
     if(this.props.cart.promotion.min > price) {
-      //show popup warning
+      //show popup warnin
       return 0;
     } else {
       const max = this.props.cart.promotion.max;
