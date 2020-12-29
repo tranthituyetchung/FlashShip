@@ -134,6 +134,7 @@ const ListTitle = styled.Text`
   color: ${colors.dark_blue};
 `;
 const ScrollView = styled.ScrollView`
+  height: ${hp('100%') - 60 - StatusBar.currentHeight}px;
   background-color: transparent;
 `;
 const IconVoucherText = styled.Text`
@@ -272,7 +273,7 @@ const StoreDetail = (props) => {
           ]}></Animated.View>
       </View>
       <Container>
-        <View style={{height: "100%"}}>
+        <View style={{height: '100%'}}>
           <ScrollView onScroll={handleScroll}>
             <DataContainer>
               <StoreName>{item.name}</StoreName>
@@ -377,18 +378,24 @@ const StoreDetail = (props) => {
                 ))}
             </DataContainer>
           </ScrollView>
-          <View style={styles.thanhToanBar}>
-            <View style={styles.thanhToanPrices}>
-              <IconWithNumber number={5} onPress={() => {}}></IconWithNumber>
-              <View style={{marginLeft: 8}}>
-                <Text>Tổng giá</Text>
-                <Text>Tổng giá giảm</Text>
+          {props.cart.totalItem && props.cart.shopId === item.id ? (
+            <View style={styles.thanhToanBar}>
+              <View style={styles.thanhToanPrices}>
+                <IconWithNumber
+                  number={props.cart.totalItem}
+                  onPress={() => {}}></IconWithNumber>
+                <View style={{marginLeft: 8}}>
+                  <Text>{props.cart.totalPrice}</Text>
+                  <Text>{props.cart.totalDiscount}</Text>
+                </View>
               </View>
+              <TouchableOpacity
+                style={styles.thanhToanButton}
+                onPress={() => props.navigation.navigate('Payment')}>
+                <Text style={{color: colors.white}}>Thanh toán</Text>
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.thanhToanButton} onPress={() => {}}>
-              <Text style={{color: colors.white}}>Thanh toán</Text>
-            </TouchableOpacity>
-          </View>
+          ) : null}
         </View>
         <Modalize
           adjustToContentHeight={true}
@@ -552,13 +559,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   thanhToanBar: {
+    backgroundColor: colors.white,
     height: 60,
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
-    backgroundColor: colors.white,
   },
 });
 const mapStateToProps = (state) => {
