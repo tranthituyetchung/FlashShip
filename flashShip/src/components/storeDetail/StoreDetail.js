@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import {Text, Image, Animated, View, StyleSheet} from 'react-native';
+import {Text, Image, Animated, View, StyleSheet, StatusBar} from 'react-native';
 import styled from 'styled-components/native';
 import {IcMapPin, IcPriceTagRed, IcGiftVoucherRed, IcPlus} from 'values/images';
 import PlusButton from '../../common/PlusButton';
@@ -16,6 +16,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import {widthPercentageToDP} from 'react-native-responsive-screen';
 import Header from 'common/Header';
+import IconWithNumber from './IconWithNumber';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -133,7 +134,7 @@ const ListTitle = styled.Text`
   color: ${colors.dark_blue};
 `;
 const ScrollView = styled.ScrollView`
-  height: 100%;
+  height: ${hp('100%') - 60 - StatusBar.currentHeight}px;
   background-color: transparent;
 `;
 const IconVoucherText = styled.Text`
@@ -162,18 +163,17 @@ const StoreDetail = (props) => {
     modalizeRef.current?.close();
   };
   const addDish = (instancesCount, dish) => {
-    if(instancesCount>1) {
-      onOpenPopup(dish)
-    } else props.navigation.navigate('RestaurantAdd', { dish, shopId: item.id})
-
-  }
+    if (instancesCount > 1) {
+      onOpenPopup(dish);
+    } else props.navigation.navigate('RestaurantAdd', {dish, shopId: item.id});
+  };
   const controlledRemoveDish = (instancesCount, dish, hashId) => {
-    if(instancesCount>1) {
-      onOpenPopup(dish)
+    if (instancesCount > 1) {
+      onOpenPopup(dish);
     } else {
-      if(hashId) props.removeDish(dish.id, hashId);
+      if (hashId) props.removeDish(dish.id, hashId);
     }
-  }
+  };
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const backgroundAnim = useRef(new Animated.Value(1)).current;
   const fadeIn = (ratio) => {
@@ -318,8 +318,25 @@ const StoreDetail = (props) => {
                       )
                     }
                     dish={dish}
-                    number = {props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].reduce((total, item) => total+=item.number, 0) : 0}
-                    removeDish = {() => controlledRemoveDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish, props.cart.listItem[dish.id] ? props.cart.listItem[dish.id][0].hashId : null)}
+                    number={
+                      props.cart.listItem[dish.id]
+                        ? props.cart.listItem[dish.id].reduce(
+                            (total, item) => (total += item.number),
+                            0,
+                          )
+                        : 0
+                    }
+                    removeDish={() =>
+                      controlledRemoveDish(
+                        props.cart.listItem[dish.id]
+                          ? props.cart.listItem[dish.id].length
+                          : 0,
+                        dish,
+                        props.cart.listItem[dish.id]
+                          ? props.cart.listItem[dish.id][0].hashId
+                          : null,
+                      )
+                    }
                   />
                 ))}
             </DishContainer>
@@ -329,39 +346,95 @@ const StoreDetail = (props) => {
               .map((dish) => (
                 <SmallDish
                   dish={dish}
-                  number = {props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].reduce((total, item) => total+=item.number, 0) : 0}
-                  addDish={() => addDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish)}
-                  removeDish = {() => controlledRemoveDish(props.cart.listItem[dish.id] ? props.cart.listItem[dish.id].length : 0, dish, props.cart.listItem[dish.id] ? props.cart.listItem[dish.id][0].hashId : null)}
+                  number={
+                    props.cart.listItem[dish.id]
+                      ? props.cart.listItem[dish.id].reduce(
+                          (total, item) => (total += item.number),
+                          0,
+                        )
+                      : 0
+                  }
+                  addDish={() =>
+                    addDish(
+                      props.cart.listItem[dish.id]
+                        ? props.cart.listItem[dish.id].length
+                        : 0,
+                      dish,
+                    )
+                  }
+                  removeDish={() =>
+                    controlledRemoveDish(
+                      props.cart.listItem[dish.id]
+                        ? props.cart.listItem[dish.id].length
+                        : 0,
+                      dish,
+                      props.cart.listItem[dish.id]
+                        ? props.cart.listItem[dish.id][0].hashId
+                        : null,
+                    )
+                  }
                 />
-              ))}        
-            
+              ))}
           </DataContainer>
         </ScrollView>
-        <Modalize adjustToContentHeight={true} ref={modalizeRef} closeOnOverlayTap={true}>
-            <View style={styles.headerContainer}>
-                <TouchableOpacity
-                    style={styles.backButton}
-                    onPress={() => onClose()}    
-                >
-                    <Icon name="x" color={colors.dark_blue} size={24} />
-                </TouchableOpacity>
-                <View style={styles.titleContainer}>
-                  <Text style={styles.titleText}>Chỉnh sửa món ăn</Text>
-                </View>
+        <View style={styles.thanhToanBar}>
+          <View style={styles.thanhToanPrices}>
+            <IconWithNumber number={5} onPress={() => {}}></IconWithNumber>
+            <View style={{marginLeft: 8}}>
+              <Text>Tổng giá</Text>
+              <Text>Tổng giá giảm</Text>
             </View>
-              <ScrollView style={{height: 500}}>
-              <View style={{marginHorizontal: 16, marginTop: 56,}}>
-                <TouchableOpacity style={styles.btnAdd}  onPress = { () => props.navigation.navigate('RestaurantAdd', {dish: selectDish, shopId: item.id})}>
-                  <Text style={styles.btnInfo}><IcPlus width={16} height={16}  /></Text>
-                  <Text style={styles.btnText}>Thêm món mới</Text>
-                </TouchableOpacity>
-                {
-                  props.cart.listItem[selectDish.id] 
-                  ? props.cart.listItem[selectDish.id].map((item) => <SmallDishWithOption dish = {selectDish} addDish = {() => props.quickAdd(selectDish.id, item.hashId)} removeDish = {() => props.removeDish(selectDish.id, item.hashId)} options = {item.options} notes = {item.note} number = {item.number} />) : null
-                }
-              </View>                
-              </ScrollView>
-              </Modalize>
+          </View>
+          <TouchableOpacity style={styles.thanhToanButton} onPress={() => {}}>
+            <Text style={{color: colors.white}}>Thanh toán</Text>
+          </TouchableOpacity>
+        </View>
+        <Modalize
+          adjustToContentHeight={true}
+          ref={modalizeRef}
+          closeOnOverlayTap={true}>
+          <View style={styles.headerContainer}>
+            <TouchableOpacity
+              style={styles.backButton}
+              onPress={() => onClose()}>
+              <Icon name="x" color={colors.dark_blue} size={24} />
+            </TouchableOpacity>
+            <View style={styles.titleContainer}>
+              <Text style={styles.titleText}>Chỉnh sửa món ăn</Text>
+            </View>
+          </View>
+          <ScrollView style={{height: 500}}>
+            <View style={{marginHorizontal: 16, marginTop: 56}}>
+              <TouchableOpacity
+                style={styles.btnAdd}
+                onPress={() =>
+                  props.navigation.navigate('RestaurantAdd', {
+                    dish: selectDish,
+                    shopId: item.id,
+                  })
+                }>
+                <Text style={styles.btnInfo}>
+                  <IcPlus width={16} height={16} />
+                </Text>
+                <Text style={styles.btnText}>Thêm món mới</Text>
+              </TouchableOpacity>
+              {props.cart.listItem[selectDish.id]
+                ? props.cart.listItem[selectDish.id].map((item) => (
+                    <SmallDishWithOption
+                      dish={selectDish}
+                      addDish={() => props.quickAdd(selectDish.id, item.hashId)}
+                      removeDish={() =>
+                        props.removeDish(selectDish.id, item.hashId)
+                      }
+                      options={item.options}
+                      notes={item.note}
+                      number={item.number}
+                    />
+                  ))
+                : null}
+            </View>
+          </ScrollView>
+        </Modalize>
       </Container>
     </>
   );
@@ -462,6 +535,29 @@ const styles = StyleSheet.create({
     width: wp('40%'),
     height: 56,
     marginHorizontal: wp('30%'),
+  },
+  thanhToanButton: {
+    borderRadius: 8,
+    // padding: 8,
+    height: 38,
+    width: 108,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.primary_blue,
+  },
+  thanhToanPrices: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  thanhToanBar: {
+    height: 60,
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    elevation: 6,
   },
 });
 const mapStateToProps = (state) => {
