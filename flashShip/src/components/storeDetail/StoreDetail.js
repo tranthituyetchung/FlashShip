@@ -134,7 +134,6 @@ const ListTitle = styled.Text`
   color: ${colors.dark_blue};
 `;
 const ScrollView = styled.ScrollView`
-  height: ${hp('100%') - 60 - StatusBar.currentHeight}px;
   background-color: transparent;
 `;
 const IconVoucherText = styled.Text`
@@ -258,7 +257,7 @@ const StoreDetail = (props) => {
             style={styles.headerStoreName}
             numberOfLines={1}
             ellipsizeMode="tail">
-            {item.name}fdghslkfjsdlkfkdsfsdlkhgsldkjfhgksjdhfgjklsdfhgkldfsjjk
+            {item.name}
           </Text>
         </Animated.View>
       </View>
@@ -273,50 +272,79 @@ const StoreDetail = (props) => {
           ]}></Animated.View>
       </View>
       <Container>
-        <ScrollView onScroll={handleScroll}>
-          <DataContainer>
-            <StoreName>{item.name}</StoreName>
-            <DescText>{item.category}</DescText>
-            <LocationContainer>
-              <Text style={{marginRight: 5}}>
-                <IcMapPin width={20} height={20} />
-              </Text>
-              <LocationText>{item.distance}</LocationText>
-              <Eclipse />
-              <LocationText>{item.address}</LocationText>
-            </LocationContainer>
-            <AllVoucherContainer>
-              <VoucherContainer>
-                <VoucherText>
-                  <IcPriceTagRed width={20} height={20} />
-                </VoucherText>
-                <VoucherText>Giảm 20% toàn bộ menu</VoucherText>
-              </VoucherContainer>
-              <VoucherContainer>
-                <VoucherText>
-                  <IcGiftVoucherRed width={'20'} height={'20'} />
-                </VoucherText>
+        <View style={{height: "100%"}}>
+          <ScrollView onScroll={handleScroll}>
+            <DataContainer>
+              <StoreName>{item.name}</StoreName>
+              <DescText>{item.category}</DescText>
+              <LocationContainer>
+                <Text style={{marginRight: 5}}>
+                  <IcMapPin width={20} height={20} />
+                </Text>
+                <LocationText>{item.distance}</LocationText>
+                <Eclipse />
+                <LocationText>{item.address}</LocationText>
+              </LocationContainer>
+              <AllVoucherContainer>
+                <VoucherContainer>
+                  <VoucherText>
+                    <IcPriceTagRed width={20} height={20} />
+                  </VoucherText>
+                  <VoucherText>Giảm 20% toàn bộ menu</VoucherText>
+                </VoucherContainer>
+                <VoucherContainer>
+                  <VoucherText>
+                    <IcGiftVoucherRed width={'20'} height={'20'} />
+                  </VoucherText>
 
-                <VoucherText>Giảm 20% toàn bộ menu</VoucherText>
-                <SeeAll>
-                  <TextMore>Xem thêm</TextMore>
-                </SeeAll>
-              </VoucherContainer>
-            </AllVoucherContainer>
-            <ListTitle>Bán chạy</ListTitle>
-            <DishContainer>
-              {item.dishes
-                .filter((dish) => dish.type === 'big')
-                .map((dish) => (
-                  <BigDish
-                    addDish={() =>
-                      addDish(
+                  <VoucherText>Giảm 20% toàn bộ menu</VoucherText>
+                  <SeeAll>
+                    <TextMore>Xem thêm</TextMore>
+                  </SeeAll>
+                </VoucherContainer>
+              </AllVoucherContainer>
+              <ListTitle>Bán chạy</ListTitle>
+              <DishContainer>
+                {item.dishes
+                  .filter((dish) => dish.type === 'big')
+                  .map((dish) => (
+                    <BigDish
+                      addDish={() =>
+                        addDish(
+                          props.cart.listItem[dish.id]
+                            ? props.cart.listItem[dish.id].length
+                            : 0,
+                          dish,
+                        )
+                      }
+                      dish={dish}
+                      number={
                         props.cart.listItem[dish.id]
-                          ? props.cart.listItem[dish.id].length
-                          : 0,
-                        dish,
-                      )
-                    }
+                          ? props.cart.listItem[dish.id].reduce(
+                              (total, item) => (total += item.number),
+                              0,
+                            )
+                          : 0
+                      }
+                      removeDish={() =>
+                        controlledRemoveDish(
+                          props.cart.listItem[dish.id]
+                            ? props.cart.listItem[dish.id].length
+                            : 0,
+                          dish,
+                          props.cart.listItem[dish.id]
+                            ? props.cart.listItem[dish.id][0].hashId
+                            : null,
+                        )
+                      }
+                    />
+                  ))}
+              </DishContainer>
+              <ListTitle>Món chính</ListTitle>
+              {item.dishes
+                .filter((dish) => dish.type === 'small')
+                .map((dish) => (
+                  <SmallDish
                     dish={dish}
                     number={
                       props.cart.listItem[dish.id]
@@ -325,6 +353,14 @@ const StoreDetail = (props) => {
                             0,
                           )
                         : 0
+                    }
+                    addDish={() =>
+                      addDish(
+                        props.cart.listItem[dish.id]
+                          ? props.cart.listItem[dish.id].length
+                          : 0,
+                        dish,
+                      )
                     }
                     removeDish={() =>
                       controlledRemoveDish(
@@ -339,55 +375,20 @@ const StoreDetail = (props) => {
                     }
                   />
                 ))}
-            </DishContainer>
-            <ListTitle>Món chính</ListTitle>
-            {item.dishes
-              .filter((dish) => dish.type === 'small')
-              .map((dish) => (
-                <SmallDish
-                  dish={dish}
-                  number={
-                    props.cart.listItem[dish.id]
-                      ? props.cart.listItem[dish.id].reduce(
-                          (total, item) => (total += item.number),
-                          0,
-                        )
-                      : 0
-                  }
-                  addDish={() =>
-                    addDish(
-                      props.cart.listItem[dish.id]
-                        ? props.cart.listItem[dish.id].length
-                        : 0,
-                      dish,
-                    )
-                  }
-                  removeDish={() =>
-                    controlledRemoveDish(
-                      props.cart.listItem[dish.id]
-                        ? props.cart.listItem[dish.id].length
-                        : 0,
-                      dish,
-                      props.cart.listItem[dish.id]
-                        ? props.cart.listItem[dish.id][0].hashId
-                        : null,
-                    )
-                  }
-                />
-              ))}
-          </DataContainer>
-        </ScrollView>
-        <View style={styles.thanhToanBar}>
-          <View style={styles.thanhToanPrices}>
-            <IconWithNumber number={5} onPress={() => {}}></IconWithNumber>
-            <View style={{marginLeft: 8}}>
-              <Text>Tổng giá</Text>
-              <Text>Tổng giá giảm</Text>
+            </DataContainer>
+          </ScrollView>
+          <View style={styles.thanhToanBar}>
+            <View style={styles.thanhToanPrices}>
+              <IconWithNumber number={5} onPress={() => {}}></IconWithNumber>
+              <View style={{marginLeft: 8}}>
+                <Text>Tổng giá</Text>
+                <Text>Tổng giá giảm</Text>
+              </View>
             </View>
+            <TouchableOpacity style={styles.thanhToanButton} onPress={() => {}}>
+              <Text style={{color: colors.white}}>Thanh toán</Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.thanhToanButton} onPress={() => {}}>
-            <Text style={{color: colors.white}}>Thanh toán</Text>
-          </TouchableOpacity>
         </View>
         <Modalize
           adjustToContentHeight={true}
@@ -557,7 +558,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
-    elevation: 6,
+    backgroundColor: colors.white,
   },
 });
 const mapStateToProps = (state) => {
