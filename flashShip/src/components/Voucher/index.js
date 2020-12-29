@@ -100,7 +100,7 @@ function Voucher() {
 
   return (
     <View style={styles.main}>
-      <Header title={strings.VoucherTitle} />
+      <Header title={strings.VoucherTitle} onBackPress={onBackPress()} />
       <View style={styles.inputArea}>
         <TextInput
           style={styles.inputText}

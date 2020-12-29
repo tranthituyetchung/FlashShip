@@ -10,7 +10,7 @@ import RestaurantAdd from 'components/restaurant/RestaurentAdd'
 import Payment from 'components/payment/Payment'
 import Voucher from 'components/Voucher/index'
 import FoodList from 'components/foodlist/FoodList'
-
+import PaymentMethod from 'components/PaymentMethod/index';
 const Stack = createStackNavigator();
 class AppNavigation extends Component {
   render() {
@@ -26,6 +26,7 @@ class AppNavigation extends Component {
             <Stack.Screen name="StoreDetail" component={StoreDetail} />
             <Stack.Screen name="RestaurantAdd" component={RestaurantAdd} />
             <Stack.Screen name="Payment" component={Payment} />
+            <Stack.Screen name="SelectPayment" component={PaymentMethod} />
             <Stack.Screen name="Voucher" component={Voucher} />
             <Stack.Screen name="FoodList" component={FoodList} />
           </Stack.Navigator>

@@ -12197,6 +12197,7 @@ const data4 = [
         imageUrl: require('assets/images/Food5.png'),
     },
 ];
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -12218,6 +12219,9 @@ class Home extends Component {
     }
     openFoodList =(item) => {
         this.props.navigation.navigate('FoodList',{item})
+    }
+    openVoucherList =(item) => {
+        this.props.navigation.navigate('Voucher',{item})
     }
     render() {
             return(
@@ -12290,6 +12294,7 @@ class Home extends Component {
                                 </View> 
                                 <TouchableOpacity
                                     style={styles.btnMore}
+                                    onPress={this.openVoucherList}
                                     >
                                         <Text style={styles.btnMoreText}>Xem</Text>
                                 </TouchableOpacity>
@@ -12340,7 +12345,7 @@ class Home extends Component {
             )
     }
 }
-export default Home;
+export {Home as default, data1, data2, data3, data4};
 
 
 const wratio = wp('100%')/375
