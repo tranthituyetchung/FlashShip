@@ -19,6 +19,7 @@ import ConfirmBtn from '../../common/ConfirmBtn';
 import { setPayment, applyPromotion } from '../../action/cart/action';
 import { data1, data2, data3, data4 } from '../home/Home';
 import { connect } from 'react-redux';
+import { widthPercentageToDP } from 'react-native-responsive-screen';
 class Payment extends Component {
   constructor(props) {
     super(props);
@@ -64,7 +65,7 @@ class Payment extends Component {
           <Image
             style={styles.couseImg}
             source={current.imageUrl} />
-          <View>
+          <View  style={{justifyContent: 'space-between'}}>
             <Text style={styles.cardTitle} numberOfLines={2}>{current.name}</Text>
             {
               item.options ? 
@@ -82,8 +83,8 @@ class Payment extends Component {
             {item.notes !== '' ? <Text style={styles.cardOption} numberOfLines={2}>{item.notes|| 'Không có note'}</Text>: null}
           </View>
           <View style={styles.priceContainer}>
-            <Text style={styles.price}>{item.price}</Text>
-            <Text style={styles.priceDiscount}>{item.discount}</Text>
+            <Text style={styles.price}>{item.price}đ</Text>
+            <Text style={styles.priceDiscount}>{item.discount}đ</Text>
           </View>
         </TouchableOpacity>
         <View style={styles.sectionLine}></View>
@@ -133,7 +134,7 @@ class Payment extends Component {
       <View style={styles.container}>
         <Header
           title={"Thanh toán"}
-          onPress={this.onBackPress} />
+          onBackPress={this.onBackPress} />
         <ScrollView
           nestedScrollEnabled={true}
           contentContainerStyle={styles.content}>
@@ -191,10 +192,6 @@ class Payment extends Component {
                   <Text style={styles.totalTitle}>Giảm giá</Text>
                   <Text style={styles.totalPrice}>-{this.props.cart.totalDiscount - this.props.cart.totalPrice + reducedMoney}đ</Text>
                 </View>
-                <View style={styles.totalLine}>
-                  <Text style={styles.totalTitle}>Cần trả</Text>
-                  <Text style={styles.totalPrice}>{this.props.cart.totalPrice + 20000 - reducedMoney}đ</Text>
-                </View>
               </View>
               <View style={styles.sectionLine}></View>
             </View>
@@ -220,7 +217,12 @@ class Payment extends Component {
             <View style={styles.blank}></View>
           </View>
         </ScrollView>
-        <ConfirmBtn title={'Thanh toán'} onPress={() => this.props.navigation.navigate('Home')}></ConfirmBtn>
+        <ConfirmBtn title={'Thanh toán'} onPress={() => this.props.navigation.navigate('Home')}>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', width: widthPercentageToDP('100%')-32, marginTop: 8,}}>
+            <Text style={{fontFamily: 'Nunito-Regular', fontSize: 16, color: colors.dark_blue}}>Thanh Toán</Text>
+            <Text style={{fontFamily: 'Nunito-Bold', fontSize: 20, color: colors.dark_blue}}>{this.props.cart.totalPrice + 20000 - reducedMoney}đ</Text>
+          </View>
+        </ConfirmBtn>
       </View>
     );
   }

@@ -8,6 +8,7 @@ const wratio = wp('100%')/375
 const hratio = hp('100%')/812
 const styles = StyleSheet.create({
     container:{
+        //height: hp('100%'),
         flex: 1,
         flexDirection: 'column',
         backgroundColor: colors.white,
@@ -15,9 +16,10 @@ const styles = StyleSheet.create({
     },
     content: {
         marginTop: 64,
+        //height: hp('100%') -100,
     },
     blank:{
-        height: 150
+        height: 180
     },
     section:{
         width: wp('100%')-32,
@@ -72,11 +74,11 @@ const styles = StyleSheet.create({
         width: wp('100%')-56,
         fontFamily: 'Nunito-Regular',
       },
-      sectionLine:{
+    sectionLine:{
         height: 1,
         width: wp('100%')-32,
         backgroundColor: colors.primary_grey,
-        marginVertical: 16,
+        marginVertical: 8,
     },
     orderContainer:{
         flexDirection: 'column',
@@ -84,43 +86,44 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     card:{
+
         flexDirection: 'column',
         marginTop: 0,
         marginBottom: 0,
     },
     cardContainer:{
         flexDirection: 'row',
-        height: 48,
+        height: 64,
     },
     cardTitle:{
-        width: wp('100%')-190,
+        width: wp('100%')-200,
         fontSize: 16,
         fontFamily: 'Nunito-SemiBold',
         marginHorizontal: 8,
         color: colors.dark_blue,
     },
     cardDesc:{
-        width: wp('100%')-190,
+        width: wp('100%')-200,
         fontSize: 12,
         fontFamily: 'Nunito-Regular',
         marginHorizontal: 8,
-        color: colors.dark_blue,
+        color: colors.secondary_grey,
     },
     cardOption:{
-        width: wp('100%')-190,
+        width: wp('100%')-200,
         fontSize: 12,
         fontFamily: 'Nunito-Regular',
         marginHorizontal: 8,
-        color: colors.dark_blue,
+        color: colors.secondary_grey,
     },
     couseImg:{
         borderRadius: 8,
-        width: 52,
-        height: 52,
+        width: 64,
+        height: 64,
         resizeMode: 'cover', 
     },
     price:{
-        fontFamily: 'Nunito-Regular',
+        fontFamily: 'Nunito-SemiBold',
         fontSize: 14,
         color: colors.dark_blue,
     },

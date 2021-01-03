@@ -83,8 +83,8 @@ const SmallDish = ({addDish, removeDish, dish, number}) => {
         <SoldNum>{dish.sold}+ đã bán</SoldNum>
       </TextContainer>
       <PriceContainer>
-        <DishPrice>{dish.price}</DishPrice>
-        {dish.discount ? <DiscountPrice>{dish.discount}</DiscountPrice> : null}
+        <DishPrice>{dish.price}đ</DishPrice>
+        {dish.discount ? <DiscountPrice>{dish.discount}đ</DiscountPrice> : null}
       </PriceContainer>
       <QQContainer>
         {number ? (

@@ -59,13 +59,13 @@ const styles = StyleSheet.create({
     backButton:{
         height: 40,
         width: 40,
-        marginLeft: 24,
+        marginLeft: 8,
         justifyContent: 'center',
         //backgroundColor: colors.red,
     },
     titleContainer: {
         height: 40, 
-        width: wp('100%') - 128,
+        width: wp('100%') - 112,
         justifyContent: 'center',
         alignItems: 'center',
         //backgroundColor: colors.green,

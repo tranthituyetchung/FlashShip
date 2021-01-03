@@ -42,7 +42,7 @@ const ButtonContainer = styled.View`
   height: 56px;
   width: ${wp('100%')}px;
   flex-direction: row;
-  padding-horizontal: 16px;
+  padding-horizontal: 8px;
   justify-content: space-between;
   align-items: center;
   position: absolute;
@@ -385,14 +385,14 @@ const StoreDetail = (props) => {
                   number={props.cart.totalItem}
                   onPress={() => {}}></IconWithNumber>
                 <View style={{marginLeft: 8}}>
-                  <Text>{props.cart.totalPrice}</Text>
-                  <Text>{props.cart.totalDiscount}</Text>
+                  <Text style={{fontFamily:'Nunito-Bold', fontSize: 16, color:colors.dark_blue,}}>{props.cart.totalPrice}đ</Text>
+                  <Text style={{fontFamily:'Nunito-Regular', fontSize: 13, color:colors.dark_blue,textDecorationLine:'line-through'}} >{props.cart.totalDiscount}đ</Text>
                 </View>
               </View>
               <TouchableOpacity
                 style={styles.thanhToanButton}
                 onPress={() => props.navigation.navigate('Payment')}>
-                <Text style={{color: colors.white}}>Thanh toán</Text>
+                <Text style={{fontFamily:'Nunito-Bold', fontSize: 14, color:colors.white,}}>Thanh toán</Text>
               </TouchableOpacity>
             </View>
           ) : null}
@@ -443,6 +443,7 @@ const StoreDetail = (props) => {
                   )})
                 : null}
             </View>
+            <View style={{height: 100}}></View>
           </ScrollView>
         </Modalize>
       </Container>
@@ -549,8 +550,8 @@ const styles = StyleSheet.create({
   thanhToanButton: {
     borderRadius: 8,
     // padding: 8,
-    height: 38,
-    width: 108,
+    height: 40,
+    width: 140,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.primary_blue,
@@ -568,6 +569,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
+     //shadow
+     shadowColor: '#000',
+     shadowOffset: {
+       width: 4,
+       height: -16,
+     },
+     shadowOpacity: 0.5,
+     shadowRadius: 4.65,
+     elevation: 8,
   },
 });
 const mapStateToProps = (state) => {

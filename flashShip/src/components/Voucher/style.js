@@ -61,14 +61,16 @@ const styles = StyleSheet.create({
     // borderColor: '#f7f7f7',
     // borderBottomWidth: 0,
     //shadow
+    marginTop: 2,
+    marginRight: 2,
     shadowColor: colors.primary_grey,
     shadowOffset: {
       width: 0,
-      height: 2,
+      height: 1,
     },
     shadowOpacity: 0.01,
     shadowRadius: 4.65,
-    elevation: 3,
+    elevation: 2,
   },
   title: {
     flex: 8,

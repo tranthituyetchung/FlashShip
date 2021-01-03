@@ -52,6 +52,12 @@ const SoldNum = styled.Text`
   margin-top: 6px;
   color: ${colors.dark_blue};
 `;
+const Option = styled.Text`
+  font-family: Nunito-Regular;
+  font-size: 12px;
+  margin-top: 6px;
+  color: ${colors.secondary_grey};
+`;
 const IconContainer = styled.Text`
   margin-right: 5px;
 `;
@@ -84,7 +90,7 @@ const SmallDishWithOption = ({addDish, dish, removeDish, options, notes, number}
             {dish.name}
           </DishName>
         </DishNameContainer>
-        {options ? <SoldNum>{Object.keys(options).reduce((all, key, i) => {
+        {options ? <Option numberOfLines={1}>{Object.keys(options).reduce((all, key, i) => {
             if(options[key]) {
               const data = mapOptionsName[key];
               if(!all.firstTime){
@@ -93,8 +99,8 @@ const SmallDishWithOption = ({addDish, dish, removeDish, options, notes, number}
               } else all.string += `${data.toLowerCase()}, `
             }
             return all;
-          } ,{string: '', firstTime: false}).string.replace(/, $/,'.')}</SoldNum> : null}
-        {notes !== '' ? <SoldNum>{notes|| 'Không có note'}</SoldNum>: null}
+          } ,{string: '', firstTime: false}).string.replace(/, $/,'.')}</Option> : null}
+        {notes !== '' ? <Option>{notes|| 'Không có note'}</Option>: null}
       </TextContainer>
       <QQContainer>
         <DishCounter

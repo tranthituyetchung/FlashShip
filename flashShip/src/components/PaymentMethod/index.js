@@ -24,10 +24,13 @@ const PaymentMethod = (props) => {
     setPayment(methods[isActive]);
     props.navigation.goBack();
   }
+  const onBackPress = () => {
+    props.navigation.goBack();
+  };
 
   return (
-    <View>
-      <Header title={strings.PaymentMethodTitle} />
+    <View style={{backgroundColor: colors.white, flex: 1}}>
+      <Header title={strings.PaymentMethodTitle} onBackPress={onBackPress}/>
       <View style={styles.mainContainer}>
         {methods.map((method, i) => (
           <TouchableOpacity key={i} onPress={() => setIsActive(i)}>
@@ -35,7 +38,7 @@ const PaymentMethod = (props) => {
               <View style={styles.title}>
                 <View style={styles.icon}>{method.icon}</View>
                 <View style={styles.subtitle}>
-                  <Text>{method.title}</Text>
+                  <Text style={styles.methodTitle}>{method.title}</Text>
                 </View>
               </View>
               <View>
@@ -43,7 +46,8 @@ const PaymentMethod = (props) => {
                   value={i}
                   status={isActive === i ? 'checked' : 'unchecked'}
                   onPress={() => setIsActive(i)}
-                  color={colors.main_blue}
+                  color={colors.primary_blue}
+                  uncheckedColor={colors.primary_grey_light}
                 />
               </View>
             </View>

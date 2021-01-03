@@ -24,6 +24,9 @@ class CartButton extends Component {
                 <TouchableOpacity 
                     style={styles.button} buttonColor="rgba(231,76,60,1)">
                         <IcShopingCart width={28} height={28}/>
+                        <View style={styles.NotiContainer}>
+                                <Text style={styles.NotiNumber}>1</Text>
+                        </View>
                 </TouchableOpacity>
             )
     }
@@ -46,7 +49,7 @@ const styles = StyleSheet.create({
         bottom: 48,
         right: 24,
         borderWidth: 1,
-        borderColor: 'rgba(256,256,256,0.8)',
+        borderColor: 'rgba(256,256,256,0.5)',
         //shadow
         shadowColor: colors.dark_blue,
         shadowOffset: {
@@ -55,6 +58,25 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 1,
         shadowRadius: 6, 
-        elevation: 10,
-    }
+        elevation: 20,
+    },
+    NotiContainer:{
+        width: 30,
+        height: 30,
+        borderWidth: 3,
+        borderColor: colors.primary_blue,
+        backgroundColor: colors.dark_blue,
+        position: 'absolute',
+        right: -6,
+        top: -6,
+        zIndex: 1,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    NotiNumber:{
+        fontFamily: 'Nunito-Regular',
+        fontSize: 10,
+        color: colors.white,
+    },
 })

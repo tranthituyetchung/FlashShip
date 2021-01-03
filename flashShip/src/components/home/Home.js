@@ -15,6 +15,9 @@ import ListCategory from 'common/ListCategory'
 import ListRestaurantHorizontal from 'common/ListRestaurantHorizontal'
 import ListRestaurantVertical from 'common/ListRestaurantVertical'
 import ListReorder from 'common/ListReorder'
+import CartButton from '../../common/CartButton'
+//import { IcGift } from '../../values/images';
+import ActionButton from 'react-native-action-button';
 
 const generateID = () => {
     let guid = 'xyxxyx'.replace(/[xy]/g, (c) => {
@@ -12232,7 +12235,7 @@ class Home extends Component {
                         <Text style={styles.icon}><IcHeart fill="#EB5757"/></Text>
                         <Text style={styles.icon}><IcNote fill="#CFEEFE"/></Text>
                     </View>
-                   
+                    <CartButton/>
                     <ScrollView 
                         //nestedScrollEnabled={true}
                         showsVerticalScrollIndicator ={false}

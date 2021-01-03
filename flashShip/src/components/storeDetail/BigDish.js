@@ -44,7 +44,7 @@ const BigDish = ({dish, addDish, removeDish, number}) => {
       />
       <DishName>{dish.name}</DishName>
       <QQContainer>
-        <DishPrice>{dish.price}</DishPrice>
+        <DishPrice>{dish.price}đ</DishPrice>
         {number ? (
           <DishCounter
             number={number}

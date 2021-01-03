@@ -17,12 +17,13 @@ class ConfirmBtn extends Component {
     render() {
             return (
                 <View style={styles.container}>
+                    {this.props.children}
                     <TouchableOpacity
                         style={styles.backButton}
                         onPress={this.props.onPress}    
                     >
                         <View style={styles.titleContainer}>
-                        <Text style={styles.titleText}>{this.props.title}</Text>
+                            <Text style={styles.titleText}>{this.props.title}</Text>
                         </View>
                     </TouchableOpacity>
                    
@@ -39,12 +40,12 @@ const styles = StyleSheet.create({
     container: {
         zIndex: 10,
         width: wp('100%'),
-        height: 78,
+        //height: 78,
         position: 'absolute',
         left: 0,
         bottom: 0,
         alignItems: "center",
-        flexDirection: 'row',
+        flexDirection: 'column',
         backgroundColor: colors.white,
         //shadow
         shadowColor: "#000",
@@ -57,9 +58,10 @@ const styles = StyleSheet.create({
         elevation: 6, 
     },
     backButton:{
+        marginVertical: 8,
         height: 54,
         width: wp('100%') - 32,
-        marginLeft: 16,
+        //marginLeft: 16,
         justifyContent: 'center',
         //backgroundColor: colors.red,
     },
@@ -76,5 +78,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'Nunito-Bold',
         color: colors.white,
-    }
+    },
+   
 })

@@ -127,7 +127,7 @@ const Voucher = (props) => {
 
       <ScrollView style={styles.mainContainer}>
         {data.map((voucher, i) => (
-          <TouchableOpacity key={i} onPress={() => setIsActive(i)}>
+          <View key={i} onPress={() => setIsActive(i)}>
             <View style={styles.section}>
               <View>
                 <VoucherImg />
@@ -148,11 +148,12 @@ const Voucher = (props) => {
                   value={i}
                   status={isActive === i ? 'checked' : 'unchecked'}
                   onPress={() => setIsActive(i)}
-                  color={colors.main_blue}
+                  color={colors.primary_blue}
+                  uncheckedColor={colors.primary_grey_light}
                 />
               </View>
             </View>
-          </TouchableOpacity>
+          </View>
         ))}
       </ScrollView>
 
