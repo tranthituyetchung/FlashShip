@@ -54,6 +54,7 @@ export const addItem = (item, shopId, note, additional, bonusPrice) => {
     const price = item.price + allBonusPrice;
     console.log("debuz", price);
     const discount = item.discount + allBonusPrice;
+    console.log(note);
     dispatch(addNewItem(item.id, price, discount, note, additional , hashId));
   };
 };

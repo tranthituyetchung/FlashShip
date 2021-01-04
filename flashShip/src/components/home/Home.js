@@ -12226,6 +12226,9 @@ class Home extends Component {
     openVoucherList =(item) => {
         this.props.navigation.navigate('Voucher',{item})
     }
+    openPayment = () => {
+        this.props.navigation.navigate('Payment');
+    }
     render() {
             return(
                 <View style={styles.container}>
@@ -12235,7 +12238,7 @@ class Home extends Component {
                         <Text style={styles.icon}><IcHeart fill="#EB5757"/></Text>
                         <Text style={styles.icon}><IcNote fill="#CFEEFE"/></Text>
                     </View>
-                    <CartButton/>
+                    { this.props.total ? <CartButton number = {this.props.total} onPress = {this.openPayment}/> : null }
                     <ScrollView 
                         //nestedScrollEnabled={true}
                         showsVerticalScrollIndicator ={false}
@@ -12348,7 +12351,13 @@ class Home extends Component {
             )
     }
 }
-export {Home as default, data1, data2, data3, data4};
+const mapStateToProps = (state) => {
+    return {
+      total: state.cart.totalItem,
+    };
+  };
+const connected = connect(mapStateToProps)(Home);
+export { connected as default, data1, data2, data3, data4};
 
 
 const wratio = wp('100%')/375

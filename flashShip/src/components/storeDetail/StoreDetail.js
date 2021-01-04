@@ -428,7 +428,7 @@ const StoreDetail = (props) => {
               </TouchableOpacity>
               {props.cart.listItem[selectDish.id]
                 ? Object.keys(props.cart.listItem[selectDish.id]).map((key) => {
-                  const item = props.cart.listItem[selectDish.id][key]
+                  const item = props.cart.listItem[selectDish.id][key];
                   return (
                     <SmallDishWithOption
                       dish={selectDish}

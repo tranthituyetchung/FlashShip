@@ -22,10 +22,11 @@ class CartButton extends Component {
     render() {
             return (
                 <TouchableOpacity 
-                    style={styles.button} buttonColor="rgba(231,76,60,1)">
+                    style={styles.button} buttonColor="rgba(231,76,60,1)"
+                    onPress = {this.props.onPress}>
                         <IcShopingCart width={28} height={28}/>
                         <View style={styles.NotiContainer}>
-                                <Text style={styles.NotiNumber}>1</Text>
+                            <Text style={styles.NotiNumber}>{this.props.number}</Text>
                         </View>
                 </TouchableOpacity>
             )

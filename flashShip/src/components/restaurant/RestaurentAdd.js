@@ -40,6 +40,7 @@ const RestaurentAdd = (props) => {
     props.navigation.goBack();
   };
   const completeAddDish = () => {
+    console.log(text);
     props.addDish(dish, props.route.params.shopId, text, bonusMap, optionsPrice);
     props.navigation.goBack();
   };
@@ -80,7 +81,7 @@ const RestaurentAdd = (props) => {
             <TextInput
               style={styles.inputText}
               placeholder={strings.RestaurantNote}
-              onChange={(data) => setValue(data)}
+              onChangeText={(data) => setValue(data)}
             />
           </View>
           <View style={styles.blank} />

@@ -80,7 +80,7 @@ class Payment extends Component {
                 return all;
               } ,{string: '', firstTime: false}).string.replace(/, $/,'.')}</Text> : null
             }
-            {item.notes !== '' ? <Text style={styles.cardOption} numberOfLines={2}>{item.notes|| 'Không có note'}</Text>: null}
+            {item.note !== '' ? <Text style={styles.cardOption} numberOfLines={2}>{item.note || 'Không có note'}</Text>: null}
           </View>
           <View style={styles.priceContainer}>
             <Text style={styles.price}>{item.price}đ</Text>
