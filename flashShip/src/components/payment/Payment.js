@@ -65,7 +65,7 @@ class Payment extends Component {
           <Image
             style={styles.couseImg}
             source={current.imageUrl} />
-          <View  style={{justifyContent: 'space-between'}}>
+          <View>
             <Text style={styles.cardTitle} numberOfLines={2}>{current.name}</Text>
             {
               item.options ? 
@@ -82,7 +82,7 @@ class Payment extends Component {
             }
             {item.note !== '' ? <Text style={styles.cardOption} numberOfLines={2}>{item.note || 'Không có note'}</Text>: null}
           </View>
-          <View style={styles.priceContainer}>
+          <View style={{marginLeft: 'auto'}}>
             <Text style={styles.price}>{item.price}đ</Text>
             <Text style={styles.priceDiscount}>{item.discount}đ</Text>
           </View>
